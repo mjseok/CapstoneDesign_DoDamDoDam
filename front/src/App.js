@@ -1,3 +1,9 @@
 import React from 'react';
-const App = () => <div>Hello, Webpack!</div>;
+import ClassManagement from './pages/ClassManagement/ClassManagement';
+
+const App = () => (
+  <div>
+    <ClassManagement />
+  </div>
+);
 export default App;
