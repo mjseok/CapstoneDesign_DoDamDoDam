@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const path = require('path');
 const port = process.env.PORT || 3000;
 
 module.exports = {
@@ -11,6 +11,7 @@ module.exports = {
 
   // 번들된 파일 경로
   output: {
+    publicPath: '/',
     filename: 'bundle.[hash].js',
   },
 
@@ -59,5 +60,6 @@ module.exports = {
     host: 'localhost',
     port: port,
     open: true, // open page when start
+    historyApiFallback: true,
   },
 };
