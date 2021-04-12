@@ -64,8 +64,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleModal = () => {
+const SimpleModal = (props) => {
+  const { onSubmit } = props;
   const classes = useStyles();
+  const [value, setValue] = useState('');
   const [modalStyle] = useState({
     top: `50%`,
     left: `50%`,
@@ -102,9 +104,19 @@ const SimpleModal = () => {
           <h2 className={classes.simpleModalTitle}>
             강기백 학생 - 2월 19일 일기
           </h2>
-          <textarea className={classes.textarea} rows="18" columns="18" />
+          <textarea
+            className={classes.textarea}
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            rows="18"
+            columns="18"
+          />
           <div className={classes.submitDiaryWrapper}>
-            <button type="button" className={classes.submitDiary}>
+            <button
+              type="button"
+              className={classes.submitDiary}
+              onClick={() => onSubmit(value)}
+            >
               일기 제출하기
             </button>
           </div>
@@ -112,6 +124,10 @@ const SimpleModal = () => {
       </Modal>
     </>
   );
+};
+
+SimpleModal.defaultProps = {
+  onSubmit: console.log,
 };
 
 export default SimpleModal;

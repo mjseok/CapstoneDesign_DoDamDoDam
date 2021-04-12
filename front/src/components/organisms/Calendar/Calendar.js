@@ -16,7 +16,7 @@ const Calendar = () => {
         nextLabel={<BsChevronRight color="#888" />}
         prevLabel={<BsChevronLeft color="#888" />}
       />
-      <SimpleModal />
+      <SimpleModal onSubmit={(value) => alert(value)} />
     </CalendarStyled>
   );
 };
