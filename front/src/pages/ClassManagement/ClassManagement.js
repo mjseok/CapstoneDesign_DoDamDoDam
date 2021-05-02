@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
-import preferenceImageUrl from './preference.png';
+import preferenceImageUrl from '../../images/preference.png';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
@@ -66,16 +66,37 @@ const ClassManagement = (props) => {
             </div>
           </div>
         </div>
-        <div className="right">
-          <div className="title">반의 관심사</div>
-          <img
-            className="preference-image"
-            src={preferenceImageUrl}
-            alt="반 이미지"
-          />
+        <div className="left-bottom">
+          <div className="box">
+            <h2 className="title">선생님이 한번 더 확인해 주세요</h2>
+            {checkItems &&
+              checkItems.map((item, index) => {
+                return (
+                  <div key={index} className="double-check">
+                    <img
+                      className="thumbnail-large"
+                      src={item.thumbnail}
+                      alt="썸네일"
+                    ></img>
+                    <div className="child-info">
+                      <h3 className="name">{item.name}</h3>
+                      <span className="desc">{item.desc}</span>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
         </div>
-      </ClassManagementStyled>
-    </Layout>
+      </div>
+      <div className="right">
+        <div className="title">반의 관심사</div>
+        <img
+          className="preference-image"
+          src={preferenceImageUrl}
+          alt="반 이미지"
+        />
+      </div>
+    </ClassManagementStyled>
   );
 };
 
