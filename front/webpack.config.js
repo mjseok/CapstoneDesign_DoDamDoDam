@@ -12,6 +12,7 @@ module.exports = {
   // 번들된 파일 경로
   output: {
     filename: 'bundle.[hash].js',
+    publicPath: '/',
   },
 
   module: {
@@ -45,6 +46,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
 
@@ -59,5 +64,6 @@ module.exports = {
     host: 'localhost',
     port: port,
     open: true, // open page when start
+    historyApiFallback: true,
   },
 };
