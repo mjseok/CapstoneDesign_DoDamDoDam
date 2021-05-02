@@ -1,6 +1,6 @@
 import React from 'react';
 import ClassManagement from './pages/ClassManagement/ClassManagement';
-import ClassDiary from './pages/ClassManagement/ClassDiary';
+import ClassDiary from './pages/ClassDiary/ClassDiary';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import TeacherJoin from './pages/Join/TeacherJoin';
 import StudentJoin from './pages/Join/StudentJoin';

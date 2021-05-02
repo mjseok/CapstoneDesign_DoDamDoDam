@@ -17,6 +17,9 @@ const Header = () => {
       <Link to="/join/student" className="menu">
         학생 회원가입
       </Link>
+      <Link to="/class/diary" className="menu">
+        일기
+      </Link>
       <Link to="/class/management" className="menu">
         수업 관리
       </Link>
