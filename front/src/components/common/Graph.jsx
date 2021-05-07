@@ -4,9 +4,14 @@ import { Chart } from 'react-charts'
 const MyChart=()=>{
     const data = React.useMemo(
         () => [
-          [[1, 10], [2, 10], [3, 10]],
-          [[1, 10], [2, 10], [3, 10]],
-          [[1, 10], [2, 10], [3, 10]]
+          {
+            label:'Series 1',
+            data:[[1, 0], [2, 5], [3, -5]]
+          },
+          {
+            label:'Series 2',
+            data:[[1, 0], [2, 0], [3, 0]]
+          },
         ],
         []  
       )

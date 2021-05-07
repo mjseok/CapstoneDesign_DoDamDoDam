@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout';
 import styled from 'styled-components';
 import MyChart from '@/components/common/Graph'
 //import MyChart from '../../components/common/Graph'
+import Calendar from '../../components/organisms/Calendar/Calendar';
 
 const StudentManagement = () => {
 
@@ -13,11 +14,10 @@ const StudentManagement = () => {
             학생 목록
         </List>
         <Detail>
-            <Calendar>
-                달력
-            </Calendar>
+            <CalendarDiv>
+              <Calendar/>
+            </CalendarDiv>
             <Graph>
-                차트
                 <MyChart/>
             </Graph>
         </Detail>
@@ -37,7 +37,7 @@ const List = styled.div`
 const Detail = styled.div`
   margin-left:auto;
 `;
-const Calendar = styled.div`
+const CalendarDiv = styled.div`
 `;
 const Graph = styled.div`
 `;
