@@ -7,7 +7,7 @@ const TeacherJoin = () => {
   return (
     <Layout>
       <TeacherJoinPage>
-        <JoinForm title="선생님 회원가입" />
+        <JoinForm title="선생님 회원가입" jobs="Teacher" />
       </TeacherJoinPage>
     </Layout>
   );
