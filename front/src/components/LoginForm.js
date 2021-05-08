@@ -4,6 +4,7 @@ import { Field, Formik } from 'formik';
 import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
 import { useHistory, Link } from 'react-router-dom';
+import axios from "axios";
 
 const LoginForm = () => {
   const history = useHistory();
@@ -13,13 +14,22 @@ const LoginForm = () => {
       <div className="form_area">
         <Formik
           initialValues={{
-            id: '',
-            password: '',
+            id: 'vpdls1511',
+            password: '1234',
           }}
           validate={(values) => {}}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
-            history.push('/');
+              console.log(values);
+              axios.post('http://localhost:3001/loginApi/login',{
+                  values : values,
+              }).then(res => {
+                  if(res.data.state === 200){
+                      alert('환영합니다!')
+                      history.push('/')
+                  }else{
+                      alert(res.data.err)
+                  }
+              })
           }}
         >
           {({
@@ -51,7 +61,6 @@ const LoginForm = () => {
                 <button
                   className="submit"
                   type="submit"
-                  disabled={isSubmitting}
                 >
                   로그인하기
                 </button>
