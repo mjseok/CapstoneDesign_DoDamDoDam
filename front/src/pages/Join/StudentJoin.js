@@ -7,7 +7,7 @@ const StudentJoin = () => {
   return (
     <Layout>
       <StudentJoinPage>
-        <JoinForm title="학생 회원가입" jobs="Student"/>
+        <JoinForm title="학생 회원가입" />
       </StudentJoinPage>
     </Layout>
   );

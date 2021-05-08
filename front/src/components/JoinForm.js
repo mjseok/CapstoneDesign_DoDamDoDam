@@ -4,9 +4,8 @@ import { Field, Formik } from 'formik';
 import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
 import { useHistory } from 'react-router';
-const axios = require('axios').default;
 
-const JoinForm = ({ title, jobs }) => {
+const JoinForm = ({ title }) => {
   const history = useHistory();
 
   return (
@@ -15,27 +14,17 @@ const JoinForm = ({ title, jobs }) => {
         <h3 className="title">{title}</h3>
         <Formik
           initialValues={{
-            id: 'vpdls1511',
-            password: '1234',
-            name: 'NamGyu',
-            school: 'jj',
-            grade: 2,
-            class: 1,
+            id: '',
+            password: '',
+            name: '',
+            school: '',
+            grade: undefined,
+            class: undefined,
           }}
           validate={(values) => {}}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-            axios.post('http://localhost:3001/loginApi/register',{
-                values : values,
-                jobs : jobs
-            }).then(res => {
-                if(res.data.state === 200){
-                    alert('가입을 환영합니다!')
-                    history.push('/')
-                }else{
-                    alert(res.data.err)
-                }
-            })
+            history.push('/');
           }}
         >
           {({
@@ -75,6 +64,7 @@ const JoinForm = ({ title, jobs }) => {
                 <button
                   className="submit"
                   type="submit"
+                  disabled={isSubmitting}
                 >
                   가입하기
                 </button>
@@ -86,10 +76,8 @@ const JoinForm = ({ title, jobs }) => {
         <img className="bulb" src={bulb} alt="" />
       </div>
     </JoinFormWrapper>
-  )
-
-
-}
+  );
+};
 
 const JoinFormWrapper = styled.div`
   height: 100%;
