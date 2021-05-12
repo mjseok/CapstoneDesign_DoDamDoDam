@@ -21,6 +21,7 @@ const StudentInfoStyled = styled.div`
   .preference-image {
     width: 400px;
     height: 400px;
+    font-size:100%;
   }
   .row-thumbnail-text {
     font-size: 22px;

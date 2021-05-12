@@ -20,7 +20,7 @@ const ClassManagementStyled = styled.div`
   }
   .preference-image {
     width: 400px;
-    height: 400px;
+    height: 600px;
   }
   .row-thumbnail-text {
     font-size: 22px;

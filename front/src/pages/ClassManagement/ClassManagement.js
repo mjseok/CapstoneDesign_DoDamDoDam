@@ -2,11 +2,58 @@ import React from 'react';
 import ClassManagementStyled from './ClassManagement.style';
 import PageLayout from '../../layouts/PageLayout';
 import styled from 'styled-components';
+import ReactWordcloud from 'react-wordcloud';
+// import 'tippy.js/dist/tippy.css';
+// import 'tippy.js/animations/scale.css';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
+  const words = [
+    {
+      text: '일일일',
+      value: 1
+    },
+    {
+      text: '이이이',
+      value: 2
+    },
+    {
+      text: '삼삼삼삼',
+      value: 3
+    },
+    {
+      text: '사사사',
+      value: 4
+    },
+    {
+      text: '오오오',
+      value: 5
+    },
+    {
+      text: '육육육육육',
+      value: 6
+    },
+    {
+      text: '칠칠칠',
+      value: 7
+    },
+    {
+      text: '팔',
+      value: 8
+    },
+    {
+      text: '구구',
+      value: 9
+    },
+    {
+      text: '십십십',
+      value: 10
+    },
+    
+  ];
 
   return (
+    
     <PageLayout>
       <Wrapper>
         <ClassManagementStyled>
@@ -69,15 +116,17 @@ const ClassManagement = (props) => {
           </div>
           <div className="right">
             <div className="title">반의 관심사</div>
-            <img
-              className="preference-image"
-              src="https://i.ibb.co/jLqZcyR/preference.png"
-              alt="반 이미지"
-            />
+            <div className="preference-image ">
+              <ReactWordcloud words={words} />
+            </div>
           </div>
+         
         </ClassManagementStyled>
+       
       </Wrapper>
+      
     </PageLayout>
+    
   );
 };
 
