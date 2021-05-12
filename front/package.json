@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
+    "axios": "^0.21.1",
     "core-js": "^3.10.0",
     "path-browserify": "^1.0.1",
     "performance-now": "^0.2.0",
