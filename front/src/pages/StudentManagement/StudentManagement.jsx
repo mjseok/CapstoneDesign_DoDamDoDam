@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import MyChart from '@/components/common/Graph'
 //import MyChart from '../../components/common/Graph'
 import Calendar from '../../components/organisms/Calendar/Calendar';
-import {fetchApi} from '../../util';
 
 const StudentManagement = () => {
 

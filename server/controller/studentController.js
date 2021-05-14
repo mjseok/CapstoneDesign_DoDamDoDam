@@ -12,7 +12,7 @@ exports.showAllWord = async (req, res) => {
   try {
     const teacher_id = req.body.teacherID;
     const allWord = await db.query(selectAllWord, [teacher_id]);
-    res.json(allWord);
+    res.json(allWord[0]);
   } catch (err) {
     throw err;
   }
@@ -65,7 +65,9 @@ exports.mainEmotion = async (req, res) => {
 };
 exports.comment = async (req, res) => {
   try {
-    const comment = await db.query(selectComment);
+    const student_id = req.body.studentID;
+    const date = new Date();
+    const comment = await db.query(selectComment, [student_id, date]);
     res.json(comment);
   } catch (err) {
     throw err;
@@ -73,7 +75,8 @@ exports.comment = async (req, res) => {
 };
 exports.checkMainEmotion = async (req, res) => {
   try {
-    const selectmainemotion = await db.query(selectMainEmotion);
+    const student_id = req.body.studentID;
+    const selectmainemotion = await db.query(selectMainEmotion, [student_id]);
     res.json(selectmainemotion);
   } catch (err) {
     throw err;
@@ -81,7 +84,9 @@ exports.checkMainEmotion = async (req, res) => {
 };
 exports.checkJournal = async (req, res) => {
   try {
-    const selectjournal = await db.query(selectJournal);
+    const student_id = req.body.studentID;
+    const date = new Date();
+    const selectjournal = await db.query(selectJournal, [student_id, date]);
     res.json(selectjournal);
   } catch (err) {
     throw err;
