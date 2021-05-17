@@ -2,11 +2,17 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 const { handleErrors } = require('./router/error');
 const session = require('express-session');
 const { sequelize } = require('./models');
 const { getUserMe } = require('./router/user');
-const { login, postTeacher, postStudent } = require('./router/auth');
+const { login, postTeacher, postStudent, logout } = require('./router/auth');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const studentRouter = require('./routes/student');
+const teacherRouter = require('./routes/teacher');
+require('dotenv').config();
 const app = express();
 const port = 3001;
 
@@ -18,6 +24,8 @@ app.use(
 );
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: 'Dodam Dodam',
@@ -28,14 +36,14 @@ app.use(
 );
 app.use(morgan('dev'));
 
-app.set('port', process.env.PORT || 3000);
-
 app.use(postTeacher);
 app.use(postStudent);
 app.use(login);
+app.use(logout);
 app.use(getUserMe);
 app.use(handleErrors);
 
+app.set('port', process.env.PORT || 3001);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
-import preferenceImageUrl from '../../images/preference.png';
-import { useContext } from 'react';
-import { AuthContext } from '../../context/AuthProvider';
+import PageLayout from '../../layouts/PageLayout';
+import styled from 'styled-components';
+import AuthContext from '../../context/auth';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
   const auth = useContext(AuthContext);
 
-  console.log(auth.userMe);
+  console.log(auth?.userMe);
 
   return (
-    <Layout>
-      <ClassManagementStyled>
-        <div>
+    <PageLayout>
+      <Wrapper>
+        <ClassManagementStyled>
           <div className="left">
             <div className="left-top">
               <div className="box">
@@ -72,17 +72,17 @@ const ClassManagement = (props) => {
               </div>
             </div>
           </div>
-        </div>
-        <div className="right">
-          <div className="title">반의 관심사</div>
-          <img
-            className="preference-image"
-            src={preferenceImageUrl}
-            alt="반 이미지"
-          />
-        </div>
-      </ClassManagementStyled>
-    </Layout>
+          <div className="right">
+            <div className="title">반의 관심사</div>
+            <img
+              className="preference-image"
+              src="https://i.ibb.co/jLqZcyR/preference.png"
+              alt="반 이미지"
+            />
+          </div>
+        </ClassManagementStyled>
+      </Wrapper>
+    </PageLayout>
   );
 };
 
@@ -112,5 +112,9 @@ ClassManagement.defaultProps = {
     },
   ],
 };
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 export default ClassManagement;

@@ -5,7 +5,7 @@ import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
 import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
-import { AuthContext } from '../context/AuthProvider';
+import { AuthContext } from '../context/auth';
 const Axios = require('../api/axios');
 
 const LoginForm = () => {
@@ -29,9 +29,12 @@ const LoginForm = () => {
                 if (res.status === 200) {
                   alert(`${res.data.name}님 환영합니다!`);
                   auth.setUserMe(res.data);
-                  res.data.userType === 'teacher'
-                    ? history.push('/class/management')
-                    : history.push('/class/diary');
+                  const isTeacher = res.data.userType === 'teacher';
+                  const isStudent = res.data.userType === 'student';
+                  auth.setIsStudent(isStudent);
+                  auth.setIsTeacher(isTeacher);
+                  isTeacher && history.push('/class/management');
+                  isStudent && history.push('/class/diary');
                 }
               })
               .catch((e) => {

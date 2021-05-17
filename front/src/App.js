@@ -6,7 +6,7 @@ import TeacherJoin from './pages/Join/TeacherJoin';
 import StudentJoin from './pages/Join/StudentJoin';
 import MainPage from './pages';
 import LoginPage from './pages/Login';
-import AuthProvider from './context/AuthProvider';
+import AuthProvider from './context/auth';
 
 const App = () => {
   return (

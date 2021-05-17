@@ -39,6 +39,19 @@ exports.login = router.post(
   })
 );
 
+exports.logout = router.delete(
+  '/logout',
+  wrapper(async (req, res) => {
+    req.session.destroy(function (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.sendStatus(200);
+      }
+    });
+  })
+);
+
 exports.postTeacher = router.post(
   '/join/teacher',
   [
