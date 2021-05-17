@@ -1,35 +1,47 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Field, Formik } from 'formik';
 import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
 import { useHistory, Link } from 'react-router-dom';
-import axios from "axios";
+import { useState } from 'react';
+import { AuthContext } from '../context/AuthProvider';
+const Axios = require('../api/axios');
 
 const LoginForm = () => {
+  const [generalError, setGeneralError] = useState('');
+  const [formError, setFormError] = useState({});
+  const auth = useContext(AuthContext);
   const history = useHistory();
 
   return (
     <LoginFormWrapper>
       <div className="form_area">
         <Formik
-          initialValues={{
-            id: 'vpdls1511',
-            password: '1234',
-          }}
+          initialValues={{}}
           validate={(values) => {}}
           onSubmit={(values, { setSubmitting }) => {
-              console.log(values);
-              axios.post('http://localhost:3001/loginApi/login',{
-                  values : values,
-              }).then(res => {
-                  if(res.data.state === 200){
-                      alert('환영합니다!')
-                      history.push('/')
-                  }else{
-                      alert(res.data.err)
-                  }
+            console.log(values);
+            setGeneralError('');
+            setFormError({});
+            Axios.post('/login', values)
+              .then((res) => {
+                if (res.status === 200) {
+                  alert(`${res.data.name}님 환영합니다!`);
+                  auth.setUserMe(res.data);
+                  res.data.userType === 'teacher'
+                    ? history.push('/class/management')
+                    : history.push('/class/diary');
+                }
               })
+              .catch((e) => {
+                if (e.response.data.type === 'general') {
+                  setGeneralError(e.response.data.message);
+                }
+                if (e.response.data.type === 'form') {
+                  setFormError(e.response.data.error);
+                }
+              });
           }}
         >
           {({
@@ -42,13 +54,24 @@ const LoginForm = () => {
           }) => (
             <form onSubmit={handleSubmit}>
               <div className="field_area">
-                <label htmlFor="id">아이디</label>
-                <Field name="id" placeholder="아이디" />
+                <div className="field">
+                  <label htmlFor="id">아이디</label>
+                  <Field type="text" name="id" placeholder="아이디" />
+                </div>
+                <ErrorText>{formError.id?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="password">비밀번호</label>
-                <Field type="password" name="password" placeholder="비밀번호" />
+                <div className="field">
+                  <label htmlFor="password">비밀번호</label>
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호"
+                  />
+                </div>
+                <ErrorText>{formError.password?.msg}</ErrorText>
               </div>
+              <ErrorText>{generalError}</ErrorText>
               <div className="link_area">
                 <Link className="link" to="/join/teacher">
                   선생님 회원가입
@@ -58,10 +81,7 @@ const LoginForm = () => {
                 </Link>
               </div>
               <div className="submit_area">
-                <button
-                  className="submit"
-                  type="submit"
-                >
+                <button className="submit" type="submit">
                   로그인하기
                 </button>
               </div>
@@ -75,10 +95,22 @@ const LoginForm = () => {
   );
 };
 
+const ErrorText = styled.p`
+  color: red;
+  font-size: 14px;
+  margin: 16px auto;
+  width: 100%;
+`;
+
 const LoginFormWrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+
+  .field {
+    display: flex;
+    align-items: center;
+  }
 
   &:after {
     content: '';
@@ -99,11 +131,14 @@ const LoginFormWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 160px 0;
+    justify-content: space-between;
+    padding: 180px 0;
     background: #ffd569;
     position: relative;
     flex: 1;
+    ${ErrorText} {
+      margin: 12px 0 0 120px;
+    }
   }
 
   .blank {
@@ -130,9 +165,13 @@ const LoginFormWrapper = styled.div`
     transform: translateX(-50%);
   }
 
+  form {
+    margin-top: 200px;
+  }
+
   .field_area {
     display: flex;
-    margin-top: 100px;
+    flex-direction: column;
     label {
       width: 100px;
       font-size: 20px;
@@ -141,6 +180,7 @@ const LoginFormWrapper = styled.div`
       margin-left: 16px;
       width: 400px;
       font-size: 16px;
+      z-index: 1;
     }
   }
 
