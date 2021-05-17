@@ -3,7 +3,7 @@ import ClassDiaryStyled from './ClassDiary.style';
 import preferenceImageUrl from '../../images/preference.png';
 import Calendar from '../../components/organisms/Calendar/Calendar';
 import Layout from '../../components/Layout';
-import { AuthContext } from '../../context/AuthProvider';
+import { AuthContext } from '../../context/auth';
 
 const ClassDiary = (props) => {
   const { title } = props;

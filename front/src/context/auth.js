@@ -10,7 +10,12 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     Axios.get('/user/me')
-      .then((result) => console.log(result.data))
+      .then((result) => {
+        const { userType, ...user } = result.data;
+        setUserMe(user);
+        userType === 'teacher' && setIsTeacher(true);
+        userType === 'student' && setIsStudent(true);
+      })
       .catch((e) => console.error(e));
   }, []);
 

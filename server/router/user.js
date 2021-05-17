@@ -14,14 +14,14 @@ exports.getUserMe = router.get(
       teacher = await db.Teacher.findOne({
         where: { id: req.session.userId },
       });
-      if (teacher) return res.status(200).json(teacher.dataValues);
+      if (teacher) return res.status(200).json({ ...teacher.dataValues, userType: 'teacher' });
     }
 
     if (req.session.userType === 'student') {
       student = await db.Student.findOne({
         where: { id: req.session.userId },
       });
-      if (student) return res.status(200).json(student.dataValues);
+      if (student) return res.status(200).json({ ...student.dataValues, userType: 'student' });
     }
 
     if (!teacher && !student) throw new CustomError({ code: 404, message: '로그인 된 유저 정보를 가져오지 못했습니다.' });
