@@ -13,6 +13,7 @@ module.exports = {
   output: {
     publicPath: '/',
     filename: 'bundle.[hash].js',
+    publicPath: '/',
   },
 
   module: {
@@ -36,10 +37,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.html$/,
         use: [
           {
@@ -49,6 +46,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
