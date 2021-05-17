@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const CalendarStyled = styled.div`
   .react-calendar {
-    width: 940px;
+    width: 100%;
     border: 1px solid transparent;
     position: relative;
     padding: 0 60px;
