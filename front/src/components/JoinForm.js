@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { Field, Formik } from 'formik';
 import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
-import { AuthContext } from '../context/AuthProvider';
+import { AuthContext } from '../context/auth';
 import { useHistory } from 'react-router';
-const Axios = require('../api/axios');
+import Axios from '../api/axios';
 
 const JoinForm = ({ title, jobs }) => {
   const [generalError, setGeneralError] = useState('');
