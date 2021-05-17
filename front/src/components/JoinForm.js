@@ -1,41 +1,53 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { Field, Formik } from 'formik';
 import bulb from '../assets/images/bulb.png';
 import logo from '../assets/images/logo.png';
+import { AuthContext } from '../context/AuthProvider';
 import { useHistory } from 'react-router';
-const axios = require('axios').default;
+const Axios = require('../api/axios');
 
 const JoinForm = ({ title, jobs }) => {
+  const [generalError, setGeneralError] = useState('');
+  const [formError, setFormError] = useState({});
   const history = useHistory();
+  const auth = useContext(AuthContext);
+  const url =
+    jobs === 'Teacher'
+      ? 'http://localhost:3001/join/teacher'
+      : 'http://localhost:3001/join/student';
 
   return (
     <JoinFormWrapper>
       <div className="form_area">
         <h3 className="title">{title}</h3>
         <Formik
-          initialValues={{
-            id: 'vpdls1511',
-            password: '1234',
-            name: 'NamGyu',
-            school: 'jj',
-            grade: 2,
-            class: 1,
-          }}
+          initialValues={{}}
           validate={(values) => {}}
           onSubmit={(values, { setSubmitting }) => {
             console.log(values);
-            axios.post('http://localhost:3001/loginApi/register',{
-                values : values,
-                jobs : jobs
-            }).then(res => {
-                if(res.data.state === 200){
-                    alert('가입을 환영합니다!')
-                    history.push('/')
-                }else{
-                    alert(res.data.err)
+            setFormError({});
+            setGeneralError('');
+            Axios.post(url, values)
+              .then((res) => {
+                if (res.status === 201) {
+                  alert('가입을 환영합니다!');
+                  auth.setUserMe(res.data);
+                  auth.setIsTeacher(jobs === 'Teacher');
+                  auth.setIsStudent(jobs === 'Student');
+                  jobs === 'Teacher' && history.push('/class/management');
+                  jobs === 'Student' && history.push('/class/diary');
                 }
-            })
+              })
+              .catch((e) => {
+                if (!e.response) return;
+                if (e.response.data.type === 'general') {
+                  setGeneralError(e.response.data.message);
+                }
+                if (e.response.data.type === 'form') {
+                  setFormError(e.response.data.error);
+                }
+              });
           }}
         >
           {({
@@ -48,34 +60,54 @@ const JoinForm = ({ title, jobs }) => {
           }) => (
             <form onSubmit={handleSubmit}>
               <div className="field_area">
-                <label htmlFor="id">아이디</label>
-                <Field name="id" placeholder="아이디" />
+                <div className="field">
+                  <label htmlFor="id">아이디</label>
+                  <Field name="id" placeholder="아이디" />
+                </div>
+                <ErrorText>{formError.id?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="password">비밀번호</label>
-                <Field type="password" name="password" placeholder="비밀번호" />
+                <div className="field">
+                  <label htmlFor="password">비밀번호</label>
+                  <Field
+                    type="password"
+                    name="password"
+                    placeholder="비밀번호"
+                  />
+                </div>
+                <ErrorText>{formError.password?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="name">이름</label>
-                <Field name="name" placeholder="이름" />
+                <div className="field">
+                  <label htmlFor="name">이름</label>
+                  <Field name="name" placeholder="이름" />
+                </div>
+                <ErrorText>{formError.name?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="school">학교명</label>
-                <Field name="school" placeholder="학교명" />
+                <div className="field">
+                  <label htmlFor="school">학교명</label>
+                  <Field name="school" placeholder="학교명" />
+                </div>
+                <ErrorText>{formError.school?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="grade">학년</label>
-                <Field type="number" name="grade" placeholder="3" />
+                <div className="field">
+                  <label htmlFor="grade">학년</label>
+                  <Field type="number" name="grade" placeholder="3" />
+                </div>
+                <ErrorText>{formError.grade?.msg}</ErrorText>
               </div>
               <div className="field_area">
-                <label htmlFor="class">반</label>
-                <Field type="number" name="class" placeholder="1" />
+                <div className="field">
+                  <label htmlFor="class">반</label>
+                  <Field type="number" name="class" placeholder="1" />
+                </div>
+                <ErrorText>{formError.class?.msg}</ErrorText>
               </div>
+              <ErrorText>{generalError}</ErrorText>
               <div className="submit_area">
-                <button
-                  className="submit"
-                  type="submit"
-                >
+                <button className="submit" type="submit">
                   가입하기
                 </button>
               </div>
@@ -86,10 +118,15 @@ const JoinForm = ({ title, jobs }) => {
         <img className="bulb" src={bulb} alt="" />
       </div>
     </JoinFormWrapper>
-  )
+  );
+};
 
-
-}
+const ErrorText = styled.p`
+  color: red;
+  font-size: 14px;
+  margin: 16px auto;
+  width: 100%;
+`;
 
 const JoinFormWrapper = styled.div`
   height: 100%;
@@ -113,6 +150,9 @@ const JoinFormWrapper = styled.div`
     background: #ffd569;
     position: relative;
     flex: 1;
+    ${ErrorText} {
+      margin: 12px 0 0 120px;
+    }
   }
 
   .blank {
@@ -145,7 +185,8 @@ const JoinFormWrapper = styled.div`
 
   .field_area {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     label {
       width: 100px;
       font-size: 20px;
@@ -155,6 +196,11 @@ const JoinFormWrapper = styled.div`
       width: 400px;
       font-size: 16px;
     }
+  }
+
+  .field {
+    display: flex;
+    align-items: center;
   }
 
   .field_area + .field_area {

@@ -2,9 +2,14 @@ import React from 'react';
 import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
 import preferenceImageUrl from '../../images/preference.png';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
+  const auth = useContext(AuthContext);
+
+  console.log(auth.userMe);
 
   return (
     <Layout>
