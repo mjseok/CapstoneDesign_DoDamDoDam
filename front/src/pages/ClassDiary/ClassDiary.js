@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ClassDiaryStyled from './ClassDiary.style';
 import preferenceImageUrl from '../../images/preference.png';
 import Calendar from '../../components/organisms/Calendar/Calendar';
 import Layout from '../../components/Layout';
+import { AuthContext } from '../../context/AuthProvider';
 
 const ClassDiary = (props) => {
   const { title } = props;
+  const auth = useContext(AuthContext);
+
+  console.log(auth.userMe);
+
   return (
     <Layout overflow>
       <ClassDiaryStyled>
