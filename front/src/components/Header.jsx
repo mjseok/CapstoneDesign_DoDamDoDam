@@ -21,7 +21,7 @@ const Header = () => {
     <Component>
       <Logo
         src="https://i.ibb.co/LkJhyKK/image.png"
-        onClick={() => history.push('/')}
+        onClick={() => history.push('/class/management')}
       />
       {auth.isStudent && (
         <ClassButton type="button">
