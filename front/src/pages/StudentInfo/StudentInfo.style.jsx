@@ -214,16 +214,16 @@ const StudentInfoStyled = styled.div`
     top: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(10, 10, 10, 0.86);
+    background-color: rgba(209, 213, 218, 0.5);
   }
   
   .modal-card {
     margin: 0 auto;
     display: block;
     margin-top: 250px;
-    width: 300px;
-    height: 300px;
-    background-color: lightgray;
+    width: 700px;
+    height: 500px;
+    background-color: rgba(255, 213, 105, 10);
     border-radius: 5px;
   }
 

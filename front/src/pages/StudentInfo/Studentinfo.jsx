@@ -7,7 +7,6 @@ import service from '../../service';
 import StudentList from '../../components/student/StudentList';
 
 const StudentInfo = (props) => {
-    const hello = ["안녕요?ㅎ", "Hello?", "니하오"];
     const { positiveItems } = props;
 
     const handlePageClick = (data) => {
@@ -19,6 +18,7 @@ const StudentInfo = (props) => {
         //   this.loadCommentsFromServer();
         // });
     };
+
     const [students, setStudents] = useState([{}]);
 
     // 서버에서 studentlist를 가져오는 방식
@@ -31,21 +31,27 @@ const StudentInfo = (props) => {
         getAllStudent();//page가 넘어갈때마다 getAllStudent()함수 실행(useEffect안에 함수쓰면 page바뀔때마다 함수 실행됨)
     }, []);
 
-    function makeDog(e) {
-        //e.target.setAttribute('src', 'https://source.unsplash.com/LYK3ksSQyeo');
-        e.target.setAttribute('src', 'http://placehold.it/90x90');
-        e.target.setAttribute('alt', 'dog');
-    }
 
     const [show, setShow] = useState(false);
 
-    const handleModalClose = (e) => {
+    const addModalClose = (e) => {
         setShow(false);
     };
 
-    const handleModalOpen = () => {
+    const addModalOpen = () => {
         setShow(true);
     };
+
+    const [show2, setShow2] = useState(false);
+
+    const modifyModalClose = (e) => {
+        setShow2(false);
+    };
+
+    const modifyModalOpen = () => {
+        setShow2(true);
+    };
+
 
 
     const theme = 'circle'
@@ -55,37 +61,47 @@ const StudentInfo = (props) => {
                 <div className='flex-container2'>
                     <div className='box'>
                         <div className='row-thumbnails2'>
-                            <div
-                                hidden={!show}
-                            >
-                                <div
-                                    className="modal-background"
-                                    onClick={handleModalClose}
-                                >
+                            <div hidden={!show}>
+                                <div className="modal-background">
                                     <div className="modal-card">
-
+                                        <span className="close" onClick={addModalClose}>
+                                            &times;
+                                        </span>
+                                        <label>학생 추가 화면입니다!</label>
                                     </div>
                                 </div>
                             </div>
-                            <img src="http://placehold.it/50x50" alt="cat" onClick={handleModalOpen} />
-                            <img src="http://placehold.it/80x80" alt="student2" onClick={makeDog} />
-                            <img src="http://placehold.it/80x80" alt="student3" onClick={makeDog} />
-                            <img src="http://placehold.it/80x80" alt="student4" onClick={makeDog} />
+
+                            <div hidden={!show2}>
+                                <div className="modal-background">
+                                    <div className="modal-card">
+                                        <span className="close" onClick={modifyModalClose}>
+                                            &times;
+                                        </span>
+                                        <label>학생 수정 화면입니다!</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <img src=" https://i.ibb.co/wg4kJYq/add.png" alt="cat" onClick={addModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student2" onClick={modifyModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student3" onClick={modifyModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student4" onClick={modifyModalOpen} />
                         </div>
                         <div className='row-thumbnails2'>
-                            <img src="http://placehold.it/80x80" alt="student5" onClick={makeDog} />
-                            <img src="http://placehold.it/80x80" alt="student6" onClick={makeDog} />
-                            <img src="http://placehold.it/80x80" alt="student7" onClick={makeDog} />
-                            <img src="http://placehold.it/80x80" alt="student8" onClick={makeDog} />
+                            <img src="http://placehold.it/80x80" alt="student5" onClick={modifyModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student6" onClick={modifyModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student7" onClick={modifyModalOpen} />
+                            <img src="http://placehold.it/80x80" alt="student8" onClick={modifyModalOpen} />
                         </div>
-                        <div>
+                        {/* <div>
+                            {"DB에서 불러온 학생 목록"}
                             <List>
                                 <StudentList students={students} />
                             </List>
-                        </div>
+                        </div> */}
 
                     </div>
-
                     <div className='react-paginate'>
                         <ReactPaginate
                             previousLabel={'<<'}
@@ -100,6 +116,14 @@ const StudentInfo = (props) => {
                             activeClassName={'active'}
                         />
                     </div>
+                    <div>
+                        {"DB에서 불러온 현재 학생 목록"}
+                        <List>
+                            <StudentList students={students} />
+                        </List>
+                    </div>
+
+                   
 
 
                 </div>
@@ -131,7 +155,10 @@ StudentInfo.defaultProps = {
 
     ]
 };
-
+const label = styled.div`
+    width: 100px;
+    font-size: 20px;
+`;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
