@@ -1,15 +1,106 @@
-import React, { useContext } from 'react';
+import React, { useRef, useState, useContext } from 'react';
 import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
 import PageLayout from '../../layouts/PageLayout';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth';
+import ReactWordcloud from 'react-wordcloud';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
   const auth = useContext(AuthContext);
 
   console.log(auth?.userMe);
+
+  //
+  let arr1=['십일십일', '십이십이', '십삼십삼'] //word(key)
+  let arr2=[11,12,13] // frequency(value)
+  var index = 0;
+  const [inputs, setInputs] = useState({
+    text: '',
+    value: ''
+  });
+  const { text, value } = inputs;
+  const onChange = e => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value
+    });
+  };
+
+  
+  const [words, setUsers] = useState([
+    { 
+      id: 1,
+      text: '일일일',
+      value: 1
+    },
+    {
+      id: 2,
+      text: '이이이',
+      value: 2
+    },
+    {
+      id: 3,
+      text: '삼삼삼삼',
+      value: 3
+    },
+    {
+      id: 4,
+      text: '사사사',
+      value: 4
+    },
+    {
+      id: 5,
+      text: '오오오',
+      value: 5
+    },
+    {
+      id: 6,
+      text: '육육육육육',
+      value: 6
+    },
+    {
+      id: 7,
+      text: '칠칠칠',
+      value: 7
+    },
+    {
+      id: 8,
+      text: '팔',
+      value: 8
+    },
+    {
+      id: 9,
+      text: '구구',
+      value: 9
+    },
+    {
+      id: 10,
+      text: '십십십',
+      value: 10
+    },
+  ]);
+  
+  const nextId = useRef(0);
+  const onCreate = () => {
+    const user = {
+      id: nextId.current,
+      text,
+      value
+    };
+    setUsers(words.concat(user));
+
+    setInputs({
+      text: arr1[nextId.current],
+      value: arr2[nextId.current]
+    });
+    nextId.current += 1;
+    index += 1;
+    console.log(nextId, index);
+  };
+  //
 
   return (
     <PageLayout>
@@ -74,12 +165,13 @@ const ClassManagement = (props) => {
           </div>
           <div className="right">
             <div className="title">반의 관심사</div>
-            <img
-              className="preference-image"
-              src="https://i.ibb.co/jLqZcyR/preference.png"
-              alt="반 이미지"
-            />
+              
+            <div className="word-cloud ">
+              <ReactWordcloud words={words} />
+              <button onClick={onCreate}> 추가</button>
+            </div>
           </div>
+          
         </ClassManagementStyled>
       </Wrapper>
     </PageLayout>
