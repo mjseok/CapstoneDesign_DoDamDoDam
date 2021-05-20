@@ -18,7 +18,7 @@ const ClassManagementStyled = styled.div`
     border: 3px solid #888;
     padding: 12px;
   }
-  .preference-image {
+  .word-cloud {
     width: 400px;
     height: 400px;
   }
