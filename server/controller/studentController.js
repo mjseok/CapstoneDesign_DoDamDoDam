@@ -1,4 +1,4 @@
-const db = require("../DB/config");
+const db = require("../models");
 const {
   selectAllWord,
   insertJournal,
@@ -8,6 +8,7 @@ const {
   selectMainEmotion,
   selectJournal,
 } = require("../dbquery/studentQuery");
+
 exports.showAllWord = async (req, res) => {
   try {
     const teacher_id = req.body.teacherID;

@@ -11,9 +11,9 @@ const {
 } = require("../controller/teacherController");
 
 // router.get('/show/journal', selectJournalTeacher);
-router.get("/:class", showAllStudent);
+router.get("/showAll", showAllStudent);
 router.post("/add/comment", writeComment);
-router.get("/show/studentInfo", showStudent);
+router.get("/studentInfo", showStudent);
 router.post("/add/student", addStudent);
 router.delete("/delete/student", deleteStudent);
 router.patch("/update/student", updateStudent);

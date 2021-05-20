@@ -8,10 +8,10 @@ const session = require("express-session");
 const { sequelize } = require("./models");
 const { getUserMe } = require("./router/user");
 const { login, postTeacher, postStudent, logout } = require("./router/auth");
+const { showStudents } = require("./router/student");
+
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
-const studentRouter = require("./routes/student");
-const teacherRouter = require("./routes/teacher");
 require("dotenv").config();
 const app = express();
 const port = 3001;
@@ -35,8 +35,6 @@ app.use(
   })
 );
 app.use(morgan("dev"));
-app.use("/student", studentRouter);
-app.use("/teacher", teacherRouter);
 
 app.use(postTeacher);
 app.use(postStudent);
@@ -44,6 +42,7 @@ app.use(login);
 app.use(logout);
 app.use(getUserMe);
 app.use(handleErrors);
+app.use(showStudents);
 
 app.set("port", process.env.PORT || 3001);
 app.listen(port, () => {

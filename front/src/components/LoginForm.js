@@ -28,6 +28,7 @@ const LoginForm = () => {
               .then((res) => {
                 if (res.status === 200) {
                   alert(`${res.data.name}님 환영합니다!`);
+                  window.localStorage.setItem('id', res.data.id);
                   auth.setUserMe(res.data);
                   const isTeacher = res.data.userType === 'teacher';
                   const isStudent = res.data.userType === 'student';

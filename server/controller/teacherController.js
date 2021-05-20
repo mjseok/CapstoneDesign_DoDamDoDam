@@ -1,4 +1,5 @@
-const db = require("../DB/config");
+const db = require("../models");
+
 const {
   selectJournalTeacher,
   insertComment,
