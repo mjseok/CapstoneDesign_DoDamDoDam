@@ -1,9 +1,9 @@
 const getters = (apiRequest) => {
-  const getStudent = (id) => {
-    return apiRequest.get(`/api/teacher/${id}`);
+  const getStudent = () => {
+    return apiRequest.get(`/teacher/studentInfo`);
   };
-  const getStudents = (teacherID) => {
-    return apiRequest.get(`/api/teacher/${teacherID}`);
+  const getStudents = (id) => {
+    return apiRequest.get(`/showAll/${id}`);
   };
   return {
     getStudent,

@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Studnet=({number,name,birthday,photo})=>{
+  //number,name을 studetList폴더에서 받아서 어떻게 배치할지 결정
     return(
         <Wrapper>
             <StudentInfo>
