@@ -1,6 +1,6 @@
 const getters = (apiRequest) => {
-  const getStudent = () => {
-    return apiRequest.get(`/teacher/studentInfo`);
+  const getStudent = (id) => {
+    return apiRequest.get(`/show/${id}`);
   };
   const getStudents = (id) => {
     return apiRequest.get(`/showAll/${id}`);

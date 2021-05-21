@@ -5,9 +5,9 @@ class Journal extends Sequelize.Model {
     return super.init(
       {
         idx: {
-          type: Sequelize.TINYINT,
+          type: Sequelize.INTEGER,
           primaryKey: true,
-          autoincrement: true,
+          autoIncrement: true,
         },
         student_id: {
           type: Sequelize.STRING(30),
@@ -27,27 +27,27 @@ class Journal extends Sequelize.Model {
         },
         happy: {
           type: Sequelize.FLOAT,
-          allowNull: false,
+          allowNull: true,
         },
         neutral: {
           type: Sequelize.FLOAT,
-          allowNull: false,
+          allowNull: true,
         },
         fear: {
           type: Sequelize.FLOAT,
-          allowNull: false,
+          allowNull: true,
         },
         anger: {
           type: Sequelize.FLOAT,
-          allowNull: false,
+          allowNull: true,
         },
         sadness: {
           type: Sequelize.FLOAT,
-          allowNull: false,
+          allowNull: true,
         },
         main_emotion: {
           type: Sequelize.STRING(10),
-          allowNull: false,
+          allowNull: true,
         },
         comment: {
           type: Sequelize.TEXT,

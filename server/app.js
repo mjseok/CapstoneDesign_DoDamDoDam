@@ -8,7 +8,21 @@ const session = require("express-session");
 const { sequelize } = require("./models");
 const { getUserMe } = require("./router/user");
 const { login, postTeacher, postStudent, logout } = require("./router/auth");
-const { showStudents } = require("./router/student");
+const {
+  showJournal,
+  showMainEmo,
+  addComment,
+  addJournal,
+  updateJournal,
+} = require("./router/journal");
+const {
+  showStudents,
+  showStudent,
+  updateStudent,
+  deleteStudent,
+} = require("./router/student");
+const { showWords } = require("./router/wordcloud");
+//const { showStudents } = require("./router/student");
 
 const createError = require("http-errors");
 const cookieParser = require("cookie-parser");
@@ -43,6 +57,15 @@ app.use(logout);
 app.use(getUserMe);
 app.use(handleErrors);
 app.use(showStudents);
+app.use(showJournal);
+app.use(showMainEmo);
+app.use(addComment);
+app.use(addJournal);
+app.use(updateJournal);
+app.use(showStudent);
+app.use(updateStudent);
+app.use(deleteStudent);
+app.use(showWords);
 
 app.set("port", process.env.PORT || 3001);
 app.listen(port, () => {
