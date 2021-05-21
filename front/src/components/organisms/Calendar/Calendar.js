@@ -4,10 +4,14 @@ import ReactCalendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs';
 import SimpleModal from './SimpleModal';
+import service from '../../../service';
 
-const Calendar = () => {
+const Calendar = (student) => {
   const [value, onChange] = useState(new Date());
-
+  const showJournal = async () => {
+    alert(value);
+    const { data: diary } = await service.getJournal('student1', value);
+  };
   return (
     <CalendarStyled>
       <ReactCalendar
@@ -15,8 +19,9 @@ const Calendar = () => {
         value={value}
         nextLabel={<BsChevronRight color="#888" />}
         prevLabel={<BsChevronLeft color="#888" />}
+        onClickDay={showJournal}
       />
-      <SimpleModal onSubmit={(value) => alert(value)} />
+      {student.student && <SimpleModal onSubmit={(value) => alert(value)} />}
     </CalendarStyled>
   );
 };

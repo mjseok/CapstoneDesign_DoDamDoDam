@@ -25,11 +25,15 @@ const StudentManagement = () => {
     <PageLayout>
       <Wrapper>
         <List>
-          <StudentList students={students}/>
+          <Title>학생 목록</Title>
+          <Students>
+            <StudentList students={students}/>
+          </Students>
         </List>
         <Detail>
+          <Title>학생 일기</Title>  
             <CalendarDiv>
-              <Calendar/>
+              <Calendar student={false}/>
             </CalendarDiv>
             <Graph>
                 <MyChart/>
@@ -48,12 +52,15 @@ const Wrapper = styled.div`
 `;
 const List = styled.div`
   margin-right:auto;
-  width:40%;
+  width:35%;
   height:100%;
+`;
+const Students = styled.div`
+  background-color:rgb(251,246,225);
 `;
 const Detail = styled.div`
   margin-left:auto;
-  width:60%;
+  width:50%;
   height:100%;
 `;
 const CalendarDiv = styled.div`
@@ -62,5 +69,9 @@ const CalendarDiv = styled.div`
 const Graph = styled.div`
   position:fixed;
   bottom:13px;
+`;
+const Title=styled.div`
+  font-size:30px;
+  font-weight:bold;
 `;
 export default StudentManagement;

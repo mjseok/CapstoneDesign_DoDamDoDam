@@ -70,6 +70,9 @@ const ClassManagementStyled = styled.div`
     margin-left: 80px;
     padding: 16px;
   }
+  .word-cloud {
+    max-height: 550px;
+  }
 `;
 
 export default ClassManagementStyled;
