@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/core/styles';
 import { yellow } from '@material-ui/core/colors';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 export const useStyles = makeStyles((theme) => ({
   paper: {
@@ -65,6 +66,15 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 const SimpleModal = (props) => {
+  const { transcript, resetTranscript } = useSpeechRecognition()
+
+  if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
+    return null
+  }
+
+  function plz(){
+    console.log(transcript);
+  }
   const { onSubmit } = props;
   const classes = useStyles();
   const [value, setValue] = useState('');
@@ -101,12 +111,20 @@ const SimpleModal = (props) => {
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
+          <div>
+            <button onClick={() => SpeechRecognition.startListening({ continuous: true })}>★  Start  ★</button>
+            <button onClick={SpeechRecognition.stopListening}>★  Stop  ★</button>
+            <button onClick={plz}>★  log  ★</button>
+            <button onClick={resetTranscript}>★  Reset  ★</button>
+            <p>{transcript}</p>
+          </div>
           <h2 className={classes.simpleModalTitle}>
             강기백 학생 - 2월 19일 일기
           </h2>
           <textarea
             className={classes.textarea}
-            value={value}
+            // value={Value} //키보드로 입력
+            value={transcript} //음성으로 입력
             onChange={(e) => setValue(e.target.value)}
             rows="18"
             columns="18"
