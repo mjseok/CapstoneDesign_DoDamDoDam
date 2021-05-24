@@ -18,6 +18,7 @@ import pickle
 import argparse
 import json
 import os
+import pathlib
 
 os.environ['TF_CPP_MIN_LOG_lEVEL'] = '2'
 
@@ -31,6 +32,7 @@ with open('../SentimentAnalysis/tokenizer.p', 'rb') as file:    # james.p 파일
 
 def sentiment_predict(new_sentence):
   stopwords = ['도', '는', '다', '의', '가', '이', '은', '한', '에', '하', '고', '을', '를', '인', '듯', '과', '와', '네', '들', '듯', '지', '임', '게', '만', '게임', '겜', '되', '음', '면']
+  
   loaded_model = tf.keras.models.load_model('../SentimentAnalysis/best_model.h5')
   max_len = 40
   new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
@@ -39,11 +41,10 @@ def sentiment_predict(new_sentence):
   new_sentence = [word for word in new_sentence if not word in stopwords] # 불용어 제거
   encoded = tokenizer.texts_to_sequences([new_sentence]) # 정수 인코딩
   pad_new = pad_sequences(encoded, maxlen = max_len) # 패딩
-  val_predict = np.argmax(np.asarray(loaded_model.predict(pad_new)), axis=1)
+  #val_predict = np.argmax(np.asarray(loaded_model.predict(pad_new)), axis=1)
   score = loaded_model.predict(pad_new)
-  
-  print(score)
-  
+
+  '''
   if val_predict[0] == 0:
         print("두려움")
   elif val_predict[0] == 1:
@@ -56,9 +57,12 @@ def sentiment_predict(new_sentence):
         print("행복")
   else:
         print(val_predict[0], "잘못된 분류값입니다.")
+  '''
+  
+  return score
 
 def main() :
-    sentiment_predict(args.diary);
+    sentiment_predict("안녕하");
     
 if __name__ == '__main__':
     main()
