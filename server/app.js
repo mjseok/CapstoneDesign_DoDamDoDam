@@ -12,6 +12,7 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const studentRouter = require('./routes/student');
 const teacherRouter = require('./routes/teacher');
+const { studentSpellCheck } = require('./router/student');
 require('dotenv').config();
 const app = express();
 const port = 3001;
@@ -41,6 +42,7 @@ app.use(postStudent);
 app.use(login);
 app.use(logout);
 app.use(getUserMe);
+app.use(studentSpellCheck);
 app.use(handleErrors);
 
 app.set('port', process.env.PORT || 3001);

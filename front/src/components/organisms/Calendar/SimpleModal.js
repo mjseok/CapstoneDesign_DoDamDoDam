@@ -65,7 +65,7 @@ export const useStyles = makeStyles((theme) => ({
 }));
 
 const SimpleModal = (props) => {
-  const { onSubmit } = props;
+  const { onSubmit, onChange } = props;
   const classes = useStyles();
   const [value, setValue] = useState('');
   const [modalStyle] = useState({
@@ -81,6 +81,11 @@ const SimpleModal = (props) => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    onChange && onChange(e.target.value);
   };
 
   return (
@@ -107,10 +112,11 @@ const SimpleModal = (props) => {
           <textarea
             className={classes.textarea}
             value={value}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={handleChange}
             rows="18"
             columns="18"
           />
+          {props.children}
           <div className={classes.submitDiaryWrapper}>
             <button
               type="button"
