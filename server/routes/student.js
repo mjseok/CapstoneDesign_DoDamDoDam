@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { showAllWord, writeJournal, enterEmotion, mainEmotion, comment, checkMainEmotion, checkJournal } = require('../controller/studentController');
+const { showAllWord, writeJournal, enterEmotion, mainEmotion, comment, checkMainEmotion, checkJournal, checkSpell } = require('../controller/studentController');
 
 router.get('/show/word', showAllWord);
 router.post('/add/journal', writeJournal);
