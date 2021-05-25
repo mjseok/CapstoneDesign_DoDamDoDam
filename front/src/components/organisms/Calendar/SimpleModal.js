@@ -108,7 +108,6 @@ const SimpleModal = (props) => {
     setValue(text);
     setCorrections(corrections);
   }, []);
-  // 안녕하새요. 오늘저는 치킨을 먹었습니다. 맞있었어요. 엄마사랑해요.
 
   useEffect(() => {
     if (!corrections) return;
@@ -143,9 +142,6 @@ const SimpleModal = (props) => {
             return x;
           });
         });
-
-        // text.replace(/<(\/span|span)([^>]*)>/gi, '');
-        // const replace = setValue();
       });
     });
   }, [corrections, value]);
