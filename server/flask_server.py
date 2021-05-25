@@ -1,19 +1,18 @@
-import sys
-sys.path.append("../SentimentAnalysis")
-
-import SentimentAnalysis
-import MorphemeSeparation
+import mysql_connection
 
 from flask import Flask
 from flask import request
 
 app = Flask(__name__)
-'''
-@app.route('/')
-def post():
-    diary = request.form['diary']
-    return diary
-'''
+
+@app.route('/analysis/')
+def analysis():
+    idx = request.args.get('idx')
+    
+    mysql_connection.updateSentimentAnalysis(int(idx))
+    
+    return idx
+
 
 @app.route('/')
 def hello_world():
