@@ -9,22 +9,11 @@ import pymysql
 '''
 conn = pymysql.connect(host='localhost', user='root', password='0000', charset='utf8', db='database_production') #DB local 연결
 '''
+conn = pymysql.connect(host='115.85.181.160', port=3306, user='root', password='0000', charset='utf8', db='database_production')
 
+def updateSentimentAnalysis(index, diary):
+#DB server 연결
 
-def updateSentimentAnalysis(index):
-    conn = pymysql.connect(host='115.85.181.160', port=3306, user='root', password='0000', charset='utf8', db='database_production') #DB server 연결
-
-    cur = conn.cursor() #디폴트 커서 생성
-
-    query = "select content from journals where idx = '" + str(index) + "'";
-    
-    cur.execute(query)
-    cur.close()
-    
-    diary = cur.fetchone()
-    
-    print(diary[0])
-    
     score = sa.sentiment_predict(str(diary))
 
     result = [0 for i in range(5)]
@@ -53,16 +42,34 @@ def updateSentimentAnalysis(index):
          set happy = %s, neutral = %s, fear = %s, anger = %s, sadness = %s, main_emotion = %s
          where idx = '%s' """
          
-    cur = conn.cursor() 
-    cur.execute(sql, (result[4], result[1], result[0], result[3], result[3], sentiment, index))
+    cur = conn.cursor()
+    cur.execute(sql, (result[4], result[1], result[0], result[2], result[3], sentiment, index))
     
+    '''
     print("""update journals
          set happy = %s, neutral = %s, fear = %s, anger = %s, sadness = %s, main_emotion = "%s"
-         where idx = '%s' """ %(result[4], result[1], result[0], result[3], result[3], sentiment, index))
-    conn.commit();
+         where idx = '%s' """ %(result[4], result[1], result[0], result[2], result[3], sentiment, index))
+    '''
+    conn.commit()
     cur.close()
     conn.close()
          
-updateSentimentAnalysis(0)
+
+def getData(index) :
+    cur = conn.cursor() #디폴트 커서 생성
+
+    query = "select * from journals where idx = '" + str(index) + "'";
+    
+    cur.execute(query)
+    cur.close()
+    
+    return cur.fetchone()
 
 
+def updateWordCloud():
+    
+
+def run(index) :
+    data = getData(index)
+    updateSentimentAnalysis(index, data[4])
+    
