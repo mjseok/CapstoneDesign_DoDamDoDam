@@ -79,6 +79,7 @@ const SimpleModal = (props) => {
   });
   const [open, setOpen] = useState(false);
   const [corrections, setCorrections] = useState([]);
+  const [isChecked, setIsChecked] = useState(false);
   const filteredCorrections = corrections.filter((x) => !x.isCorrected);
 
   const handleOpen = () => {
@@ -86,6 +87,9 @@ const SimpleModal = (props) => {
   };
 
   const handleClose = () => {
+    setValue('');
+    setCorrections([]);
+    setIsChecked(false);
     setOpen(false);
   };
 
@@ -107,6 +111,7 @@ const SimpleModal = (props) => {
     ).data;
     setValue(text);
     setCorrections(corrections);
+    setIsChecked(true);
   }, []);
 
   useEffect(() => {
@@ -188,20 +193,34 @@ const SimpleModal = (props) => {
             </>
           )}
           <div className={classes.submitDiaryWrapper}>
+            {!isChecked && (
+              <button
+                type="button"
+                className={classes.submitDiary}
+                onClick={() => {
+                  spellCheck(value);
+                }}
+              >
+                맞춤법 검사
+              </button>
+            )}
+            {isChecked && (
+              <button
+                type="button"
+                className={classes.submitDiary}
+                onClick={() => onSubmit(value)}
+                style={{ marginLeft: '16px' }}
+              >
+                일기 제출하기
+              </button>
+            )}
             <button
               type="button"
               className={classes.submitDiary}
-              onClick={() => spellCheck(value)}
-            >
-              맞춤법 검사
-            </button>
-            <button
-              type="button"
-              className={classes.submitDiary}
-              onClick={() => onSubmit(value)}
+              onClick={handleClose}
               style={{ marginLeft: '16px' }}
             >
-              일기 제출하기
+              닫기
             </button>
           </div>
         </div>
