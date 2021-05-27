@@ -26,6 +26,9 @@ const ClassDiaryStyled = styled.div`
     margin-left: 50px;
     width: 70%;
   }
+  .word-cloud {
+    max-height: 750px;
+  }
 `;
 
 export default ClassDiaryStyled;
