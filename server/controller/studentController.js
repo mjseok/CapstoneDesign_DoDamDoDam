@@ -1,13 +1,6 @@
-const db = require("../models");
-const {
-  selectAllWord,
-  insertJournal,
-  insertEmotion,
-  insertMainEmotion,
-  selectComment,
-  selectMainEmotion,
-  selectJournal,
-} = require("../dbquery/studentQuery");
+const db = require('../DB/config');
+const hanspell = require('hanspell');
+const { selectAllWord, insertJournal, insertEmotion, insertMainEmotion, selectComment, selectMainEmotion, selectJournal } = require('../dbquery/studentQuery');
 
 exports.showAllWord = async (req, res) => {
   try {
@@ -24,12 +17,7 @@ exports.writeJournal = async (req, res) => {
     const student_id = req.body.studentID;
     const date = new Date();
     const contents = req.body.contents;
-    const journal = await db.query(insertJournal, [
-      student_id,
-      teacher_id,
-      date,
-      contents,
-    ]);
+    const journal = await db.query(insertJournal, [student_id, teacher_id, date, contents]);
     res.json(journal);
   } catch (err) {
     throw err;
@@ -43,13 +31,7 @@ exports.enterEmotion = async (req, res) => {
     const anger = req.body.anger;
     const sadness = req.body.sadness;
 
-    const emotion = await db.query(insertEmotion, [
-      happy,
-      neutral,
-      fear,
-      anger,
-      sadness,
-    ]);
+    const emotion = await db.query(insertEmotion, [happy, neutral, fear, anger, sadness]);
     res.json(emotion);
   } catch (err) {
     throw err;

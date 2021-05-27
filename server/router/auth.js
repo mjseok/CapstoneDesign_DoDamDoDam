@@ -100,6 +100,7 @@ exports.postStudent = router.post(
       res.status(201).json(data);
     } catch (e) {
       if (e.errors[0].type === 'unique violation') throw new CustomError({ code: 409, message: '이미 가입되었습니다.' });
+      throw e;
     }
   })
 );

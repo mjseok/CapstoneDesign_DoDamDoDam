@@ -1,32 +1,22 @@
-const express = require("express");
-const morgan = require("morgan");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const path = require("path");
-const { handleErrors } = require("./router/error");
-const session = require("express-session");
-const { sequelize } = require("./models");
-const { getUserMe } = require("./router/user");
-const { login, postTeacher, postStudent, logout } = require("./router/auth");
-const {
-  showJournal,
-  showMainEmo,
-  addComment,
-  addJournal,
-  updateJournal,
-} = require("./router/journal");
-const {
-  showStudents,
-  showStudent,
-  updateStudent,
-  deleteStudent,
-} = require("./router/student");
-const { showWords } = require("./router/wordcloud");
-//const { showStudents } = require("./router/student");
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const path = require('path');
+const { handleErrors } = require('./router/error');
+const session = require('express-session');
+const { sequelize } = require('./models');
+const { getUserMe } = require('./router/user');
+const { login, postTeacher, postStudent, logout } = require('./router/auth');
+const createError = require('http-errors');
+const cookieParser = require('cookie-parser');
+const studentRouter = require('./routes/student');
+const teacherRouter = require('./routes/teacher');
+const { studentSpellCheck, showStudents, showStudent, updateStudent, deleteStudent } = require('./router/student');
+const { showJournal, showMainEmo, addComment, addJournal, updateJournal } = require('./router/journal');
+const { showWords } = require('./router/wordcloud');
 
-const createError = require("http-errors");
-const cookieParser = require("cookie-parser");
-require("dotenv").config();
+require('dotenv').config();
 const app = express();
 const port = 3001;
 
@@ -39,22 +29,23 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
-    secret: "Dodam Dodam",
+    secret: 'Dodam Dodam',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false, httpOnly: false },
   })
 );
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 app.use(postTeacher);
 app.use(postStudent);
 app.use(login);
 app.use(logout);
 app.use(getUserMe);
+app.use(studentSpellCheck);
 app.use(handleErrors);
 app.use(showStudents);
 app.use(showJournal);
@@ -67,7 +58,7 @@ app.use(updateStudent);
 app.use(deleteStudent);
 app.use(showWords);
 
-app.set("port", process.env.PORT || 3001);
+app.set('port', process.env.PORT || 3001);
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });

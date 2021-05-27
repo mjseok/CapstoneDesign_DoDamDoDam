@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "0000",
+    "password": "root",
     "database": "database_development",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -11,7 +11,7 @@
     "password": "tjralswl0403",
     "database": "database_test",
     "host": "127.0.0.1",
-    "port":"3307",
+    "port": "3307",
     "dialect": "mysql"
   },
   "production": {

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const CalendarStyled = styled.div`
   .react-calendar {
     width: 100%;
+    height: 100%;
     border: 1px solid transparent;
     position: relative;
     padding: 0 60px;
@@ -41,7 +42,7 @@ const CalendarStyled = styled.div`
   }
   .react-calendar__tile {
     width: 70px;
-    height: 60px;
+    height: 80px;
     position: relative;
     border-left: 2px solid #ddd;
     border-top: 2px solid #ddd;
