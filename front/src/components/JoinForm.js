@@ -25,7 +25,7 @@ const JoinForm = ({ title, jobs }) => {
           initialValues={{}}
           validate={(values) => {}}
           onSubmit={(values, { setSubmitting }) => {
-            console.log(values);
+            console.log(values, url, values);
             setFormError({});
             setGeneralError('');
             Axios.post(url, values)

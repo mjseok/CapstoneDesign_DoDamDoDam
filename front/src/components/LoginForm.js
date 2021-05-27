@@ -6,7 +6,7 @@ import logo from '../assets/images/logo.png';
 import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { AuthContext } from '../context/auth';
-const Axios = require('../api/axios');
+import Axios from '../api/axios';
 
 const LoginForm = () => {
   const [generalError, setGeneralError] = useState('');
