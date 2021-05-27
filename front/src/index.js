@@ -83,7 +83,7 @@ ReactDOM.render(
           render={(props) => <ClassManagement {...props} />}
         />
         <Route
-          path="/student"
+          path="/student/main"
           exact
           render={(props) => <StudentPage {...props} />}
         />

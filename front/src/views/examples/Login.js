@@ -50,7 +50,7 @@ const Login = () => {
           auth.setIsStudent(isStudent);
           auth.setIsTeacher(isTeacher);
           isTeacher && history.push("/class/management");
-          isStudent && history.push("/class/diary");
+          isStudent && history.push("/student/main");
         }
       })
       .catch((e) => {

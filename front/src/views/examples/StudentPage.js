@@ -24,9 +24,8 @@ import MainNavbar from "components/Navbars/MainNavbar.js";
 import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
 import SampleHero from "../IndexSections/SampleHero";
-import { Row } from "reactstrap";
 
-const ClassManagement = () => {
+const StudentPage = () => {
   // componentDidMount() {
   //   document.documentElement.scrollTop = 0;
   //   document.scrollingElement.scrollTop = 0;
@@ -39,19 +38,9 @@ const ClassManagement = () => {
 
       <SampleHero headerStyle={3} />
 
-      <Row>
-        <div class="col-lg-5">1</div>
-        <div class="col-lg-5">
-          <Row>
-            <div class="col-lg-12">2</div>
-            <div class="col-lg-12">3</div>
-          </Row>
-        </div>
-      </Row>
-
       <UserFooter />
     </>
   );
 };
 
-export default ClassManagement;
+export default StudentPage;
