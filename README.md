@@ -8,7 +8,7 @@
 #### CSS 바꾸는 법
 - bootstrap 만들어져있는거에서 css를 바꾸고 싶으면, className에 붙은내용 검색해서 assets > scss에 있는 파일을 건드려서 바꾸기
 - assets > css 파일은 건드려도 안바뀜!!
-- 아니면 그냥 styled-component사용하거나 직접 style 설정
+- 아니면 그냥 styled-component사용하거나 직접 style 설정  
 예시(직접 style설정)
 
 
