@@ -42,7 +42,12 @@ class Teacher extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.Teacher.hasMany(db.Student, {
+      sourceKey: 'id',
+      foreignKey: 'teacher_id',
+    });
+  }
 }
 
 module.exports = Teacher;

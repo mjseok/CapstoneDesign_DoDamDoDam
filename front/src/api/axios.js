@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 const Axios = axios.create({
   baseURL:
@@ -8,4 +8,4 @@ const Axios = axios.create({
   withCredentials: true,
 });
 
-module.exports = Axios;
+export default Axios;

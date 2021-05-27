@@ -1,7 +1,7 @@
 const db = require('../DB/config');
 const hanspell = require('hanspell');
-
 const { selectAllWord, insertJournal, insertEmotion, insertMainEmotion, selectComment, selectMainEmotion, selectJournal } = require('../dbquery/studentQuery');
+
 exports.showAllWord = async (req, res) => {
   try {
     const teacher_id = req.body.teacherID;
@@ -10,7 +10,7 @@ exports.showAllWord = async (req, res) => {
   } catch (err) {
     throw err;
   }
-};
+}; //wordcloud-showWords
 exports.writeJournal = async (req, res) => {
   try {
     const teacher_id = req.body.teacherID;
@@ -22,7 +22,7 @@ exports.writeJournal = async (req, res) => {
   } catch (err) {
     throw err;
   }
-};
+}; //journal-addjournal
 exports.enterEmotion = async (req, res) => {
   try {
     const happy = req.body.happy;
@@ -36,7 +36,7 @@ exports.enterEmotion = async (req, res) => {
   } catch (err) {
     throw err;
   }
-};
+}; //필요없을 것으로 예상
 exports.mainEmotion = async (req, res) => {
   try {
     const mainEmo = req.body.mainEmotion;
@@ -45,7 +45,7 @@ exports.mainEmotion = async (req, res) => {
   } catch (err) {
     throw err;
   }
-};
+}; //필요없을듯
 exports.comment = async (req, res) => {
   try {
     const student_id = req.body.studentID;
@@ -56,6 +56,7 @@ exports.comment = async (req, res) => {
     throw err;
   }
 };
+//comment,journal 확인 같이(journal파일)
 exports.checkMainEmotion = async (req, res) => {
   try {
     const student_id = req.body.studentID;

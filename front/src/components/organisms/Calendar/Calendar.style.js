@@ -3,6 +3,7 @@ import styled from 'styled-components';
 const CalendarStyled = styled.div`
   .react-calendar {
     width: 100%;
+    height: 100%;
     border: 1px solid transparent;
     position: relative;
     padding: 0 60px;
@@ -33,15 +34,15 @@ const CalendarStyled = styled.div`
     right: 0;
     bottom: 0;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 18px;
   }
 
   .react-calendar__month-view__weekdays__weekday {
     display: none;
   }
   .react-calendar__tile {
-    width: 118px;
-    height: 118px;
+    width: 70px;
+    height: 80px;
     position: relative;
     border-left: 2px solid #ddd;
     border-top: 2px solid #ddd;
@@ -51,7 +52,7 @@ const CalendarStyled = styled.div`
       left: 0;
       top: 0;
       padding: 8px;
-      font-size: 18px;
+      font-size: 15px;
       color: #888;
     }
   }
