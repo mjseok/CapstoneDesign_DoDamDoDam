@@ -26,8 +26,8 @@ const MyChart=()=>{
     return(
         <div
         style={{
-          width: '400px',
-          height: '300px'
+          width: '800px',
+          height: '250px'
         }}
       >
         <Chart data={data} axes={axes} />

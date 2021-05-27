@@ -1,15 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
 import PageLayout from '../../layouts/PageLayout';
 import styled from 'styled-components';
 import AuthContext from '../../context/auth';
+import ReactWordcloud from 'react-wordcloud';
+import service from '../../service';
 
 const ClassManagement = (props) => {
   const { positiveItems, negativeItems, checkItems } = props;
   const auth = useContext(AuthContext);
+  let wordList = [{ text: '', value: '' }];
 
-  console.log(auth?.userMe);
+  //console.log(auth?.userMe);
+
+  const [words, setWords] = useState([]);
+  const getAllWords = async () => {
+    const { data: AllWords } = await service.getWords(
+      window.localStorage.getItem('id')
+    );
+    AllWords.map((word) => {
+      wordList.push({ text: word.word, value: word.frequency });
+    });
+    setWords(words.concat(wordList));
+  };
+  useEffect(() => {
+    getAllWords();
+    console.log(words);
+  }, []);
 
   return (
     <PageLayout>
@@ -74,11 +92,10 @@ const ClassManagement = (props) => {
           </div>
           <div className="right">
             <div className="title">반의 관심사</div>
-            <img
-              className="preference-image"
-              src="https://i.ibb.co/jLqZcyR/preference.png"
-              alt="반 이미지"
-            />
+
+            <div className="word-cloud ">
+              <ReactWordcloud words={words} />
+            </div>
           </div>
         </ClassManagementStyled>
       </Wrapper>

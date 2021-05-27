@@ -5,19 +5,29 @@ import { ThemeProvider } from 'styled-components';
 import ClassManagement from '@/pages/ClassManagement/ClassManagement';
 import StudentManagement from '@/pages/StudentManagement/StudentManagement';
 import StudentInfo from '@/pages/StudentInfo/StudentInfo';
+import AuthProvider from './context/auth';
+import LoginPage from './pages/Login';
+import TeacherJoin from './pages/Join/TeacherJoin';
+import StudentJoin from './pages/Join/StudentJoin';
+import ClassDiary from './pages/ClassDiary/ClassDiary'
 
 const App = () => (
+
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={ClassManagement} />
-        <Route path='/studentManagement' component={StudentManagement} />
-        <Route path='/studentEnrollment' component={StudentInfo} />
-        <Route path='/classManagement' component={ClassManagement} />
-        
-      </Switch>
-    </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={LoginPage} />
+            <Route path="/class/diary" exact component={ClassDiary} />
+            <Route path="/join/teacher" exact component={TeacherJoin} />
+            <Route path="/join/student" exact component={StudentJoin} />
+            <Route path='/student/management' component={StudentManagement} />
+            <Route path='/student/enrollment' component={StudentInfo} />
+            <Route path='/class/management' component={ClassManagement} />
+          </Switch>
+        </BrowserRouter>
+      </AuthProvider>
   </ThemeProvider> 
 );
 export default App;

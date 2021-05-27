@@ -17,9 +17,9 @@ class Student extends Sequelize.Model {
           allowNull: false,
           unique: true,
         },
-        school: {
-          type: Sequelize.STRING(20),
-          allowNull: false,
+        number: {
+          type: Sequelize.TINYINT,
+          allowNull: true,
         },
         grade: {
           type: Sequelize.TINYINT,
@@ -28,6 +28,14 @@ class Student extends Sequelize.Model {
         class: {
           type: Sequelize.TINYINT,
           allowNull: false,
+        },
+        birthday: {
+          type: Sequelize.DATE,
+          allowNull: true,
+        },
+        photo: {
+          type: Sequelize.BLOB,
+          allowNull: true,
         },
       },
       {
@@ -42,7 +50,12 @@ class Student extends Sequelize.Model {
       }
     );
   }
-  static associate(db) {}
+  static associate(db) {
+    db.Student.belongsTo(db.Teacher, {
+      foreignKey: 'teacher_id',
+      targetKey: 'id',
+    });
+  }
 }
 
 module.exports = Student;

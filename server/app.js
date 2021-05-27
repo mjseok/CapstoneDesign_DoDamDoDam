@@ -12,7 +12,10 @@ const createError = require('http-errors');
 const cookieParser = require('cookie-parser');
 const studentRouter = require('./routes/student');
 const teacherRouter = require('./routes/teacher');
-const { studentSpellCheck } = require('./router/student');
+const { studentSpellCheck, showStudents, showStudent, updateStudent, deleteStudent } = require('./router/student');
+const { showJournal, showMainEmo, addComment, addJournal, updateJournal } = require('./router/journal');
+const { showWords } = require('./router/wordcloud');
+
 require('dotenv').config();
 const app = express();
 const port = 3001;
@@ -44,6 +47,16 @@ app.use(logout);
 app.use(getUserMe);
 app.use(studentSpellCheck);
 app.use(handleErrors);
+app.use(showStudents);
+app.use(showJournal);
+app.use(showMainEmo);
+app.use(addComment);
+app.use(addJournal);
+app.use(updateJournal);
+app.use(showStudent);
+app.use(updateStudent);
+app.use(deleteStudent);
+app.use(showWords);
 
 app.set('port', process.env.PORT || 3001);
 app.listen(port, () => {
