@@ -9,10 +9,14 @@ export const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     width: 900,
     // backgroundColor: theme.palette.background.paper,
-    backgroundColor: '#fddd7d', 
-    border: '2px solid #fddd7d',
+    backgroundColor: '#fddd7d',   
+    // border: '8px solid #6d540775',
+    //borderTop: '8px solid #6d540775',
+    // borderTop: '70px solid #e2818175',
+    // borderBottom: '18px solid #e2818175',
     boxShadow: theme.shadows[5],
     borderRadius: 30,
+    //borderBottom: '4px solid rgba(0,0,0,0.21)'
   },
   modalOpenButtonArea: {
     display: 'flex',
@@ -45,9 +49,10 @@ export const useStyles = makeStyles((theme) => ({
   textarea: {
     width: '60%',
     height: '300px',
-    padding: '20px',
+    padding: '40px',
     boxSizing: 'border-box',
-    border: 'solid 2px #fddd7d',
+    // border: 'solid 2px #fddd7d',
+    border: 'double 8px #8b8269',
     borderRadius: '5px',
     fontSize: '16px',
     resize: 'both',
@@ -58,14 +63,16 @@ export const useStyles = makeStyles((theme) => ({
   },
   
   submitDiary: {
-    background: '#9CC0BA',
-    fontSize: '22px',
+    // background: '#9CC0BA',
+    background:'#93cce2b8',
+    fontSize: '18px',
     fontWeight: 'bold',
     padding: '8px 24px',
     border: 'none',
-    borderRadius: '5px',
+    borderRadius: '20px',
     justifyContent: 'flex-end',
-    marginLeft: '580px'
+    marginLeft: '580px',
+    borderBottom: '4px solid rgba(0,0,0,0.21)'
   },
   submitDiaryWrapper: {
     display: 'flex',
@@ -75,7 +82,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   microphoneIcon: {
     position: 'relative',
-    left: '200px',
+    left: '270px',
     width: '50px',
     height: '50px',
   },
@@ -88,11 +95,12 @@ export const useStyles = makeStyles((theme) => ({
   microphoneStatus: {
     position: 'relative',
   },
+  
 }));
 
 const SimpleModal = (props) => {
-  const { transcript, resetTranscript, listening } = useSpeechRecognition()
-
+  const { transcript, resetTranscript, listening} = useSpeechRecognition();
+  const [ speechValue, setSpeechValue] = useState('');
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null
   }
@@ -117,14 +125,20 @@ const SimpleModal = (props) => {
 
   function changeImage() {
     
-    if(img1.src=="https://i.ibb.co/S7zyBnC/nomike.png"){
+    if(img1.src=="https://i.ibb.co/5F3yfb9/keyboard.png"){
       SpeechRecognition.stopListening();
-      img1.src="https://i.ibb.co/71XnQLg/mike.png" ;
+      console.log("마이크 꺼짐 " + speechValue);
+      setSpeechValue('');
+      console.log("setValue 초기화 " + speechValue);
+      img1.src="https://i.ibb.co/t48ps4X/microphone.png" ;
     }
       
-    else if(img1.src=="https://i.ibb.co/71XnQLg/mike.png" ){
-      SpeechRecognition.startListening({ continuous: true });
-      img1.src="https://i.ibb.co/S7zyBnC/nomike.png";
+    else if(img1.src=="https://i.ibb.co/t48ps4X/microphone.png" ){
+      img1.src="https://i.ibb.co/5F3yfb9/keyboard.png";
+        SpeechRecognition.startListening({ continuous: true });
+       
+        console.log(transcript);
+        setSpeechValue(transcript);
     }
       
   }
@@ -153,7 +167,7 @@ const SimpleModal = (props) => {
           <textarea
             className={classes.textarea}
             // value={Value} //키보드로 입력
-            value={value+transcript} //음성으로 입력 합친 값
+            value={value+speechValue} //음성으로 입력 합친 값
             onChange={(e) => setValue(e.target.value)}
             rows="18"
             columns="18"
@@ -161,7 +175,7 @@ const SimpleModal = (props) => {
           <div className={classes.submitDiaryWrapper}>
             <img 
               id='img1'
-              src="https://i.ibb.co/71XnQLg/mike.png" 
+              src="https://i.ibb.co/t48ps4X/microphone.png " 
               className={classes.microphoneIcon} 
               onClick={changeImage} 
             />
@@ -170,11 +184,12 @@ const SimpleModal = (props) => {
               className={classes.nopeMicrophoneIcon} 
               onClick={SpeechRecognition.stopListening} 
             /> */}
-            {listening && <div className = {classes.microphoneStatus}>음성인식 작동중</div>}
+            {/* {listening && <div className = {classes.microphoneStatus}>음성인식 작동중</div>} */}
+            <div>{transcript}</div>
             <button
               type="button"
               className={classes.submitDiary}
-              onClick={() => onSubmit(value+transcript)}
+              onClick={() => onSubmit(value+speechValue)}
             >
               일기 제출하기
             </button>
