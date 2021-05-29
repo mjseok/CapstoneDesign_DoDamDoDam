@@ -5,6 +5,7 @@ const ClassManagementStyled = styled.div`
   justify-content: center;
   align-items: center;
   padding: 16px;
+  margin: auto;
 
   .left {
     display: flex;
@@ -67,11 +68,13 @@ const ClassManagementStyled = styled.div`
     }
   }
   .right {
-    margin-left: 80px;
+    margin-left: 200px;
     padding: 16px;
   }
   .word-cloud {
-    max-height: 550px;
+    // max-height: 550px;
+    height: 300px;
+    width: 500px;
   }
 `;
 

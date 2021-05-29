@@ -17,6 +17,7 @@
 */
 // import React from "react";
 import React, { useContext, useState, useEffect } from 'react';
+import { Pie, Doughnut, Bar, Line } from 'react-chartjs-2';
 //import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
 //import PageLayout from '../../layouts/PageLayout';
@@ -32,6 +33,79 @@ import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
 import SampleHero from "../IndexSections/SampleHero";
 import { Row } from "reactstrap";
+
+const data2 = {
+  labels: ['일', '월', '화', '수', '목', '금', '토'],
+  datasets: [
+    {
+      data: [1,2,3,1,3,2,4],
+      fill: false,
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgba(255, 99, 132, 0.2)',
+    },
+  ],
+};
+
+const options2 = {
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
+};
+const data = {
+  // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+  labels: ['행복', '중립', '슬픔', '분노', '두려움'],
+  datasets: [
+    {
+      //label: '# of Votes',
+      data: [12, 19, 3, 5, 6],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
+        'rgba(153, 102, 255, 0.2)',
+        // 'rgba(255, 159, 64, 0.2)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        // 'rgba(255, 159, 64, 1)',
+      ],
+      borderWidth: 1,
+    },
+  ],
+};
+
+const options = {
+  indexAxis: 'y',
+  // Elements options apply to all of the options unless overridden in a dataset
+  // In this case, we are setting the border of each horizontal bar to be 2px wide
+  elements: {
+    bar: {
+      borderWidth: 2,
+    },
+  },
+  responsive: true,
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: '감정 그래프',
+    },
+  },
+  //maintainAspectRatio: false,
+};
 
 const ClassManagement = (props) => {
   // componentDidMount() {
@@ -60,6 +134,24 @@ const ClassManagement = (props) => {
     getAllWords();
     console.log(words);
   }, []);
+
+  const state = {
+    labels: [
+      '긍정',
+      '부정',
+      '무감정'
+    ],
+    datasets: [{
+      label: 'My First Dataset',
+      data: [300, 50, 100],
+      backgroundColor: [
+        'rgb(255, 99, 132)',
+        'rgb(54, 162, 235)',
+        'rgb(255, 205, 86)'
+      ],
+      hoverOffset: 30
+    }]
+  };
 
   return (
     <>
@@ -124,6 +216,7 @@ const ClassManagement = (props) => {
                     );
                   })}
               </div>
+              <Line data={data2} options={options2} />
             </div>
           </div>
           <div className="right">
@@ -132,10 +225,30 @@ const ClassManagement = (props) => {
             <div className="word-cloud ">
               <ReactWordcloud words={words} />
             </div>
+            <div>
+              <div>
+                <Doughnut
+                  data={state}
+                  options={{
+                    title: {
+                      display: true,
+                      text: '어제의 학생 감정',
+                      fontSize: 20
+                    },
+                    legend: {
+                      display: true,
+                      position: 'right'
+                    }
+                  }}
+                />
+              </div>
+              <Bar data={data} options={options} />
+              
+            </div>
           </div>
         </ClassManagementStyled>
       </Wrapper>
-    {/* </PageLayout> */}
+      {/* </PageLayout> */}
       {/* <Row>
         <div class="col-lg-5">1</div>
         <div class="col-lg-5">
@@ -181,4 +294,11 @@ const Wrapper = styled.div`
   flex-direction: row;
 `;
 
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: 200px 200px 200px;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  justify-items: center;
+  margin-left: 0px;
+`;
 export default ClassManagement;
