@@ -17,7 +17,7 @@
 */
 // import React from "react";
 import React, { useContext, useState, useEffect } from 'react';
-import { Pie, Doughnut, Bar, Line } from 'react-chartjs-2';
+import { Pie, Doughnut, Bar, Line, Mixed } from 'react-chartjs-2';
 //import Layout from '../../components/Layout';
 import ClassManagementStyled from './ClassManagement.style';
 //import PageLayout from '../../layouts/PageLayout';
@@ -33,6 +33,36 @@ import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
 import SampleHero from "../IndexSections/SampleHero";
 import { Row } from "reactstrap";
+
+
+
+const data3 = {
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  datasets: [
+    {
+      type: 'line',
+      label: '학년 평균',
+      borderColor: 'rgb(54, 162, 235)',
+      borderWidth: 2,
+      fill: false,
+      data: [10, 3, 7, 5, 6, 12],
+    },
+    {
+      type: 'bar',
+      label: '우리 반 평균',
+      backgroundColor: 'rgb(255, 99, 132)',
+      data: [13, 7, 5, 3, 9, 6],
+      borderColor: 'white',
+      borderWidth: 2,
+    },
+    // {
+    //   type: 'bar',
+    //   label: 'Dataset 3',
+    //   backgroundColor: 'rgb(75, 192, 192)',
+    //   data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
+    // },
+  ],
+};
 
 const data2 = {
   labels: ['일', '월', '화', '수', '목', '금', '토'],
@@ -126,7 +156,7 @@ const ClassManagement = (props) => {
       window.localStorage.getItem('id')
     );
     AllWords.map((word) => {
-      wordList.push({ text: word.word, value: word.frequency });
+      wordList.push({ text: word.word, value: word.mon+word.tue+word.wed+word.thu +word.fri+word.sat+ word.sun });
     });
     setWords(words.concat(wordList));
   };
@@ -242,8 +272,8 @@ const ClassManagement = (props) => {
                   }}
                 />
               </div>
-              <Bar data={data} options={options} />
-              
+              <Bar data={data3} options={options} />
+              {/* <Mixed data={data3} options={options} /> */}
             </div>
           </div>
         </ClassManagementStyled>

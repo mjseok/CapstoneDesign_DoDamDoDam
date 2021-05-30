@@ -17,9 +17,33 @@ class WordCloud extends Sequelize.Model {
           type: Sequelize.STRING(30),
           allowNull: false,
         },
-        frequency: {
+        mon: {
           type: Sequelize.INTEGER,
-          allowNull: false,
+          allowNull: true,
+        },
+        tue: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        wed: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        thu: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        fri: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        sat: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
+        sun: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
         },
       },
       {
