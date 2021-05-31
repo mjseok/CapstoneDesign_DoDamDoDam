@@ -335,17 +335,17 @@ ClassManagement.defaultProps = {
   checkItems: [
     {
       name: '7번 하담비',
-      desc: '최근 부정적 일기가 증가했어요!',
+      desc: '부정적 감정이 72% 증가했어요!',
       thumbnail: 'http://placehold.it/100x100',
     },
     {
       name: '4번 이백기',
-      desc: '최근 부정적 일기가 증가했어요!',
+      desc: '부정적 감정이 61% 증가했어요!',
       thumbnail: 'http://placehold.it/100x100',
     },
     {
       name: '9번 한원지',
-      desc: '최근 부정적 일기가 증가했어요!',
+      desc: '부정적 감정이 58% 증가했어요!',
       thumbnail: 'http://placehold.it/100x100',
     },
 
