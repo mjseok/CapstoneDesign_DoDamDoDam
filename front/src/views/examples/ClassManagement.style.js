@@ -18,6 +18,24 @@ const ClassManagementStyled = styled.div`
     border-radius: 12px;
     border: 3px solid #888;
     padding: 12px;
+    width: 850px;
+  }
+  .box2 {
+    border-radius: 12px;
+    // border: 3px solid #888;
+    padding: 12px;
+    width: 1500px;
+    height: 500px
+    background-color: #FFFFFF;
+  }
+  .bar-graph {
+    width: 850px;
+    height: 500px;
+  }
+  .doughnut-graph {
+    width: 450px;
+    //height: 100%;
+     height: 500px;
   }
   .preference-image {
     width: 400px;
@@ -37,6 +55,20 @@ const ClassManagementStyled = styled.div`
     font-weight: bold;
     margin: 0 0 16px 0;
   }
+  .doughnut-content {
+    font-size: 15px;
+    whilte-space: pre;
+    height: 20%;
+  }
+  .real-doughnut-graph {
+    height:100000px;
+
+  }
+  .title2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+  }
   .thumbnail {
     width: 80px;
     height: 80px;
@@ -46,7 +78,7 @@ const ClassManagementStyled = styled.div`
   .thumbnail-large {
     width: 100px;
     height: 100px;
-    margin-left: 12px;
+    margin-left: 100px;
     border-radius: 50%;
   }
   .row-thumbnails {
@@ -55,7 +87,8 @@ const ClassManagementStyled = styled.div`
     margin-top: 16px;
   }
   .double-check {
-    display: flex;
+    //display: flex;
+    display: inline-block;
     margin-top: 24px;
   }
   .child-info {
@@ -65,16 +98,30 @@ const ClassManagementStyled = styled.div`
     .name {
       margin: 8px 0;
       font-size: 22px;
+      margin-left: 80px;
     }
+    .desc {
+      margin: 8px 0;
+      font-size: 17px;
+      margin-left: 7px;
+    }
+    
   }
   .right {
-    margin-left: 200px;
+    margin-left: 20px;
     padding: 16px;
   }
   .word-cloud {
     // max-height: 550px;
-    height: 300px;
-    width: 500px;
+    height: 570px;
+    width: 400px;
+  }
+  .list_detail {
+    display: inline-block;
+    width: 220px;
+    height: 260px;
+	  border: 1px solid;
+    margin-bottom: 5px;
   }
 `;
 

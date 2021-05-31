@@ -42,33 +42,31 @@ const data3 = {
     {
       type: 'line',
       label: '학년 평균',
-      borderColor: 'rgb(54, 162, 235)',
+      borderColor: 'rgb(117, 188, 0)',
       borderWidth: 2,
       fill: false,
-      data: [10, 3, 7, 5, 6, 12],
+      data: [10, 8, 7, 8, 4, 6],
+
     },
     {
       type: 'bar',
       label: '우리 반 평균',
-      backgroundColor: 'rgb(255, 99, 132)',
-      data: [13, 7, 5, 3, 9, 6],
+      // backgroundColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgb(255, 148, 54)',
+      data: [11, 7, 6, 8, 5, 6],
       borderColor: 'white',
       borderWidth: 2,
+
     },
-    // {
-    //   type: 'bar',
-    //   label: 'Dataset 3',
-    //   backgroundColor: 'rgb(75, 192, 192)',
-    //   data: [rand(), rand(), rand(), rand(), rand(), rand(), rand()],
-    // },
   ],
+  options: options,
 };
 
 const data2 = {
   labels: ['일', '월', '화', '수', '목', '금', '토'],
   datasets: [
     {
-      data: [1,2,3,1,3,2,4],
+      data: [1, 2, 3, 1, 3, 2, 4],
       fill: false,
       backgroundColor: 'rgb(255, 99, 132)',
       borderColor: 'rgba(255, 99, 132, 0.2)',
@@ -130,7 +128,7 @@ const options = {
       position: 'top',
     },
     title: {
-      display: true,
+      display: false,
       text: '감정 그래프',
     },
   },
@@ -156,7 +154,7 @@ const ClassManagement = (props) => {
       window.localStorage.getItem('id')
     );
     AllWords.map((word) => {
-      wordList.push({ text: word.word, value: word.mon+word.tue+word.wed+word.thu +word.fri+word.sat+ word.sun });
+      wordList.push({ text: word.word, value: word.mon + word.tue + word.wed + word.thu + word.fri + word.sat + word.sun });
     });
     setWords(words.concat(wordList));
   };
@@ -189,10 +187,12 @@ const ClassManagement = (props) => {
 
       <SampleHero headerStyle={3} />
       {/* <PageLayout> */}
-      <Wrapper>
+      {/* <Wrapper> */}
+      <Total12>
         <ClassManagementStyled>
           <div className="left">
-            <div className="left-top">
+            {/* <div className="left-top"> */}
+            <div>
               <div className="box">
                 <h2 className="title">반 전체 한눈에 보기</h2>
                 <div className="row-thumbnails">
@@ -234,7 +234,7 @@ const ClassManagement = (props) => {
                     return (
                       <div key={index} className="double-check">
                         <img
-                          className="thumbnail-large"
+                          className="thumbnail-large" 
                           src={item.thumbnail}
                           alt="썸네일"
                         ></img>
@@ -246,8 +246,9 @@ const ClassManagement = (props) => {
                     );
                   })}
               </div>
-              <Line data={data2} options={options2} />
+              {/* <Line data={data2} options={options2} /> */}
             </div>
+
           </div>
           <div className="right">
             <div className="title">반의 관심사</div>
@@ -257,37 +258,54 @@ const ClassManagement = (props) => {
             </div>
             <div>
               <div>
-                <Doughnut
-                  data={state}
-                  options={{
-                    title: {
-                      display: true,
-                      text: '어제의 학생 감정',
-                      fontSize: 20
-                    },
-                    legend: {
-                      display: true,
-                      position: 'right'
-                    }
-                  }}
-                />
+
               </div>
-              <Bar data={data3} options={options} />
-              {/* <Mixed data={data3} options={options} /> */}
+
             </div>
           </div>
+
         </ClassManagementStyled>
-      </Wrapper>
-      {/* </PageLayout> */}
-      {/* <Row>
-        <div class="col-lg-5">1</div>
-        <div class="col-lg-5">
-          <Row>
-            <div class="col-lg-12">2</div>
-            <div class="col-lg-12">3</div>
-          </Row>
-        </div>
-      </Row> */}
+        <ClassManagementStyled>
+
+          <div className="doughnut-graph">
+            <div className="title2">어제의 우리반 감정</div>
+            <div className="doughnut-content">어제의 일기를 바탕으로 나타낸 학생들의 감정 분포 그래프입니다. 그래프에 커서를 갖다 대면 해당 감정의 학생 수를 알 수 있습니다.</div>
+            <div classname="real-doughnut-graph">
+              <Doughnut
+                data={state}
+                height={200}
+                options={{
+                  responsive: true,
+                  title: {
+                    display: false,
+                    text: '어제의 학생 감정',
+                    fontSize: 20,
+                    maintainAspectRatio: true
+                  },
+                  legend: {
+                    display: true,
+                    position: 'bottom'
+                  },
+                  animation: {
+                    animateScale: true,
+                    animateRotate: true
+                  }
+                }}
+              />
+            </div>
+          </div>
+
+
+          <div className="bar-graph">
+            <div className="title2">우울증 의심 학생 평균</div>
+            <div className>우울증이 의심되는 학생의 월별평균입니다.</div>
+            <Bar data={data3} options={options} />
+          </div>
+
+
+        </ClassManagementStyled>
+      </Total12>
+
 
       <UserFooter />
     </>
@@ -299,12 +317,20 @@ ClassManagement.defaultProps = {
     'http://placehold.it/80x80',
     'http://placehold.it/80x80',
     'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+
   ],
   negativeItems: [
     'http://placehold.it/80x80',
     'http://placehold.it/80x80',
     'http://placehold.it/80x80',
     'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+    'http://placehold.it/80x80',
+
   ],
   checkItems: [
     {
@@ -317,11 +343,36 @@ ClassManagement.defaultProps = {
       desc: '최근 부정적 일기가 증가했어요!',
       thumbnail: 'http://placehold.it/100x100',
     },
+    {
+      name: '9번 한원지',
+      desc: '최근 부정적 일기가 증가했어요!',
+      thumbnail: 'http://placehold.it/100x100',
+    },
+
   ],
 };
+
+const Total12 = styled.div`
+  background-color: #FFFFFF;
+  // height: 500px;
+  width: 1600px;
+  margin-left: 150px;
+  margin-top: -50px;
+   border-radius: 15px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const Wrapper2 = styled.div`
+  // display: inline-block;
+  // vertical-align: middle;
+  // height: 100%;
+  display: table-cell; 
+  vertical-align: middle;
+  margin-right:500px;
 `;
 
 const Grid = styled.div`
@@ -329,6 +380,6 @@ const Grid = styled.div`
   grid-template-rows: 200px 200px 200px;
   grid-template-columns: 33.3% 33.3% 33.3%;
   justify-items: center;
-  margin-left: 0px;
+  left: 500px;
 `;
 export default ClassManagement;
