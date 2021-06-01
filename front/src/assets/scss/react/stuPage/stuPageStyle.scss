@@ -1,0 +1,22 @@
+.topItemsBox{
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100vw;
+    p.title{
+        text-align: center;
+    }
+    div.word-cloud, div.inChart{
+        flex: 1;
+        margin: 5px;
+        min-width: 300px;
+        background-color: #FFFFFF;
+    }
+}
+.inCalender{
+    padding: 25px;
+}
+
+.custom-modal-style{
+    width: 1000px;
+}

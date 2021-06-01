@@ -1,10 +1,11 @@
 .modal-content {
+    position: relative;
     border: 0;
     @if $enable-rounded {
         border-radius: $modal-content-border-radius;
     } @else {
         border-radius: 0;
-    }  
+    }
 }
 
 
