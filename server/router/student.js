@@ -6,6 +6,7 @@ exports.showStudents = router.get(
   "/showAll/:teacher_id",
   wrapper(async (req, res) => {
     const { teacher_id } = req.params;
+    console.log(teacher_id);
     const students = await db.Student.findAll({
       where: {
         teacher_id,

@@ -10,7 +10,7 @@ const { getUserMe } = require("./router/user");
 const { login, postTeacher, postStudent, logout } = require("./router/auth");
 const {
   showJournal,
-  showMainEmo,
+  showAllMainEmo,
   addComment,
   addJournal,
   updateJournal,
@@ -58,7 +58,7 @@ app.use(getUserMe);
 app.use(handleErrors);
 app.use(showStudents);
 app.use(showJournal);
-app.use(showMainEmo);
+app.use(showAllMainEmo);
 app.use(addComment);
 app.use(addJournal);
 app.use(updateJournal);

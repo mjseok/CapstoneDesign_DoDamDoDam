@@ -3,9 +3,10 @@ const router = require("express").Router();
 const { wrapper, CustomError, FormError } = require("./error");
 
 exports.showJournal = router.get(
-  "showJournal/:student_id/:date",
+  "/showJournal/:student_id/:date",
   wrapper(async (req, res) => {
     const { student_id, date } = req.params;
+    console.log(date);
     const journal = await db.Journal.findOne({
       where: {
         student_id,
@@ -16,31 +17,32 @@ exports.showJournal = router.get(
   })
 );
 
-exports.showMainEmo = router.get(
-  "showJournal/:student_id/:date",
+exports.showAllMainEmo = router.get(
+  "/showMainEmo/:student_id",
   wrapper(async (req, res) => {
-    const { student_id, date } = req.params;
-    const journal = await db.Journal.findOne({
+    const { student_id } = req.params;
+    const result = await db.Journal.findAll({
+      attributes: ["date", "main_emotion"],
       where: {
         student_id,
-        date,
       },
     });
-    res.json(journal.main_emotion);
+    res.json(result);
   })
 );
 
-exports.addComment = router.post(
+exports.addComment = router.patch(
   "/addComment",
   wrapper(async (req, res) => {
     const { idx, comment } = req.body;
-    const journal = await db.Journal.update({
-      comment,
-      where: {
-        idx,
-      },
-    });
-    res.json(journal.comment);
+    await db.Journal.update(
+      { comment },
+      {
+        where: {
+          idx: idx,
+        },
+      }
+    );
   })
 );
 exports.addJournal = router.post(

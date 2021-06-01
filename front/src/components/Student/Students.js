@@ -6,7 +6,7 @@ const Studnet = ({ number, name, birthday, photo }) => {
   //number,name을 studetList폴더에서 받아서 어떻게 배치할지 결정
   let blob = new Blob([new ArrayBuffer(photo)], { type: "image/png" });
   const url = window.URL.createObjectURL(blob);
-  console.log(photo);
+  console.log(url);
   return (
     <Wrapper>
       <StudentInfo>
@@ -29,11 +29,10 @@ const Studnet = ({ number, name, birthday, photo }) => {
   );
 };
 
-const Wrapper = styled.tr`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  width: 33%;
-  margin-top: 10px;
+  cursor: pointer;
 `;
 
 const StudentInfo = styled.div`
