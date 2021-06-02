@@ -42,11 +42,17 @@ const CalendarStyled = styled.div`
     min-height: 50px;
   }
   .react-calendar__navigation__label__labelText {
+<<<<<<< HEAD
     position: absolute;
     top: 15px;
     left: 260px;
     font-weight: bold;
     font-size: 25px;
+=======
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
   }
 
   .react-calendar__month-view__weekdays__weekday {

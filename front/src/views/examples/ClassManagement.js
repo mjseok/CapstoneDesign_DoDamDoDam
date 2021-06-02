@@ -23,8 +23,13 @@ import React from "react";
 import MainNavbar from "components/Navbars/MainNavbar.js";
 import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
+<<<<<<< HEAD
 import MainHero from "../IndexSections/MainHero";
 import { Row, Col, Container } from "reactstrap";
+=======
+import SampleHero from "../IndexSections/SampleHero";
+import { Row } from "reactstrap";
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
 
 const ClassManagement = () => {
   // componentDidMount() {
@@ -37,7 +42,12 @@ const ClassManagement = () => {
     <>
       <MainNavbar />
 
+<<<<<<< HEAD
       <MainHero />
+=======
+      <SampleHero headerStyle={3} />
+
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
       <Row>
         <div class="col-lg-5">1</div>
         <div class="col-lg-5">
