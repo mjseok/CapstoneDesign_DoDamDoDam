@@ -1,5 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
-import Axios from '../api/axios';
+import React, { createContext, useState, useEffect } from "react";
+import Axios from "../api/axios";
 
 export const AuthContext = createContext();
 
@@ -9,12 +9,12 @@ const AuthProvider = ({ children }) => {
   const [isStudent, setIsStudent] = useState(false);
 
   useEffect(() => {
-    Axios.get('/user/me')
+    Axios.get("/user/me")
       .then((result) => {
         const { userType, ...user } = result.data;
         setUserMe(user);
-        userType === 'teacher' && setIsTeacher(true);
-        userType === 'student' && setIsStudent(true);
+        userType === "teacher" && setIsTeacher(true);
+        userType === "student" && setIsStudent(true);
       })
       .catch((e) => console.error(e));
   }, []);

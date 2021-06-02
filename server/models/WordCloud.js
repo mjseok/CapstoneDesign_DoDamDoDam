@@ -24,7 +24,7 @@ class WordCloud extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         underscored: false,
         modelName: "WordCloud",
         tableName: "wordclouds",

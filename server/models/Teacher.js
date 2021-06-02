@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 
 class Teacher extends Sequelize.Model {
   static init(sequelize) {
@@ -32,20 +32,20 @@ class Teacher extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         underscored: false,
-        modelName: 'Teacher',
-        tableName: 'teachers',
+        modelName: "Teacher",
+        tableName: "teachers",
         paranoid: false,
-        charset: 'utf8',
-        collate: 'utf8_general_ci',
+        charset: "utf8",
+        collate: "utf8_general_ci",
       }
     );
   }
   static associate(db) {
     db.Teacher.hasMany(db.Student, {
-      sourceKey: 'id',
-      foreignKey: 'teacher_id',
+      foreignKey: "teacher_id",
+      sourceKey: "id",
     });
   }
 }

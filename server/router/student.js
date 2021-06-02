@@ -1,11 +1,11 @@
-const hanspell = require('hanspell');
-const db = require('../models');
-const router = require('express').Router();
-const { wrapper, CustomError, FormError } = require('./error');
-const { isEmpty } = require('lodash');
+const db = require("../models");
+const router = require("express").Router();
+const { wrapper, CustomError, FormError } = require("./error");
+const hanspell = require("hanspell");
+const { isEmpty } = require("lodash");
 
 exports.studentSpellCheck = router.get(
-  '/student/spell',
+  "/student/spell",
   wrapper(async (req, res) => {
     try {
       const text = req.query.text;
@@ -18,7 +18,7 @@ exports.studentSpellCheck = router.get(
           resolve(checkedSpell);
         };
         const error = function (err) {
-          console.error('spell check error: ' + err);
+          console.error("spell check error: " + err);
           resolve(checkedSpell);
         };
         hanspell.spellCheckByPNU(text, 6000, getResult, end, error);
@@ -26,13 +26,13 @@ exports.studentSpellCheck = router.get(
       res.status(200).send(corrected);
     } catch (err) {
       console.error(err);
-      throw new CustomError({ code: 500, message: '맞춤법 검사에 오류가 발생했습니다.' });
+      throw new CustomError({ code: 500, message: "맞춤법 검사에 오류가 발생했습니다." });
     }
   })
 );
 
 exports.showStudents = router.get(
-  '/showAll/:teacher_id',
+  "/showAll/:teacher_id",
   wrapper(async (req, res) => {
     const { teacher_id } = req.params;
     const students = await db.Student.findAll({
@@ -43,8 +43,9 @@ exports.showStudents = router.get(
     res.json(students);
   })
 );
+
 exports.showStudent = router.get(
-  '/show/:id',
+  "/show/:id",
   wrapper(async (req, res) => {
     const { id } = req.params;
     const student = await db.Student.findOne({
@@ -57,7 +58,7 @@ exports.showStudent = router.get(
 );
 
 exports.updateStudent = router.post(
-  '/updateStudent',
+  "/updateStudent",
   wrapper(async (req, res) => {
     const { id, password, name, number, birthday, photo } = req.body;
     const studentInfo = await db.Student.update({
@@ -74,7 +75,7 @@ exports.updateStudent = router.post(
 );
 
 exports.deleteStudent = router.delete(
-  '/deleteStudent/:id',
+  "/deleteStudent/:id",
   wrapper(async (req, res) => {
     const { id } = req.params;
     await db.Student.destroy({
@@ -86,7 +87,7 @@ exports.deleteStudent = router.delete(
 );
 
 exports.addStudent = router.post(
-  '/addStudent',
+  "/addStudent",
   wrapper(async (req, res) => {
     const { id, password, teacher_id, name, number, birthday, photo } = req.body;
     await db.Student.create({
