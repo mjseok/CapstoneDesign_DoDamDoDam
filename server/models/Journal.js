@@ -21,7 +21,7 @@ class Journal extends Sequelize.Model {
           type: Sequelize.DATE,
           allowNull: false,
         },
-        contents: {
+        content: {
           type: Sequelize.TEXT,
           allowNull: false,
         },
@@ -56,7 +56,7 @@ class Journal extends Sequelize.Model {
       },
       {
         sequelize,
-        timestamps: true,
+        timestamps: false,
         underscored: false,
         modelName: "Journal",
         tableName: "journals",
