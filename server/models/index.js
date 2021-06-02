@@ -10,7 +10,15 @@ const db = {};
 const initialize = async () => {
   const { host, port, username, password, database } = config;
   try {
-    const pool = await mysql.createPool({ host, port, user: username, password, waitForConnections: true, connectionLimit: 10, queueLimit: 0 });
+    const pool = await mysql.createPool({
+      host,
+      port,
+      user: username,
+      password,
+      waitForConnections: true,
+      connectionLimit: 10,
+      queueLimit: 0,
+    });
     await pool.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
   } catch (e) {
     console.error(e);
@@ -39,7 +47,7 @@ const initialize = async () => {
   });
 
   try {
-    await sequelize.sync({ force: false });
+    await sequelize.sync({ force: true });
     console.log('데이터베이스 연결 성공');
   } catch (e) {
     console.error(err);

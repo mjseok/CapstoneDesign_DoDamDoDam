@@ -11,7 +11,7 @@ const Header = () => {
 
   const handleLogout = useCallback(() => {
     Axios.delete('/logout');
-    history.push('/login');
+    history.push('/');
     auth.setUserMe(null);
     auth.setIsTeacher(false);
     auth.setIsStudent(false);
@@ -21,7 +21,7 @@ const Header = () => {
     <Component>
       <Logo
         src="https://i.ibb.co/LkJhyKK/image.png"
-        onClick={() => history.push('/')}
+        onClick={() => history.push('/class/management')}
       />
       {auth.isStudent && (
         <ClassButton type="button">
@@ -43,7 +43,7 @@ const Header = () => {
       )}
       {!auth.userMe && (
         <ClassButton type="button">
-          <Link to="/login">로그인</Link>
+          <Link to="/">로그인</Link>
         </ClassButton>
       )}
       {auth.userMe && (
