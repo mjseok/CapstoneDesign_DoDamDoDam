@@ -7,26 +7,24 @@ import SimpleModal from './SimpleModal';
 import Axios from '../../../api/axios';
 import { isEmpty, debounce } from 'lodash';
 import styled from 'styled-components';
+import service from '../../../service';
 
-const Calendar = () => {
+const Calendar = (student) => {
   const [value, onChange] = useState(new Date());
-  const [corrections, setCorrections] = useState([]);
 
-  const debouncedCheckSpell = useCallback(
-    debounce(async (text) => {
-      setCorrections(
-        (await Axios.get('/student/spell', { params: { text } })).data
-      );
-    }, 500),
-    []
-  );
+  // const debouncedCheckSpell = useCallback(
+  //   debounce(async (text) => {
+  //     setCorrections(
+  //       (await Axios.get('/student/spell', { params: { text } })).data
+  //     );
+  //   }, 500),
+  //   []
+  // );
 
-  const handleChangeDiary = useCallback((value) => {
-    debouncedCheckSpell(value);
-  }, []);
-
-  console.log(corrections);
-
+  const showJournal = async () => {
+    alert(value);
+    const { data: diary } = await service.getJournal('student1', value);
+  };
   return (
     <CalendarStyled>
       <ReactCalendar
@@ -34,36 +32,11 @@ const Calendar = () => {
         value={value}
         nextLabel={<BsChevronRight color="#888" />}
         prevLabel={<BsChevronLeft color="#888" />}
+        onClickDay={showJournal}
       />
-      <SimpleModal
-        onSubmit={(value) => alert(value)}
-        onChange={handleChangeDiary}
-      >
-        {!isEmpty(corrections) && (
-          <>
-            <CorrectionTitle>아래와 같이 변경해주세요.</CorrectionTitle>
-            {corrections.map((c, i) => {
-              if (isEmpty(c.suggestions)) return null;
-              return (
-                <Correction key={i}>{c.suggestions.join(', ')}</Correction>
-              );
-            })}
-          </>
-        )}
-      </SimpleModal>
+      {student.student && <SimpleModal onSubmit={(value) => alert(value)} />}
     </CalendarStyled>
   );
 };
-
-const CorrectionTitle = styled.h3`
-  font-size: 18px;
-  padding: 16px;
-  font-weight: bold;
-`;
-
-const Correction = styled.p`
-  padding: 16px;
-  color: red;
-`;
 
 export default Calendar;

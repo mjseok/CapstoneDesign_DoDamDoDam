@@ -27,11 +27,12 @@ parser.add_argument('--diary', type = str, default = None, help='input_diary')
 
 args = parser.parse_args()
 
-with open("../SentimentAnalysis/" + 'tokenizer.p', 'rb') as file:    # james.p 파일을 바이너리 읽기 모드(rb)로 열기
+with open('../SentimentAnalysis/tokenizer.p', 'rb') as file:    # james.p 파일을 바이너리 읽기 모드(rb)로 열기
     tokenizer = pickle.load(file)
 
 def sentiment_predict(new_sentence):
-  stopwords = ['도', '는', '다', '의', '가', '이', '은', '한', '에', '하', '고', '을', '를', '인', '듯', '과', '와', '네', '들', '듯', '지', '임', '게', '만', '게임', '겜', '되', '음', '면' , '"']
+  stopwords = ['도', '는', '다', '의', '가', '이', '은', '한', '에', '하', '고', '을', '를', '인', '듯', '과', '와', '네', '들', '듯', '지', '임', '게', '만', '게임', '겜', '되', '음', '면']
+  
   loaded_model = tf.keras.models.load_model('../SentimentAnalysis/best_model.h5')
   max_len = 40
   new_sentence = re.sub(r'[^ㄱ-ㅎㅏ-ㅣ가-힣 ]','', new_sentence)
