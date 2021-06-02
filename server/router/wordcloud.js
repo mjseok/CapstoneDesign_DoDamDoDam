@@ -6,11 +6,18 @@ exports.showWords = router.get(
   "/showWords/:teacher_id",
   wrapper(async (req, res) => {
     const { teacher_id } = req.params;
-    const words = await db.WordCloud.findAll({
-      where: {
-        teacher_id,
-      },
-    });
-    res.json(words);
+
+    try {
+      const words = await db.WordCloud.findAll({
+        where: {
+          teacher_id,
+        },
+      });
+      console.log(words);
+      res.json(words);
+    } catch (e) {
+      console.error(e);
+      res.error("에러 발생");
+    }
   })
 );

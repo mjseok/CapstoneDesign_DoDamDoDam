@@ -47,6 +47,9 @@ class Teacher extends Sequelize.Model {
       foreignKey: "teacher_id",
       sourceKey: "id",
     });
+    db.Teacher.hasOne(db.WordCloud, {
+      foreignKey: "teacher_id",
+    });
   }
 }
 

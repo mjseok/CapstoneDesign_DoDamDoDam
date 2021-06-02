@@ -59,7 +59,7 @@ class WordCloud extends Sequelize.Model {
     );
   }
   static associate(db) {
-    db.Teacher.hasOne(db.WordCloud, {
+    db.WordCloud.belongsTo(db.Teacher, {
       foreignKey: "teacher_id",
     });
   }
