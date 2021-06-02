@@ -207,6 +207,7 @@
 import React, { useState, useEffect } from "react";
 import service from "../../service";
 // reactstrap components
+import StudentList from "components/Student/StudentList";
 
 // core components
 import MainNavbar from "components/Navbars/MainNavbar.js";
@@ -217,6 +218,7 @@ import SampleHero from "../IndexSections/SampleHero";
 
 import Pagination from "../IndexSections/Pagination.js";
 import { Row, Col, Container } from "reactstrap";
+import styled from "styled-components";
 
 const StudentInfo = () => {
   // document.documentElement.scrollTop = 0;
@@ -224,6 +226,7 @@ const StudentInfo = () => {
   // this.refs.main.scrollTop = 0;
 
   const [students, setStudents] = useState([{}]);
+  const [clicked, setClicked] = useState({ id: "", name: "학생의" });
 
   // 서버에서 studentlist를 가져오는 방식
   const getAllStudent = async () => {
@@ -243,143 +246,14 @@ const StudentInfo = () => {
       <main>
         <SampleHero headerStyle={3} />
         <Container
-          style={{ "background-color": "#ffd569", "border-radius": "30px" }}
+          style={{
+            "background-color": "#ffd569",
+            "border-radius": "30px",
+          }}
         >
-          <Row className="row justify-content-around">
-            <div className="w-100" style={{ height: "50px" }} />
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <div className="w-100" style={{ height: "50px" }} />
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <div className="w-100" style={{ height: "50px" }} />
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <div className="w-100" style={{ height: "50px" }} />{" "}
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <Col className="col-md-auto">
-              <img
-                alt="..."
-                className="rounded-circle img-left shadow shadow-lg--hover"
-                src={require("assets/img/theme/team-1-800x800.jpg")}
-                style={{ width: "100px" }}
-              />{" "}
-            </Col>
-            <div className="w-100" style={{ height: "50px" }} />{" "}
-          </Row>
+          <Grid>
+            <StudentList students={students} setClicked={setClicked} />
+          </Grid>
         </Container>
         <div className="w-100" style={{ height: "50px" }} /> <Pagination />
       </main>
@@ -387,5 +261,12 @@ const StudentInfo = () => {
     </>
   );
 };
-
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: 230px 230px 230px 230px;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  margin-left: 0px;
+  margin-top: 15px;
+`;
 export default StudentInfo;
