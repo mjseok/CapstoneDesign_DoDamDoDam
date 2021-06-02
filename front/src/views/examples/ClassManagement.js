@@ -35,7 +35,7 @@ import SampleHero from "../IndexSections/SampleHero";
 import { Row } from "reactstrap";
 
 const data3 = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
+  labels: ["March", "April", "May", "June", "July", "August"],
   datasets: [
     {
       type: "line",
@@ -198,7 +198,7 @@ const ClassManagement = (props) => {
             {/* <div className="left-top"> */}
             <div>
               <div className="box">
-                <h2 className="title">반 전체 한눈에 보기</h2>
+                <div className="title">반 전체 한눈에 보기</div>
                 <div className="row-thumbnails">
                   <span className="row-thumbnail-text">긍정</span>
                   {positiveItems &&
@@ -232,7 +232,7 @@ const ClassManagement = (props) => {
             </div>
             <div className="left-bottom">
               <div className="box">
-                <h2 className="title">선생님이 한번 더 확인해 주세요</h2>
+                <div className="title">선생님이 한번 더 확인해 주세요</div>
                 {checkItems &&
                   checkItems.map((item, index) => {
                     return (
@@ -310,38 +310,38 @@ const ClassManagement = (props) => {
 };
 ClassManagement.defaultProps = {
   positiveItems: [
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
+    "https://i.ibb.co/NZVpw9g/8b23a25d341f74904f1340328ed3d0d6.jpg",
+    "https://i.ibb.co/K5R2MfF/9ebccf57-b06d-4449-9234-126d856f809d.jpg",
+    "https://i.ibb.co/FzwbwpM/20190211151836-5c6113bcb0186-1.jpg",
+    "https://i.ibb.co/RpRzDPz/71e093b52aaa0a76db8d300d384df709.jpg",
+    "https://i.ibb.co/NnRCPC6/1267a0256e85db92b3c4a1db791b524d.png",
+    "https://i.ibb.co/rFs40TR/9998-E3505-E5-AD0-F413.png",
+    "https://i.ibb.co/gvG6T0h/38139-36645-1155.jpg",
   ],
   negativeItems: [
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
-    "http://placehold.it/80x80",
+    "https://i.ibb.co/VmDcBbK/422377-534498-2153.jpg",
+    "https://i.ibb.co/024ZD4r/841284-623514-4728.jpg",
+    "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
+    "https://i.ibb.co/qk962F2/b23a7fc23796d14184d4a96f957f2c55.jpg",
+    "https://i.ibb.co/mDTLMtq/BVHNQg-DFr63.jpg",
+    "https://i.ibb.co/c8nB2hy/c3b27c60c9646.jpg",
+    "https://i.ibb.co/K6KXXGs/e01174364b6272a93befcd5fc2c8bfb3.jpg",
   ],
   checkItems: [
     {
       name: "7번 하담비",
       desc: "부정적 감정이 72% 증가했어요!",
-      thumbnail: "http://placehold.it/100x100",
+      thumbnail: "https://i.ibb.co/mDTLMtq/BVHNQg-DFr63.jpg",
     },
     {
       name: "4번 이백기",
       desc: "부정적 감정이 61% 증가했어요!",
-      thumbnail: "http://placehold.it/100x100",
+      thumbnail: "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
     },
     {
       name: "9번 한원지",
       desc: "부정적 감정이 58% 증가했어요!",
-      thumbnail: "http://placehold.it/100x100",
+      thumbnail: "https://i.ibb.co/VmDcBbK/422377-534498-2153.jpg",
     },
   ],
 };

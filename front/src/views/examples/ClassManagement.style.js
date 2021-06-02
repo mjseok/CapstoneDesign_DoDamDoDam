@@ -4,8 +4,9 @@ const ClassManagementStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px;
-  margin: auto;
+  padding-top: 16px;
+  //margin: auto;
+  //margin-top:15px;
 
   .left {
     display: flex;
@@ -76,8 +77,8 @@ const ClassManagementStyled = styled.div`
     border-radius: 50%;
   }
   .thumbnail-large {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     margin-left: 100px;
     border-radius: 50%;
   }
@@ -103,7 +104,7 @@ const ClassManagementStyled = styled.div`
     .desc {
       margin: 8px 0;
       font-size: 17px;
-      margin-left: 7px;
+      margin-left: 11px;
     }
     
   }
