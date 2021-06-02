@@ -65,6 +65,7 @@ export const useStyles = makeStyles((theme) => ({
   },
   microphoneStatus: {
     position: "relative",
+    marginLeft: "320px"
   },
 }));
 
@@ -151,20 +152,22 @@ const SimpleModal = (props) => {
     });
   }, [corrections, value]);
 
-  function changeImage(elem) {
-    if (elem.src == "https://i.ibb.co/5F3yfb9/keyboard.png") {
+  function changeImage() {
+    if (document.getElementById("img2").src == "https://i.ibb.co/5F3yfb9/keyboard.png") {
       SpeechRecognition.stopListening();
       console.log("마이크 꺼짐 " + speechValue);
       setSpeechValue("");
       console.log("setValue 초기화 " + speechValue);
-      elem.src = "https://i.ibb.co/t48ps4X/microphone.png";
-    } else if (elem.src == "https://i.ibb.co/t48ps4X/microphone.png") {
-      elem.src = "https://i.ibb.co/5F3yfb9/keyboard.png";
+      document.getElementById("img2").src = "https://i.ibb.co/t48ps4X/microphone.png";
+    } else if (document.getElementById("img2").src == "https://i.ibb.co/t48ps4X/microphone.png") {
+      document.getElementById("img2").src = "https://i.ibb.co/5F3yfb9/keyboard.png";
       SpeechRecognition.startListening({ continuous: true });
 
       console.log(transcript);
       setSpeechValue(transcript);
     }
+    //console.log("src: " + img2.src);
+    console.log("plz");
   }
 
   const { buttonLabel, className } = props;
@@ -219,7 +222,7 @@ const SimpleModal = (props) => {
             <EditArea>
               <ContentEditable
                 className={classes.textarea}
-                html={value}
+                html={value+transcript}
                 onChange={handleChange}
               />
               <CorrectionArea>
@@ -236,13 +239,14 @@ const SimpleModal = (props) => {
                 })}
               </CorrectionArea>
             </EditArea>
-            <div>{transcript}</div>
+            
             <img
-              id="img1"
+              id='img2'
               src="https://i.ibb.co/t48ps4X/microphone.png"
               className={classes.microphoneIcon}
               onClick={changeImage}
             />
+            {listening && <div className = {classes.microphoneStatus}>음성인식 작동중</div>}
           </div>
         </ModalBody>
         <ModalFooter>
@@ -260,7 +264,7 @@ const SimpleModal = (props) => {
               <Button
                 type="button"
                 color="primary"
-                onClick={() => handleSubmit(value + speechValue)}
+                onClick={() => handleSubmit(value + transcript)}
                 style={{ marginLeft: "16px" }}
               >
                 일기 제출하기
