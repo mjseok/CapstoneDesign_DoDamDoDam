@@ -20,6 +20,10 @@ const Calendar = () => {
         calendarType={"US"}
         // onClickDay={showJournal}
       />
+<<<<<<< HEAD
+=======
+      asdfasdf
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
       {/* {student.student && <SimpleModal onSubmit={(value) => alert(value)} />} */}
     </CalendarStyled>
   );

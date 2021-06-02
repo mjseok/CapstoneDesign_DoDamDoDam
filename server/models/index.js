@@ -28,19 +28,27 @@ const initialize = async () => {
   if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
   } else {
+<<<<<<< HEAD
     sequelize = new Sequelize(
       config.database,
       config.username,
       config.password,
       config
     );
+=======
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
   }
 
   fs.readdirSync(__dirname)
     .filter((file) => {
+<<<<<<< HEAD
       return (
         file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
       );
+=======
+      return file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js";
+>>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     })
     .forEach((file) => {
       const model = require(path.join(__dirname, file));
