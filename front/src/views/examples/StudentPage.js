@@ -42,11 +42,7 @@ const StudentPage = ({ title }) => {
       {
         label: "My First Dataset",
         data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
         hoverOffset: 30,
       },
     ],
@@ -54,20 +50,12 @@ const StudentPage = ({ title }) => {
 
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
-    const { data: AllWords } = await service.getWords(
-      window.localStorage.teacher_id
-    );
+    const id = await window.localStorage.getItem("id");
+    const { data: AllWords } = await service.getWords(id);
     AllWords.map((word) => {
       wordList.push({
         text: word.word,
-        value:
-          word.mon +
-          word.tue +
-          word.wed +
-          word.thu +
-          word.fri +
-          word.sat +
-          word.sun,
+        value: word.mon + word.tue + word.wed + word.thu + word.fri + word.sat + word.sun,
       });
     });
     setWords(words.concat(wordList));
@@ -87,10 +75,8 @@ const StudentPage = ({ title }) => {
       <div className="topItemsBox">
         <div className="word-cloud">
           <p className="title">{title}</p>
-          
-          <ReactWordcloud words={words} size={[300,300]} />
-          
-          
+
+          <ReactWordcloud words={words} size={[300, 300]} />
         </div>
         <div className="inChart">
           <p style={{ textAlign: "center" }}> 한달동안 감정적 비율</p>

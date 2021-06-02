@@ -146,20 +146,11 @@ const ClassManagement = (props) => {
 
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
-    const { data: AllWords } = await service.getWords(
-      window.localStorage.getItem("id")
-    );
+    const { data: AllWords } = await service.getWords(window.localStorage.getItem("id"));
     AllWords.map((word) => {
       wordList.push({
         text: word.word,
-        value:
-          word.mon +
-          word.tue +
-          word.wed +
-          word.thu +
-          word.fri +
-          word.sat +
-          word.sun,
+        value: word.mon + word.tue + word.wed + word.thu + word.fri + word.sat + word.sun,
       });
     });
     setWords(words.concat(wordList));
@@ -175,11 +166,7 @@ const ClassManagement = (props) => {
       {
         label: "My First Dataset",
         data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
+        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
         hoverOffset: 30,
       },
     ],
@@ -203,14 +190,7 @@ const ClassManagement = (props) => {
                   <span className="row-thumbnail-text">긍정</span>
                   {positiveItems &&
                     positiveItems.map((item, index) => {
-                      return (
-                        <img
-                          key={index}
-                          className="thumbnail"
-                          src={item}
-                          alt="썸네일"
-                        />
-                      );
+                      return <img key={index} className="thumbnail" src={item} alt="썸네일" />;
                     })}
                 </div>
                 <div className="dash-line"></div>
@@ -218,14 +198,7 @@ const ClassManagement = (props) => {
                   <span className="row-thumbnail-text">부정</span>
                   {negativeItems &&
                     negativeItems.map((item, index) => {
-                      return (
-                        <img
-                          key={index}
-                          className="thumbnail"
-                          src={item}
-                          alt="썸네일"
-                        />
-                      );
+                      return <img key={index} className="thumbnail" src={item} alt="썸네일" />;
                     })}
                 </div>
               </div>
@@ -237,11 +210,7 @@ const ClassManagement = (props) => {
                   checkItems.map((item, index) => {
                     return (
                       <div key={index} className="double-check">
-                        <img
-                          className="thumbnail-large"
-                          src={item.thumbnail}
-                          alt="썸네일"
-                        ></img>
+                        <img className="thumbnail-large" src={item.thumbnail} alt="썸네일"></img>
                         <div className="child-info">
                           <h3 className="name">{item.name}</h3>
                           <span className="desc">{item.desc}</span>
@@ -267,10 +236,7 @@ const ClassManagement = (props) => {
         <ClassManagementStyled>
           <div className="doughnut-graph">
             <div className="title2">어제의 우리반 감정</div>
-            <div className="doughnut-content">
-              어제의 일기를 바탕으로 나타낸 학생들의 감정 분포 그래프입니다.
-              그래프에 커서를 갖다 대면 해당 감정의 학생 수를 알 수 있습니다.
-            </div>
+            <div className="doughnut-content">어제의 일기를 바탕으로 나타낸 학생들의 감정 분포 그래프입니다. 그래프에 커서를 갖다 대면 해당 감정의 학생 수를 알 수 있습니다.</div>
             <div classname="real-doughnut-graph">
               <Doughnut
                 data={state}
