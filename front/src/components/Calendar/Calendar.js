@@ -3,10 +3,18 @@ import CalendarStyled from "./Calendar.style.js";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { useHistory } from "react-router";
-
+import { RiEmotionHappyFill } from "react-icons/ri";
+import {
+  FaSadTear,
+  FaAngry,
+  FaGrimace,
+  FaExclamationCircle,
+} from "react-icons/fa";
+import { ImNeutral } from "react-icons/im";
 import service from "../../service";
 import styled from "styled-components";
 import { Button, Input } from "reactstrap";
+import { fontSize, height } from "@material-ui/system";
 // function set() {
 //   return "wow";
 // }
@@ -27,7 +35,7 @@ const Calendar = ({ studentID }) => {
     idx: 0,
     comment: "",
   });
-  const history = useHistory();
+  const [emotionImg, setEmotionImg] = useState("");
 
   const element = useRef();
   const showJournal = async (day) => {
@@ -71,9 +79,73 @@ const Calendar = ({ studentID }) => {
       for (let i = 0; i < mainEmotions.length; i += 1) {
         const date1 = new Date(mainEmotions[i].date);
         date1.setHours(0, 0, 0, 0);
-        if (date.getTime() === date1.getTime())
-          return mainEmotions[i].main_emotion;
+        if (date.getTime() === date1.getTime()) {
+          switch (mainEmotions[i].main_emotion) {
+            case "happy":
+              return (
+                <RiEmotionHappyFill
+                  style={{
+                    color: "rgb(254,214,93)",
+                    fontSize: "40px",
+                    marginTop: "10px",
+                  }}
+                />
+              );
+            case "sadness":
+              return (
+                <FaSadTear
+                  style={{
+                    color: "rgb(70,103,157)",
+                    fontSize: "40px",
+                    marginTop: "10px",
+                  }}
+                />
+              );
+            case "angry":
+              return (
+                <FaAngry
+                  style={{
+                    color: "rgb(254,78,98)",
+                    fontSize: "40px",
+                    marginTop: "10px",
+                  }}
+                />
+              );
+            case "neutral":
+              return (
+                <ImNeutral
+                  style={{
+                    color: "rgb(59,205,124)",
+                    fontSize: "40px",
+                    marginTop: "10px",
+                  }}
+                />
+              );
+            case "fear":
+              return (
+                <FaGrimace
+                  style={{
+                    color: "rgb(198,165,199)",
+                    fontSize: "40px",
+                    marginTop: "10px",
+                  }}
+                />
+              );
+
+            default:
+              return (
+                <FaExclamationCircle
+                  style={{ fontSize: "40px", marginTop: "10px" }}
+                />
+              );
+          }
+        }
       }
+      return (
+        <FaExclamationCircle
+          style={{ color: "gray", fontSize: "20px", marginTop: "10px" }}
+        />
+      );
     },
     [mainEmotions]
   );
@@ -85,11 +157,45 @@ const Calendar = ({ studentID }) => {
     setValues({ ...values, [name]: e.target.value });
   };
   //forEach사용하면 안됨...왜지?
+  const handleMainEmo = () => {
+    switch (mainEmotion) {
+      case "happy":
+        setEmotionImg(
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/190px-Noto_Emoji_KitKat_263a.svg.png"
+        );
+        break;
+      case "sadness":
+        setEmotionImg("https://i.ibb.co/SNBt8PM/Png-Item-1094304.png");
+        break;
+      case "fear":
+        setEmotionImg(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJHyJ84wfFIeNfHDc6sEGvfs-1LixqbKDy5g&usqp=CAU"
+        );
+        break;
+      case "angry":
+        setEmotionImg(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEEDdnDqRiKeY_BcFvX_F0WHIO88mBg1HEby7KKSnIpFdeiXZ50qU3-0VRWP-bwyzDcxQ&usqp=CAU"
+        );
+        break;
+      case "neutral":
+        setEmotionImg(
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpkxEPVjZoe2ju1CQbgIXzjVxIOlHAaC6YtSTFiQQe7CpttbNb7BtZLcrXb-q2E3HBVR8&usqp=CAU"
+        );
+        break;
+      default:
+        setEmotionImg(
+          "https://e7.pngegg.com/pngimages/629/162/png-clipart-computer-icons-x-mark-symbol-miscellaneous-angle-thumbnail.png"
+        );
+        break;
+    }
+  };
   useEffect(() => {
     getMainEmo();
     showJournal();
   }, [studentID]);
-
+  useEffect(() => {
+    handleMainEmo();
+  }, [mainEmotion]);
   return (
     <CalendarStyled>
       <ReactCalendar
@@ -110,7 +216,10 @@ const Calendar = ({ studentID }) => {
                 <MainEmo>
                   {mainEmotion}
                   <br />
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Noto_Emoji_KitKat_263a.svg/190px-Noto_Emoji_KitKat_263a.svg.png" />
+                  <img
+                    src={emotionImg}
+                    style={{ height: "180px", width: "230px" }}
+                  />
                 </MainEmo>
 
                 <DetailEmo>

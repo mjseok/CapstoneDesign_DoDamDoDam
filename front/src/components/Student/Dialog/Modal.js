@@ -54,12 +54,11 @@ export const useStyles = makeStyles((theme) => ({
     borderBottom: "4px solid rgba(0,0,0,0.21)",
   },
   microphoneIcon: {
-    position: "relative",
     width: "50px",
     height: "50px",
     left: "50%",
-    marginTop: "10px",
-    marginLeft: "-25px",
+    marginTop: "70px",
+    marginLeft: "20px",
   },
   microphoneStatus: {
     position: "relative",
@@ -198,22 +197,72 @@ const SimpleModal = (props) => {
         toggle={toggle}
       >
         <ModalHeader toggle={toggle}>
-          <h2>오늘 {window.localStorage.id}의 일기</h2>
+          <h2>감사일기 작성하기</h2>
+          <span>오늘 하루 동안 기쁘거나 감사했던 일들을 3가지 적어보세요.</span>
         </ModalHeader>
         <ModalBody>
           <div>
             <EditArea>
-              <Input
-                className={classes.textarea}
-                type="textarea"
-                name="text"
-                id="exampleText"
-                onChange={handleChange}
-                html={value + transcript}
-                style={{
-                  height: "500px",
-                }}
-              />
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
               <CorrectionArea>
                 {!isEmpty(filteredCorrections) && (
                   <CorrectionTitle>아래와 같이 변경해주세요.</CorrectionTitle>
@@ -229,12 +278,6 @@ const SimpleModal = (props) => {
               </CorrectionArea>
             </EditArea>
             <div>{transcript}</div>
-            <img
-              id="img1"
-              src="https://i.ibb.co/t48ps4X/microphone.png"
-              className={classes.microphoneIcon}
-              onClick={changeImage}
-            />
           </div>
         </ModalBody>
         <ModalFooter>
@@ -252,10 +295,10 @@ const SimpleModal = (props) => {
               <Button
                 type="button"
                 color="primary"
-                onClick={() => handleSubmit(value + transcript)}
+                onClick={() => handleSubmit(value + speechValue)}
                 style={{ marginLeft: "16px" }}
               >
-                일기 제출하기
+                제출하기
               </Button>
             )}
           </div>
@@ -278,13 +321,22 @@ const CorrectionArea = styled.div`
 
 const EditArea = styled.div`
   display: flex;
+  flex-direction: column;
   .error {
     color: red;
     text-decoration: underline;
     cursor: pointer;
   }
 `;
-
+const Area = styled.div`
+  display: flex;
+  flex-direction: row;
+  .error {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
 const CorrectionTitle = styled.h3`
   font-size: 18px;
   padding: 16px;
