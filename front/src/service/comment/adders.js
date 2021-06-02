@@ -1,9 +1,9 @@
 const adders = (apiRequest) => {
-    const addComment = (body) => {
-      return apiRequest.post('/api/comment', body);
-    };
-    return {
-      addComment,
-    };
+  const addComment = (body) => {
+    return apiRequest.patch("/addComment", body);
   };
-  export default adders;
+  return {
+    addComment,
+  };
+};
+export default adders;

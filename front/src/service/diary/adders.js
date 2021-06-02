@@ -1,9 +1,9 @@
 const adders = (apiRequest) => {
-    const addDiary = (body) => {
-      return apiRequest.post('/api/diary', body);
-    };
-    return {
-      addDiary,
-    };
+  const addDiary = (body) => {
+    return apiRequest.post("/addJournal", body);
   };
-  export default adders;
+  return {
+    addDiary,
+  };
+};
+export default adders;

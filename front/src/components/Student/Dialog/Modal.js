@@ -18,8 +18,6 @@ import {
   Input,
 } from "reactstrap";
 import "../../../assets/scss/react/stuPage/stuPageStyle.scss";
-import service from "../../../service";
-import { useHistory } from "react-router";
 
 export const useStyles = makeStyles((theme) => ({
   Modal: {
@@ -56,12 +54,11 @@ export const useStyles = makeStyles((theme) => ({
     borderBottom: "4px solid rgba(0,0,0,0.21)",
   },
   microphoneIcon: {
-    position: "relative",
     width: "50px",
     height: "50px",
     left: "50%",
-    marginTop: "10px",
-    marginLeft: "-25px",
+    marginTop: "70px",
+    marginLeft: "20px",
   },
   microphoneStatus: {
     position: "relative",
@@ -79,8 +76,6 @@ const SimpleModal = (props) => {
   const [corrections, setCorrections] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const filteredCorrections = corrections.filter((x) => !x.isCorrected);
-  const [btnDisabled, setBtnDisabled] = useState(false);
-  const history = useHistory();
 
   const handleOpen = () => {
     setOpen(true);
@@ -178,22 +173,12 @@ const SimpleModal = (props) => {
       if (corrections && corrections.filter((x) => !x.isCorrected).length > 0)
         return alert("맞춤법을 전부 수정하셔야 제출할 수 있습니다.");
       const text = removeAllError(value);
-      //console.log(value, text);
-
-      onSubmitDiary(value);
+      console.log(value, text);
+      onSubmit && onSubmit(value);
     },
-    [corrections]
+    [onSubmit, corrections]
   );
-  const onSubmitDiary = (value) => {
-    service.addDiary({
-      student_id: window.localStorage.id,
-      teacher_id: window.localStorage.teacher_id,
-      content: value,
-    });
-    console.log("일기 제출 완료!");
-    setBtnDisabled(true);
-    history.go(0);
-  };
+
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null;
   }
@@ -201,7 +186,7 @@ const SimpleModal = (props) => {
   return (
     <>
       <div className={classes.modalOpenButtonArea}>
-        <Button color="danger" onClick={toggle} disabled={btnDisabled}>
+        <Button color="danger" onClick={toggle}>
           오늘 일기 쓰기
         </Button>
       </div>
@@ -212,16 +197,72 @@ const SimpleModal = (props) => {
         toggle={toggle}
       >
         <ModalHeader toggle={toggle}>
-          <h2>오늘 {window.localStorage.id}의 일기</h2>
+          <h2>감사일기 작성하기</h2>
+          <span>오늘 하루 동안 기쁘거나 감사했던 일들을 3가지 적어보세요.</span>
         </ModalHeader>
         <ModalBody>
           <div>
             <EditArea>
-              <ContentEditable
-                className={classes.textarea}
-                html={value}
-                onChange={handleChange}
-              />
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
+              <Area>
+                <Input
+                  className={classes.textarea}
+                  type="textarea"
+                  name="text"
+                  id="exampleText"
+                  onChange={handleChange}
+                  html={value}
+                  style={{
+                    height: "200px",
+                    width: "90%",
+                  }}
+                />
+                <img
+                  id="img1"
+                  src="https://i.ibb.co/t48ps4X/microphone.png"
+                  className={classes.microphoneIcon}
+                  onClick={changeImage}
+                />
+              </Area>
               <CorrectionArea>
                 {!isEmpty(filteredCorrections) && (
                   <CorrectionTitle>아래와 같이 변경해주세요.</CorrectionTitle>
@@ -237,12 +278,6 @@ const SimpleModal = (props) => {
               </CorrectionArea>
             </EditArea>
             <div>{transcript}</div>
-            <img
-              id="img1"
-              src="https://i.ibb.co/t48ps4X/microphone.png"
-              className={classes.microphoneIcon}
-              onClick={changeImage}
-            />
           </div>
         </ModalBody>
         <ModalFooter>
@@ -263,7 +298,7 @@ const SimpleModal = (props) => {
                 onClick={() => handleSubmit(value + speechValue)}
                 style={{ marginLeft: "16px" }}
               >
-                일기 제출하기
+                제출하기
               </Button>
             )}
           </div>
@@ -276,9 +311,9 @@ const SimpleModal = (props) => {
   );
 };
 
-// SimpleModal.defaultProps = {
-//   onSubmit: onSubmitDiary,
-// };
+SimpleModal.defaultProps = {
+  onSubmit: console.log,
+};
 const CorrectionArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -286,13 +321,22 @@ const CorrectionArea = styled.div`
 
 const EditArea = styled.div`
   display: flex;
+  flex-direction: column;
   .error {
     color: red;
     text-decoration: underline;
     cursor: pointer;
   }
 `;
-
+const Area = styled.div`
+  display: flex;
+  flex-direction: row;
+  .error {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`;
 const CorrectionTitle = styled.h3`
   font-size: 18px;
   padding: 16px;

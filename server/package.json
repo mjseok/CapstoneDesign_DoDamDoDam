@@ -10,31 +10,19 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
-<<<<<<< HEAD
-=======
     "body-parser": "^1.19.0",
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-session": "^1.17.1",
-<<<<<<< HEAD
-    "http-errors": "^1.6.3",
-    "jade": "~1.11.0",
-    "morgan": "~1.9.1",
-    "body-parser": "^1.19.0",
-    "express-validator": "^6.11.1",
-    "lodash": "^4.17.21",
-=======
     "express-validator": "^6.11.1",
     "hanspell": "^0.8.4",
     "http-errors": "^1.6.3",
     "jade": "~1.11.0",
     "lodash": "^4.17.21",
     "morgan": "~1.9.1",
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
   }

@@ -1,32 +1,18 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": "tjralswl0403",
     "database": "database_development",
     "host": "127.0.0.1",
     "port":"3307",
-=======
-    "password": "root",
-    "database": "database_development",
-    "host": "127.0.0.1",
-    "port": "3306",
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-<<<<<<< HEAD
     "password": "tjralswl0403",
     "database": "database_test",
     "host": "127.0.0.1",
     "port":"3307",
-=======
-    "password": "root",
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "port": "3306",
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     "dialect": "mysql"
   },
   "production": {

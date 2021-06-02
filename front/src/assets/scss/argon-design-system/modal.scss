@@ -1,18 +1,11 @@
 .modal-content {
-<<<<<<< HEAD
-=======
     position: relative;
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
     border: 0;
     @if $enable-rounded {
         border-radius: $modal-content-border-radius;
     } @else {
         border-radius: 0;
-<<<<<<< HEAD
     }  
-=======
-    }
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
 }
 
 

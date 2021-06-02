@@ -54,6 +54,7 @@ const StudentManagement = (props) => {
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
   const [students, setStudents] = useState([{}]);
+  const [clicked, setClicked] = useState({ id: "", name: "학생의" });
   const getAllStudent = async () => {
     const { data: AllStudent } = await service.getStudents(
       window.localStorage.getItem("id")
@@ -86,7 +87,7 @@ const StudentManagement = (props) => {
           <Title>학생 목록</Title>
           <Students>
             <Grid>
-              <StudentList students={students} />
+              <StudentList students={students} setClicked={setClicked} />
             </Grid>
           </Students>
         </div>
@@ -94,8 +95,8 @@ const StudentManagement = (props) => {
           <Row className="justify-content-center">
             <div class="col-lg-12">
               {" "}
-              <Title2>학생 일기</Title2>
-              <Calendar />
+              <Title2>{`${clicked.name} 일기`}</Title2>
+              <Calendar studentID={clicked.id} />
             </div>
             <div class="col-lg-12">
               {" "}
@@ -170,21 +171,20 @@ const Students = styled.div`
 `;
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 200px 200px 200px;
+  grid-template-rows: 250px 250px 250px;
   grid-template-columns: 33.3% 33.3% 33.3%;
   justify-items: center;
   margin-left: 0px;
+  margin-top: 15px;
 `;
 
 const Title = styled.div`
   font-size: 30px;
   font-weight: bold;
-  margin-left: 110px;
 `;
 const Title2 = styled.div`
   font-size: 30px;
   font-weight: bold;
-  margin-left: 50px;
   margin-bottom: 10px;
 `;
 
