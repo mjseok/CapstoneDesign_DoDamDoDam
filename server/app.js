@@ -8,10 +8,9 @@ const session = require("express-session");
 const { sequelize } = require("./models");
 const { getUserMe } = require("./router/user");
 const { login, postTeacher, postStudent, logout } = require("./router/auth");
-<<<<<<< HEAD
 const {
   showJournal,
-  showMainEmo,
+  showAllMainEmo,
   addComment,
   addJournal,
   updateJournal,
@@ -21,11 +20,8 @@ const {
   showStudent,
   updateStudent,
   deleteStudent,
+  studentSpellCheck,
 } = require("./router/student");
-=======
-const { showJournal, showMainEmo, addComment, addJournal, updateJournal } = require("./router/journal");
-const { showStudents, showStudent, updateStudent, deleteStudent, studentSpellCheck } = require("./router/student");
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
 const { showWords } = require("./router/wordcloud");
 //const { showStudents } = require("./router/student");
 
@@ -63,7 +59,7 @@ app.use(getUserMe);
 app.use(handleErrors);
 app.use(showStudents);
 app.use(showJournal);
-app.use(showMainEmo);
+app.use(showAllMainEmo);
 app.use(addComment);
 app.use(addJournal);
 app.use(updateJournal);
@@ -71,10 +67,7 @@ app.use(showStudent);
 app.use(updateStudent);
 app.use(deleteStudent);
 app.use(showWords);
-<<<<<<< HEAD
-=======
 app.use(studentSpellCheck);
->>>>>>> 8971299c1d308af2bcebe2b46fcfb2c4e175dd03
 
 app.set("port", process.env.PORT || 3001);
 app.listen(port, () => {

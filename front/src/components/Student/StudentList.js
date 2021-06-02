@@ -3,14 +3,18 @@ import Student from "./Students";
 import PropTypes from "prop-types";
 import { Button } from "reactstrap";
 import styled from "styled-components";
-const StudentList = ({ students }) => {
+const StudentList = ({ students, setClicked }) => {
   //studetList를 student하나씩 나눠서(map) student의 이름(student.name)과 숫자를 Student폴더에서 사용하겠다
-  const [line, setLine] = useState([]);
-
+  const handleClick = (value) => {
+    setClicked(value);
+  };
   return students.map((student) => {
     return (
       //   <Button color="ours" type="button" style={{ "margin-top": "15px" }}>
-      <ImgContainer>
+      <ImgContainer
+        value={student.studentID}
+        onClick={() => handleClick({ id: student.id, name: student.name })}
+      >
         {" "}
         <Student
           name={student.name}
@@ -35,7 +39,5 @@ const ImgContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 500px;
-  height: 500px;
 `;
 export default StudentList;
