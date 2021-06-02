@@ -55,7 +55,7 @@ const StudentPage = ({ title }) => {
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
     const { data: AllWords } = await service.getWords(
-      window.localStorage.getItem("id")
+      window.localStorage.teacher_id
     );
     AllWords.map((word) => {
       wordList.push({
@@ -87,7 +87,10 @@ const StudentPage = ({ title }) => {
       <div className="topItemsBox">
         <div className="word-cloud">
           <p className="title">{title}</p>
-          <ReactWordcloud words={wordList} size={[300, 300]} />
+          
+          <ReactWordcloud words={words} size={[300,300]} />
+          
+          
         </div>
         <div className="inChart">
           <p style={{ textAlign: "center" }}> 한달동안 감정적 비율</p>
