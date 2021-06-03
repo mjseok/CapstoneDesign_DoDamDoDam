@@ -86,12 +86,12 @@ const StudentPage = ({ title }) => {
 
       <div className="topItemsBox">
         <div className="word-cloud">
-          <p className="title">{title}</p>
+          <h2 className="title display-4" style={{ textAlign: "center" }}>{title}</h2>
 
           <ReactWordcloud words={words} size={[300, 300]} />
         </div>
         <div className="inChart">
-          <p style={{ textAlign: "center" }}> 한달동안 감정적 비율</p>
+          <h2 className="display-4" style={{ textAlign: "center" }}>지난달 나의 감정</h2>
           <Doughnut data={data} />
         </div>
       </div>

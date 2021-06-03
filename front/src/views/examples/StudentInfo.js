@@ -88,7 +88,7 @@ const StudentInfo = () => {
     if (e.target.files[0] && values.id !== "") {
       const img = new FormData();
       img.append("file", e.target.files[0]);
-      img.append("name", `${values.id}.png`);
+      img.append("name", `${values.id}.jpg`);
 
       axios
         .post("/upload", img)
@@ -241,9 +241,9 @@ const StudentInfo = () => {
           <Grid>
             <img
               alt="..."
-              className="img-center shadow shadow-lg--hover"
+              className="rounded-circle img-center shadow shadow-lg--hover"
               src="https://www.freeiconspng.com/uploads/plus-icon-black-2.png"
-              style={{ width: "150px", height: "170px", marginTop: "inherit" }}
+              style={{ width: "100px", height: "100px", marginTop: "25%" }}
               onClick={() => {
                 setOpen(!open);
               }}

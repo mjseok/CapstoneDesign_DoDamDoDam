@@ -29,12 +29,13 @@ const MainNavbar = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
   const handleLogout = useCallback(() => {
+    window.localStorage.clear();
     Axios.delete("/logout");
     history.push("/login");
     auth.setUserMe(null);
     auth.setIsTeacher(false);
     auth.setIsStudent(false);
-    window.localStorage.delete();
+    window.localStorage.clear();
   }, []);
   // componentDidMount() {
   //   let headroom = new Headroom(document.getElementById("navbar-main"));

@@ -16,7 +16,7 @@
 
 */
 // import React from "react";
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect,useMemo } from "react";
 import { Pie, Doughnut, Bar, Line, Mixed } from "react-chartjs-2";
 //import Layout from '../../components/Layout';
 import ClassManagementStyled from "./ClassManagement.style";
@@ -149,6 +149,11 @@ const ClassManagement = (props) => {
   const [bad, setBad] = useState("");
 
   const [words, setWords] = useState([]);
+  const options = useMemo(() => {
+    return {
+      fontSizes: [20, 100],
+    }
+  }, []);
   const getAllWords = async () => {
     const { data: AllWords } = await service.getWords(
       window.localStorage.getItem("id")
@@ -178,7 +183,7 @@ const ClassManagement = (props) => {
     datasets: [
       {
         label: "My First Dataset",
-        data: [300, 50, 100],
+        data: [5, 14, 8],
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
@@ -292,7 +297,7 @@ const ClassManagement = (props) => {
             <div className="title">반의 관심사</div>
 
             <div className="word-cloud ">
-              <ReactWordcloud words={words} />
+              <ReactWordcloud words={words} options={options} />
             </div>
             <div>
               <div></div>

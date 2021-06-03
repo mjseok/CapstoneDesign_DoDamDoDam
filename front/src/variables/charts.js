@@ -319,14 +319,16 @@ let chartExample1 = {
           },
           ticks: {
             callback: function (value) {
-              if (value > 0) {
-                return "☺";
-              } else if (value === 0) {
+              if (value > 5) {
+                return "Positive";
+              } else if (value === 5) {
                 return "Neutral";
               } else {
                 return "Negative";
               }
             },
+            min:0,
+            max:10,
           },
         },
       ],

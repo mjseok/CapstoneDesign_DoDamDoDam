@@ -232,7 +232,7 @@ const SimpleModal = (props) => {
         toggle={toggle}
       >
         <ModalHeader toggle={toggle}>
-          <h2>오늘 {window.localStorage.id}의 일기</h2>
+          <h2>오늘 {window.localStorage.name}의 일기</h2>
         </ModalHeader>
         <ModalBody>
           <div>

@@ -11,7 +11,7 @@ const Studnet = ({ id, number, name, birthday }) => {
         <img
           alt="..."
           className="shadow shadow-lg--hover"
-          src={`https://storage.googleapis.com/dodamimage/${id}.png`}
+          src={`https://storage.googleapis.com/dodamimage/${id}.jpg`}
           style={{ width: "150px", height: "170px" }}
         />
         <div

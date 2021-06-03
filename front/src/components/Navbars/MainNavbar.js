@@ -44,6 +44,7 @@ const DemoNavbar = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
   const handleLogout = useCallback(() => {
+    window.localStorage.clear();
     Axios.delete("/logout");
     history.push("/login");
     auth.setUserMe(null);
@@ -89,7 +90,7 @@ const DemoNavbar = () => {
               <Link to="/class/management">
                 <text
                   style={{
-                    color: "black",
+                    color: "white",
                     fontWeight: "bolder",
                     marginRight: "35px",
                   }}
@@ -101,7 +102,7 @@ const DemoNavbar = () => {
                 {" "}
                 <text
                   style={{
-                    color: "black",
+                    color: "white",
                     fontWeight: "bolder",
                     marginRight: "35px",
                   }}
@@ -113,7 +114,7 @@ const DemoNavbar = () => {
                 {" "}
                 <text
                   style={{
-                    color: "black",
+                    color: "white",
                     fontWeight: "bolder",
                     marginRight: "35px",
                   }}
@@ -125,7 +126,7 @@ const DemoNavbar = () => {
             <Nav className="align-items-lg-center ml-lg-auto" navbar>
               <NavItem>
                 {auth.userMe && (
-                  <ClassButton type="button" onClick={handleLogout}>
+                  <ClassButton type="button" onClick={handleLogout} style={{color:"white",fontWeight:"bolder"}}>
                     로그아웃
                   </ClassButton>
                 )}

@@ -43,6 +43,8 @@ const Login = () => {
           window.localStorage.setItem("id", res.data.id);
           if (res.data.userType === "student") {
             window.localStorage.setItem("teacher_id", res.data.teacher_id);
+            window.localStorage.setItem("name", res.data.name);
+
           }
           auth.setUserMe(res.data);
           const isTeacher = res.data.userType === "teacher";

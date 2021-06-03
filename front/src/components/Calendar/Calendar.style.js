@@ -3,9 +3,8 @@ import styled from "styled-components";
 const CalendarStyled = styled.div`
   .react-calendar {
     width: 100%;
-    border: 1px solid transparent;
     position: relative;
-    padding: 0 60px;
+    padding: 0 30xpx;
     box-sizing: border-box;
     min-height: 640px;
     font-family: "Open Sans", sans-serif;
@@ -15,7 +14,6 @@ const CalendarStyled = styled.div`
     display: none;
   }
   .react-calendar__navigation__prev-button {
-    position: absolute;
     left: 20px;
     top: 0px;
     font-size: 45px;
@@ -24,7 +22,6 @@ const CalendarStyled = styled.div`
   }
 
   .react-calendar__navigation__next-button {
-    position: absolute;
     right: 20px;
     top: 0px;
     font-size: 45px;
@@ -42,13 +39,8 @@ const CalendarStyled = styled.div`
     min-height: 50px;
   }
   .react-calendar__navigation__label__labelText {
-
-    position: absolute;
-    top: 15px;
-    left: 260px;
     font-weight: bold;
     font-size: 25px;
-
     text-align: center;
   }
 
@@ -63,8 +55,8 @@ const CalendarStyled = styled.div`
 
     abbr {
       position: absolute;
-      left: 18px;
       top: 0;
+      left:0;
       padding: 10px;
       font-size: 18px;
       color: black;

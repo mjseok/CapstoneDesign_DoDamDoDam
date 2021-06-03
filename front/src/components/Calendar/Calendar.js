@@ -5,6 +5,17 @@ import React, {
   useCallback,
   useContext,
 } from "react";
+import classnames from "classnames";
+
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  NavItem,
+  NavLink,
+  Nav,
+  Row,
+} from "reactstrap";
 import CalendarStyled from "./Calendar.style.js";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -22,8 +33,13 @@ import styled from "styled-components";
 import { Button, Input } from "reactstrap";
 import { fontSize, height } from "@material-ui/system";
 import { AuthContext } from "../../context/auth";
+import Chart from "chart.js";
+import { chartOptions, parseOptions, chartExample1 } from "variables/charts.js";
+import { Line } from "react-chartjs-2";
 
 const Calendar = ({ studentID }) => {
+  console.log(studentID)
+  const [activeNav, setActiveNav] = useState(1);
   const [value, onChange] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [diary, setDiary] = useState("");
@@ -44,10 +60,30 @@ const Calendar = ({ studentID }) => {
   const auth = useContext(AuthContext);
 
   const element = useRef();
+  const [data1, setData1] = useState(0);
+  const [data2, setData2] = useState(0);
+  const [data3, setData3] = useState(0);
+  const [data4, setData4] = useState(0);
+  const [data5, setData5] = useState(0);
+  const [data6, setData6] = useState(0);
+  const [data7, setData7] = useState(0);
+  const [barData, setBarData] = useState({
+    labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+    datasets: [
+      {
+        label: "Performance",
+        data: [data1,data2,data3,data4,data5,data6,data7],
+      },
+    ],
+  });
+  const toggleNavs = (e, index) => {
+    e.preventDefault();
+    setActiveNav(index);
+  };
+
   const showJournal = async (day) => {
     const { data } = await service.getJournal(studentID, day);
     if (day !== undefined) setOpen(!open);
-    console.log(data);
     if (data !== null) {
       setDiary(data.content);
       setStudent(data.student_id);
@@ -59,6 +95,8 @@ const Calendar = ({ studentID }) => {
       setAnger(data.anger);
       setSadness(data.sadness);
       setValues({ ...values, idx: data.idx });
+
+    
     }
     if (data == null) {
       setDiary("");
@@ -82,10 +120,53 @@ const Calendar = ({ studentID }) => {
   };
   const showEmotion = useCallback(
     ({ date, view }) => {
+      if(mainEmotions.length===0){
+        setData1(0);
+         setData2(0);
+         setData3(0);
+         setData4(0);
+         setData5(0);
+         setData6(0);    
+         setData7(0);    
+      }
       for (let i = 0; i < mainEmotions.length; i += 1) {
         const date1 = new Date(mainEmotions[i].date);
         date1.setHours(0, 0, 0, 0);
         if (date.getTime() === date1.getTime()) {
+          if(date1.getDay()==0){
+            if(mainEmotions[i].main_emotion==='happy') setData1(10);
+            else if(mainEmotions[i].main_emotion==='neutral') setData1(5);
+            else setData1(0);
+          }
+          if(date.getDay()==1){
+            if(mainEmotions[i].main_emotion==='happy') setData2(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData2(5);
+            else setData2(0);
+          }
+          if(date.getDay()==2){
+            if(mainEmotions[i].main_emotion==='happy') setData3(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData3(5);
+            else setData3(0);
+          }
+          if(date.getDay()==3){
+            if(mainEmotions[i].main_emotion==='happy') setData4(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData4(5);
+            else setData4(0);
+          }
+          if(date.getDay()==4){
+            if(mainEmotions[i].main_emotion==='happy') setData5(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData5(5);
+            else setData5(0);
+          }
+          if(date.getDay()==5){
+            if(mainEmotions[i].main_emotion==='happy') setData6(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData6(5);
+            else setData6(0);    }
+          if(date.getDay()==6){
+            if(mainEmotions[i].main_emotion==='happy') setData7(10);
+            else if(mainEmotions[i].main_emotion==="neutral") setData7(5);
+            else setData7(0);    }
+  
           switch (mainEmotions[i].main_emotion) {
             case "happy":
               return (
@@ -93,7 +174,7 @@ const Calendar = ({ studentID }) => {
                   style={{
                     color: "rgb(254,214,93)",
                     fontSize: "40px",
-                    marginTop: "10px",
+                    marginTop: "23px",
                   }}
                 />
               );
@@ -103,7 +184,7 @@ const Calendar = ({ studentID }) => {
                   style={{
                     color: "rgb(70,103,157)",
                     fontSize: "40px",
-                    marginTop: "10px",
+                    marginTop: "23px",
                   }}
                 />
               );
@@ -113,7 +194,7 @@ const Calendar = ({ studentID }) => {
                   style={{
                     color: "rgb(254,78,98)",
                     fontSize: "40px",
-                    marginTop: "10px",
+                    marginTop: "23px",
                   }}
                 />
               );
@@ -123,7 +204,7 @@ const Calendar = ({ studentID }) => {
                   style={{
                     color: "rgb(59,205,124)",
                     fontSize: "40px",
-                    marginTop: "10px",
+                    marginTop: "23px",
                   }}
                 />
               );
@@ -133,7 +214,7 @@ const Calendar = ({ studentID }) => {
                   style={{
                     color: "rgb(198,165,199)",
                     fontSize: "40px",
-                    marginTop: "10px",
+                    marginTop: "23px",
                   }}
                 />
               );
@@ -141,17 +222,16 @@ const Calendar = ({ studentID }) => {
             default:
               return (
                 <FaExclamationCircle
-                  style={{ fontSize: "40px", marginTop: "10px" }}
+                  style={{ fontSize: "40px", marginTop: "23px" }}
                 />
               );
           }
+          
+                    
         }
+
+        
       }
-      // return (
-      //   <FaExclamationCircle
-      //     style={{ color: "gray", fontSize: "20px", marginTop: "10px" }}
-      //   />
-      // );
     },
     [mainEmotions]
   );
@@ -197,6 +277,20 @@ const Calendar = ({ studentID }) => {
     getMainEmo();
     showJournal();
   }, [studentID]);
+
+  useEffect(()=>{
+    setBarData({
+      labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+      datasets: [
+        {
+          label: "Performance",
+          data: [data1,data2,data3,data4,data5,data6,data7],
+        },
+      ],
+    });
+  },[data1,data2,data3,data4,data5,data6,data7,studentID])
+  console.log(barData)
+
   useEffect(() => {
     handleMainEmo();
   }, [mainEmotion]);
@@ -214,7 +308,7 @@ const Calendar = ({ studentID }) => {
         <DiaryBack onClick={handleClickBg}>
           {" "}
           <Diary ref={element}>
-            <h1 className="display-2">{student}의 일기</h1>
+            <h1 className="display-2">{student}학생의 일기</h1>
             <Wrapper>
               <Content>{diary}</Content>
               <Content2>
@@ -246,7 +340,7 @@ const Calendar = ({ studentID }) => {
               {comment && `${comment}`}
               {!comment &&
                 diary &&
-                auth.isTeacher(
+                auth.isTeacher&&(
                   <>
                     <Input
                       placeholder="comment를 입력해주세요"
@@ -269,6 +363,47 @@ const Calendar = ({ studentID }) => {
           </Diary>{" "}
         </DiaryBack>
       )}
+       <div className="chart" style={{marginTop:"30px"}}>
+       <Card className="bg-gradient-default shadow">
+                    <CardHeader className="bg-transparent">
+                      <Row className="align-items-center">
+                        <div className="col">
+                          <h6 className="text-uppercase text-light ls-1 mb-1">
+                            Graph
+                          </h6>
+                          <h2 className="text-white mb-0">감정 변화</h2>
+                        </div>
+                        <div className="col">
+                          <Nav className="justify-content-end" pills>
+                            <NavItem>
+                              <NavLink
+                                className={classnames("py-2 px-3", {
+                                  active: activeNav === 1,
+                                })}
+                                data-toggle="tab"
+                                href="#pablo"
+                                onClick={(e) => toggleNavs(e, 1)}
+                              >
+                                <span className="d-none d-md-block">Week</span>
+                                <span className="d-md-none">W</span>
+                              </NavLink>
+                            </NavItem>
+                          </Nav>
+                        </div>
+                      </Row>
+                    </CardHeader>
+                    <CardBody>
+                      {/* Chart */}
+                      <div className="chart">
+
+                        <Line data={barData}
+                          options={chartExample1.options}
+                          getDatasetAtEvent={(e) => console.log(e)}
+                        />
+                      </div>
+                    </CardBody>
+                  </Card>
+      </div>
     </CalendarStyled>
   );
 };
