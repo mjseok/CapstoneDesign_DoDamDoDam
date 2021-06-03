@@ -168,7 +168,7 @@ const SampleHero = ({ headerStyle }) => {
                           <img
                             alt="..."
                             className="rounded-circle"
-                            src={`https://storage.googleapis.com/dodamimage/${window.localStorage.id}.png`}
+                            src={`https://storage.googleapis.com/dodamimage/${window.localStorage.id}.jpg`}
                             style={{ height: "260px", width: "260px" }}
                           />
                         </a>

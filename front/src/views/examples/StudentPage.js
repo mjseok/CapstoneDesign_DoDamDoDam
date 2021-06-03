@@ -88,11 +88,11 @@ const StudentPage = ({ title }) => {
 
       <SampleHero headerStyle={4} />
 
-      <div className="topItemsBox">
+      <div className="topItemsBox" style={{paddingLeft:"50px", paddingRight:"50px"}}>
         <div className="word-cloud">
           <h2 className="title display-4" style={{ textAlign: "center" }}>{title}</h2>
           <div>
-            <ReactWordcloud words={words} options={options} size={300,300} />
+            <ReactWordcloud words={words} options={options}/>
           </div>
         </div>
         <div className="inChart">
@@ -100,7 +100,7 @@ const StudentPage = ({ title }) => {
           <Doughnut data={data} />
         </div>
       </div>
-      <div className="inCalender">
+      <div className="inCalender" style={{paddingLeft:"50px", paddingRight:"50px"}}>
         <Calendar studentID={window.localStorage.id} />
       </div>
 
