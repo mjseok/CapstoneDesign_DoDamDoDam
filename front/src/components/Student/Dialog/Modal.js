@@ -31,7 +31,6 @@ export const useStyles = makeStyles((theme) => ({
   },
   textarea: {
     width: "800px",
-    padding: "40px",
     boxSizing: "border-box",
     border: "double 8px #8b8269",
     fontSize: "16px",
@@ -58,7 +57,7 @@ export const useStyles = makeStyles((theme) => ({
     width: "50px",
     height: "50px",
     left: "50%",
-    marginTop: "70px",
+    marginTop: "10px",
     marginLeft: "20px",
   },
   microphoneStatus: {
@@ -210,6 +209,7 @@ const SimpleModal = (props) => {
           <div>
             <EditArea>
               <Area>
+              <h2 style={{ marginTop: "10px", "margin-right": "10px"}}>1</h2>
                 <Input
                   className={classes.textarea}
                   type="textarea"
@@ -218,8 +218,9 @@ const SimpleModal = (props) => {
                   onChange={handleChange}
                   html={value}
                   style={{
-                    height: "200px",
+                    height: "70px",
                     width: "90%",
+                    marginBottom:"50px"
                   }}
                 />
                 <img
@@ -230,6 +231,7 @@ const SimpleModal = (props) => {
                 />
               </Area>
               <Area>
+              <h2 style={{ marginTop: "10px", "margin-right": "10px"}}>2</h2>
                 <Input
                   className={classes.textarea}
                   type="textarea"
@@ -238,8 +240,10 @@ const SimpleModal = (props) => {
                   onChange={handleChange}
                   html={value}
                   style={{
-                    height: "200px",
+                    height: "70px",
                     width: "90%",
+                    marginBottom:"50px"
+
                   }}
                 />
                 <img
@@ -250,6 +254,7 @@ const SimpleModal = (props) => {
                 />
               </Area>
               <Area>
+              <h2 style={{ marginTop: "10px", "margin-right": "10px"}}>3</h2>
                 <Input
                   className={classes.textarea}
                   type="textarea"
@@ -258,7 +263,7 @@ const SimpleModal = (props) => {
                   onChange={handleChange}
                   html={value}
                   style={{
-                    height: "200px",
+                    height: "70px",
                     width: "90%",
                   }}
                 />

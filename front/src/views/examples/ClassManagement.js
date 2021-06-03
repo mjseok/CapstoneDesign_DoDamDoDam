@@ -44,14 +44,14 @@ const data3 = {
       borderColor: "rgb(117, 188, 0)",
       borderWidth: 2,
       fill: false,
-      data: [10, 8, 7, 8, 4, 6],
+      data: [10, 8, 7, 8, 0, 0],
     },
     {
       type: "bar",
       label: "우리 반 평균",
       // backgroundColor: 'rgb(255, 99, 132)',
       backgroundColor: "rgb(255, 148, 54)",
-      data: [11, 7, 6, 8, 5, 6],
+      data: [11, 7, 6, 8, 0, 0],
       borderColor: "white",
       borderWidth: 2,
     },
@@ -352,35 +352,39 @@ ClassManagement.defaultProps = {
   positiveItems: [
     "https://i.ibb.co/NZVpw9g/8b23a25d341f74904f1340328ed3d0d6.jpg",
     "https://i.ibb.co/K5R2MfF/9ebccf57-b06d-4449-9234-126d856f809d.jpg",
-    "https://i.ibb.co/FzwbwpM/20190211151836-5c6113bcb0186-1.jpg",
     "https://i.ibb.co/RpRzDPz/71e093b52aaa0a76db8d300d384df709.jpg",
-    "https://i.ibb.co/NnRCPC6/1267a0256e85db92b3c4a1db791b524d.png",
-    "https://i.ibb.co/rFs40TR/9998-E3505-E5-AD0-F413.png",
     "https://i.ibb.co/gvG6T0h/38139-36645-1155.jpg",
+    "https://storage.googleapis.com/dodamimage/a.jpg",
+    "https://storage.googleapis.com/dodamimage/b.jpg",
+    "https://storage.googleapis.com/dodamimage/h.jpg",
+
+
   ],
   negativeItems: [
+    "https://storage.googleapis.com/dodamimage/c.jpg",
+
     "https://i.ibb.co/VmDcBbK/422377-534498-2153.jpg",
-    "https://i.ibb.co/024ZD4r/841284-623514-4728.jpg",
     "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
-    "https://i.ibb.co/qk962F2/b23a7fc23796d14184d4a96f957f2c55.jpg",
-    "https://i.ibb.co/mDTLMtq/BVHNQg-DFr63.jpg",
-    "https://i.ibb.co/c8nB2hy/c3b27c60c9646.jpg",
-    "https://i.ibb.co/K6KXXGs/e01174364b6272a93befcd5fc2c8bfb3.jpg",
+    "https://storage.googleapis.com/dodamimage/l.jpg",
+    "https://storage.googleapis.com/dodamimage/m.jpg",
+    "https://storage.googleapis.com/dodamimage/n.jpg",
+    "https://storage.googleapis.com/dodamimage/o.jpg",
+
   ],
   checkItems: [
     {
-      name: "7번 하담비",
+      name: "3번 고지우",
       desc: "부정적 감정이 72% 증가했어요!",
-      thumbnail: "https://i.ibb.co/mDTLMtq/BVHNQg-DFr63.jpg",
+      thumbnail: "https://storage.googleapis.com/dodamimage/c.jpg",
     },
     {
-      name: "4번 이백기",
+      name: "6번 김태윤",
       desc: "부정적 감정이 61% 증가했어요!",
       thumbnail:
         "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
     },
     {
-      name: "9번 한원지",
+      name: "11번 박제하",
       desc: "부정적 감정이 58% 증가했어요!",
       thumbnail: "https://i.ibb.co/VmDcBbK/422377-534498-2153.jpg",
     },

@@ -198,14 +198,12 @@ const SimpleModal = (props) => {
       http_req.open("GET", `http://115.85.181.160:5000/analysis/?idx=${res.data}`)
       http_req.send();
       http_req.onload = () => {
-      if(http_req.responseText!=='happy'){
-        window.localStorage.setItem("thanks",true)
         history.go(0);
 
+      if(http_req.responseText!=='happy'){
+        window.localStorage.setItem("thanks",true)
       }else{
         window.localStorage.setItem("btn",true)
-        history.go(0);
-        
       }
       }
       });
