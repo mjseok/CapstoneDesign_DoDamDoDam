@@ -35,7 +35,7 @@ const MainNavbar = () => {
     auth.setUserMe(null);
     auth.setIsTeacher(false);
     auth.setIsStudent(false);
-  };
+  });
   // componentDidMount() {
   //   let headroom = new Headroom(document.getElementById("navbar-main"));
   //   // initialise

@@ -37,7 +37,7 @@ import Chart from "chart.js";
 import { chartOptions, parseOptions, chartExample1 } from "variables/charts.js";
 import { Line } from "react-chartjs-2";
 
-const Calendar = ({ studentID }) => {
+const Calendar = ({ studentID,studentName }) => {
   console.log(studentID)
   const [activeNav, setActiveNav] = useState(1);
   const [value, onChange] = useState(new Date());
@@ -95,7 +95,6 @@ const Calendar = ({ studentID }) => {
       setAnger(data.anger);
       setSadness(data.sadness);
       setValues({ ...values, idx: data.idx });
-
     
     }
     if (data == null) {
@@ -308,7 +307,7 @@ const Calendar = ({ studentID }) => {
         <DiaryBack onClick={handleClickBg}>
           {" "}
           <Diary ref={element}>
-            <h1 className="display-2">{student}학생의 일기</h1>
+            <h1 className="display-2">{studentName}학생의 일기</h1>
             <Wrapper>
               <Content>{diary}</Content>
               <Content2>

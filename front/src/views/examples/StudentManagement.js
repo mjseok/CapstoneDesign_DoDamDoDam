@@ -96,7 +96,7 @@ const StudentManagement = (props) => {
             <div class="col-lg-12">
               {" "}
               <Title2>{`${clicked.name} 일기`}</Title2>
-              <Calendar studentID={clicked.id} />
+              <Calendar studentID={clicked.id} studentName={clicked.name}/>
             </div>
             <div class="col-lg-12">
               {" "}
