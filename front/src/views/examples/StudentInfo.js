@@ -106,7 +106,7 @@ const StudentInfo = () => {
       <main>
         <SampleHero headerStyle={3} />
         <div 
-          style={{ "background-color": "#ffd569", "border-radius": "30px", width:"80%",marginLeft:"10%"}}
+          style={{ "background-color": "rgba(175,208,224,0.5)", "border-radius": "30px", width:"80%",marginLeft:"10%"}}
         >
           {/* <Row className="row justify-content-around">
             <div className="w-100" style={{ height: "50px" }} />
@@ -387,11 +387,12 @@ const DiaryBack = styled.div`
 `;
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 230px 230px 230px 230px;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 230px 230px 230px 230px 230px;
+  grid-template-columns: 16.66% 16.66% 16.66% 16.66% 16.66% 16.66%;
   justify-items: center;
   margin-left: 0px;
   margin-top: 15px;
+  padding-top:25px;
 `;
 // /*!
 

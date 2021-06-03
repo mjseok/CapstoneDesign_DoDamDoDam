@@ -144,7 +144,7 @@ const SampleHero = ({ headerStyle }) => {
                     <Col className="order-lg-2" lg="6">
                       <div className="card-blockquote">
                         <h1 className="display-2 text-white">세종 초등학교</h1>
-                        <p className="text-white mt-0 mb-5">3-2 반</p>
+                        <p className="text-white mt-0 mb-5">3학년 2반</p>
                       </div>
                     </Col>
                   </Row>
@@ -177,7 +177,7 @@ const SampleHero = ({ headerStyle }) => {
                     <Col className="order-lg-2" lg="6">
                       <div className="card-blockquote">
                         <h1 className="display-2 text-white">세종 초등학교</h1>
-                        <p className="text-white mt-0 mb-5">3-2 반</p>
+                        <p className="text-white mt-0 mb-5">3학년 2반</p>
                       </div>
                     </Col>
                   </Row>

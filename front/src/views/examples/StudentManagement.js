@@ -95,7 +95,7 @@ const StudentManagement = (props) => {
           <Row className="justify-content-center">
             <div class="col-lg-12">
               {" "}
-              <Title2>{`${clicked.name} 일기`}</Title2>
+              <Title2>{`${clicked.name} 일기목록`}</Title2>
               <Calendar studentID={clicked.id} studentName={clicked.name}/>
             </div>
             <div class="col-lg-12">
@@ -114,14 +114,14 @@ const StudentManagement = (props) => {
 };
 
 const Students = styled.div`
-  background-color: #928490;
-  min-height: 1180px;
+  background-color: rgba(175,208,224,0.5);
+  min-height: 1250px;
   margin-bottom: 50px;
   border-radius: 15px;
 `;
 const Grid = styled.div`
   display: grid;
-  grid-template-rows: 250px 250px 250px;
+  grid-template-rows: 250px 250px 250px 250px 250px;
   grid-template-columns: 33.3% 33.3% 33.3%;
   justify-items: center;
   margin-left: 0px;

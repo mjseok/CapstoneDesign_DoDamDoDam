@@ -17,7 +17,7 @@ const CalendarStyled = styled.div`
     left: 20px;
     top: 0px;
     font-size: 45px;
-    background-color: #9eb7e0;
+    background-color: #afd0e0;
     min-height: 50px;
   }
 
@@ -25,17 +25,17 @@ const CalendarStyled = styled.div`
     right: 20px;
     top: 0px;
     font-size: 45px;
-    background-color: #9eb7e0;
+    background-color: #afd0e0;
     min-height: 50px;
   }
 
   .react-calendar__navigation button:enabled:hover,
   .react-calendar__navigation button:enabled:focus {
-    background-color: #9eb7e0;
+    background-color: #afd0e0;
   }
   .react-calendar__navigation__label {
     position: relative;
-    background-color: #9eb7e0;
+    background-color: #afd0e0;
     min-height: 50px;
   }
   .react-calendar__navigation__label__labelText {
@@ -85,7 +85,7 @@ const CalendarStyled = styled.div`
     background: transparent;
   }
   .react-calendar__tile--now {
-    background: #9eb7e0;
+    background: #afd0e0;
   }
   .react-calendar__tile--active:enabled:hover,
   .react-calendar__tile--active:enabled:focus {

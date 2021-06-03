@@ -27,7 +27,7 @@ import {
   FaGrimace,
   FaExclamationCircle,
 } from "react-icons/fa";
-import { ImNeutral } from "react-icons/im";
+import { ImNeutral,ImSmile2 } from "react-icons/im";
 import service from "../../service";
 import styled from "styled-components";
 import { Button, Input } from "reactstrap";
@@ -132,36 +132,37 @@ const Calendar = ({ studentID,studentName }) => {
         const date1 = new Date(mainEmotions[i].date);
         date1.setHours(0, 0, 0, 0);
         if (date.getTime() === date1.getTime()) {
-          if(date1.getDay()==0){
+          console.log(date1.getDay(),date1)
+          if(date1.getDay()==1){
             if(mainEmotions[i].main_emotion==='happy') setData1(10);
             else if(mainEmotions[i].main_emotion==='neutral') setData1(5);
             else setData1(0);
           }
-          if(date.getDay()==1){
+          if(date.getDay()==2){
             if(mainEmotions[i].main_emotion==='happy') setData2(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData2(5);
             else setData2(0);
           }
-          if(date.getDay()==2){
+          if(date.getDay()==3){
             if(mainEmotions[i].main_emotion==='happy') setData3(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData3(5);
             else setData3(0);
           }
-          if(date.getDay()==3){
+          if(date.getDay()==4){
             if(mainEmotions[i].main_emotion==='happy') setData4(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData4(5);
             else setData4(0);
           }
-          if(date.getDay()==4){
+          if(date.getDay()==5){
             if(mainEmotions[i].main_emotion==='happy') setData5(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData5(5);
             else setData5(0);
           }
-          if(date.getDay()==5){
+          if(date.getDay()==6){
             if(mainEmotions[i].main_emotion==='happy') setData6(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData6(5);
             else setData6(0);    }
-          if(date.getDay()==6){
+          if(date.getDay()==0){
             if(mainEmotions[i].main_emotion==='happy') setData7(10);
             else if(mainEmotions[i].main_emotion==="neutral") setData7(5);
             else setData7(0);    }
@@ -169,7 +170,7 @@ const Calendar = ({ studentID,studentName }) => {
           switch (mainEmotions[i].main_emotion) {
             case "happy":
               return (
-                <RiEmotionHappyFill
+                <ImSmile2
                   style={{
                     color: "rgb(254,214,93)",
                     fontSize: "40px",
@@ -254,18 +255,14 @@ const Calendar = ({ studentID,studentName }) => {
         break;
       case "fear":
         setEmotionImg(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJHyJ84wfFIeNfHDc6sEGvfs-1LixqbKDy5g&usqp=CAU"
-        );
+          "https://i.ibb.co/zZmBpwM/fear.png"         );
         break;
       case "anger":
         setEmotionImg(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEEDdnDqRiKeY_BcFvX_F0WHIO88mBg1HEby7KKSnIpFdeiXZ50qU3-0VRWP-bwyzDcxQ&usqp=CAU"
-        );
+          "https://i.ibb.co/6ggV94K/anger.png"        );
         break;
       case "neutral":
-        setEmotionImg(
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpkxEPVjZoe2ju1CQbgIXzjVxIOlHAaC6YtSTFiQQe7CpttbNb7BtZLcrXb-q2E3HBVR8&usqp=CAU"
-        );
+        setEmotionImg("https://i.ibb.co/JqBRVBk/image.png");
         break;
       default:
         setEmotionImg("https://i.ibb.co/prqZdjD/Clipart-Key-118032.png");
@@ -279,11 +276,11 @@ const Calendar = ({ studentID,studentName }) => {
 
   useEffect(()=>{
     setBarData({
-      labels: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"],
+      labels: ["Fri", "Sat", "Sun","Mon", "Tue", "Wed", "Thur"],
       datasets: [
         {
           label: "Performance",
-          data: [data1,data2,data3,data4,data5,data6,data7],
+          data: [data5,data6,data7,data1,data2,data3,data4],
         },
       ],
     });
@@ -307,10 +304,12 @@ const Calendar = ({ studentID,studentName }) => {
         <DiaryBack onClick={handleClickBg}>
           {" "}
           <Diary ref={element}>
-            <h1 className="display-2">{studentName}학생의 일기</h1>
+            <h1 className="display-2">{studentName} 학생의 일기</h1>
             <Wrapper>
               <Content>{diary}</Content>
               <Content2>
+              {auth.isTeacher && (
+                <>
                 <MainEmo>
                   {mainEmotion}
                   <br />
@@ -319,7 +318,7 @@ const Calendar = ({ studentID,studentName }) => {
                     style={{ height: "180px", width: "230px" }}
                   />
                 </MainEmo>
-                {auth.isTeacher && (
+                
                   <DetailEmo>
                     {`행복 - ${happy}%`}
                     <br />
@@ -332,11 +331,25 @@ const Calendar = ({ studentID,studentName }) => {
                     {`두려움 - ${fear}%`}
                     <br />
                   </DetailEmo>
+                  </>
+                )}
+                {auth.isStudent && (
+                  <>
+                   <MainEmo2>
+                   {mainEmotion}
+                   <br />
+                   <img
+                     src={emotionImg}
+                     style={{ height: "230px", width: "230px" }}
+                   />
+                 </MainEmo2>
+                  </>
                 )}
               </Content2>
             </Wrapper>
             <Comment>
-              {comment && `${comment}`}
+              {comment && <span style={{padding:"18px", fontWeight:"bolder", fontSize:"x-large"}}>{comment}</span>}
+              {!comment&&auth.isStudent&&(<span style={{padding:"18px", fontWeight:"bolder", fontSize:"x-large", color:"red"}}>선생님의 comment를 기다려주세요! 😅</span>)}
               {!comment &&
                 diary &&
                 auth.isTeacher&&(
@@ -362,7 +375,7 @@ const Calendar = ({ studentID,studentName }) => {
           </Diary>{" "}
         </DiaryBack>
       )}
-      {auth.isStudent&&(
+      {!auth.isStudent&&(
        <div className="chart" style={{marginTop:"30px"}}>
        <Card className="bg-gradient-default shadow">
                     <CardHeader className="bg-transparent">
@@ -440,23 +453,26 @@ const DiaryBack = styled.div`
   z-index: 9;
 `;
 const Content = styled.div`
-  width: 60%;
+  width: 75%;
   height: 100%;
   z-index: 11;
   background-color: rgba(255, 255, 255, 1);
   font-size: x-large;
+  border-radius:15px;
+  padding:18px;
 `;
 const Comment = styled.div`
   width: 90%;
   height: 15%;
   z-index: 11;
   margin-top: 30px;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: transparent;
   display: flex;
   flex-direction: row;
+  border-radius:15px;
 `;
 const Content2 = styled.div`
-  width: 40%;
+  width: 25%;
   height: 100%;
   z-index: 11;
   background-color: rgba(255, 213, 105, 1);
@@ -465,17 +481,41 @@ const Content2 = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: flex-end;
+  
+
 `;
 const MainEmo = styled.div`
   width: 90%;
   height: 50%;
   background-color: rgba(255, 255, 255, 1);
   text-align: center;
+  border-radius:15px 15px 0px 0px;
+  border-top:5px solid;
+  border-left:5px solid;
+  border-right:5px solid;
+  font-weight:bolder;
+  font-size:larger;
 `;
+const MainEmo2 = styled.div`
+  width: 90%;
+  height: 80%;
+  background-color: rgba(255, 255, 255, 1);
+  text-align: center;
+  border-radius:15px;
+  border:5px solid;
+  
+  font-weight:bolder;
+  font-size:larger;
+`;
+
 const DetailEmo = styled.div`
   width: 90%;
   height: 50%;
   background-color: rgba(255, 255, 255, 1);
   text-align: center;
+  border-radius:0px 0px 15px 15px;
+  border-bottom: 5px solid ;
+  border-left: 5px solid;
+  border-right: 5px solid;
 `;
 export default React.memo(Calendar);

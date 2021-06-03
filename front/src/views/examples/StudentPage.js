@@ -86,13 +86,13 @@ const StudentPage = ({ title }) => {
     <>
       <MainNavbar />
 
-      <SampleHero headerStyle={3} />
+      <SampleHero headerStyle={4} />
 
       <div className="topItemsBox">
         <div className="word-cloud">
           <h2 className="title display-4" style={{ textAlign: "center" }}>{title}</h2>
           <div>
-            <ReactWordcloud words={words} options={options} />
+            <ReactWordcloud words={words} options={options} size={300,300} />
           </div>
         </div>
         <div className="inChart">

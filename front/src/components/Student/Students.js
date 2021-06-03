@@ -10,16 +10,19 @@ const Studnet = ({ id, number, name, birthday }) => {
       <StudentInfo>
         <img
           alt="..."
-          className="shadow shadow-lg--hover"
+          className="shadow-lg--hover"
           src={`https://storage.googleapis.com/dodamimage/${id}.jpg`}
-          style={{ width: "150px", height: "170px" }}
+          style={{ width: "150px", height: "170px" ,borderRadius:"15px 15px 0px 0px"}}
         />
         <div
           style={{
             width: "150px",
-            backgroundColor: "#57648C",
-            color: "white",
+            backgroundColor: "#fff0f0",
+            color: "black",
             textAlign: "center",
+            borderRadius:"0px 0px 15px 15px",
+            boxShadow:"3px 3px 2px 1px rgba(0, 0, 0, 0.2)"
+            
           }}
         >{`${name}`}</div>
       </StudentInfo>
