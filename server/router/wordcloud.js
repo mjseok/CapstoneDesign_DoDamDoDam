@@ -13,7 +13,6 @@ exports.showWords = router.get(
           teacher_id,
         },
       });
-      console.log(words);
       res.json(words);
     } catch (e) {
       console.error(e);

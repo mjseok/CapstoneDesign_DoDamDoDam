@@ -362,6 +362,7 @@ const Calendar = ({ studentID,studentName }) => {
           </Diary>{" "}
         </DiaryBack>
       )}
+      {auth.isStudent&&(
        <div className="chart" style={{marginTop:"30px"}}>
        <Card className="bg-gradient-default shadow">
                     <CardHeader className="bg-transparent">
@@ -402,7 +403,7 @@ const Calendar = ({ studentID,studentName }) => {
                       </div>
                     </CardBody>
                   </Card>
-      </div>
+      </div>)}
     </CalendarStyled>
   );
 };

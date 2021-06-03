@@ -105,8 +105,8 @@ const StudentInfo = () => {
       <MainNavbar />
       <main>
         <SampleHero headerStyle={3} />
-        <Container
-          style={{ "background-color": "#ffd569", "border-radius": "30px" }}
+        <div 
+          style={{ "background-color": "#ffd569", "border-radius": "30px", width:"80%",marginLeft:"10%"}}
         >
           {/* <Row className="row justify-content-around">
             <div className="w-100" style={{ height: "50px" }} />
@@ -243,7 +243,7 @@ const StudentInfo = () => {
               alt="..."
               className="rounded-circle img-center shadow shadow-lg--hover"
               src="https://www.freeiconspng.com/uploads/plus-icon-black-2.png"
-              style={{ width: "100px", height: "100px", marginTop: "25%" }}
+              style={{ width: "100px", height: "100px", marginTop: "25%", backgroundColor:"white"}}
               onClick={() => {
                 setOpen(!open);
               }}
@@ -350,7 +350,7 @@ const StudentInfo = () => {
             <StudentList students={students} setClicked={setClicked} />
           </Grid>
           {/* </Row> */}
-        </Container>
+        </div>
         <div className="w-100" style={{ height: "50px" }} /> <Pagination />
       </main>
       <UserFooter />

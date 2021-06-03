@@ -15,7 +15,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useMemo } from "react";
 import { Doughnut } from "react-chartjs-2";
 
 // reactstrap components
@@ -41,7 +41,7 @@ const StudentPage = ({ title }) => {
     datasets: [
       {
         label: "My First Dataset",
-        data: [300, 50, 100],
+        data: [8, 7, 15],
         backgroundColor: [
           "rgb(255, 99, 132)",
           "rgb(54, 162, 235)",
@@ -51,7 +51,11 @@ const StudentPage = ({ title }) => {
       },
     ],
   };
-
+  const options = useMemo(() => {
+    return {
+      fontSizes: [20, 100],
+    }
+  }, []);
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
     const { data: AllWords } = await service.getWords(
@@ -87,8 +91,9 @@ const StudentPage = ({ title }) => {
       <div className="topItemsBox">
         <div className="word-cloud">
           <h2 className="title display-4" style={{ textAlign: "center" }}>{title}</h2>
-
-          <ReactWordcloud words={words} size={[300, 300]} />
+          <div>
+            <ReactWordcloud words={words} options={options} />
+          </div>
         </div>
         <div className="inChart">
           <h2 className="display-4" style={{ textAlign: "center" }}>지난달 나의 감정</h2>
