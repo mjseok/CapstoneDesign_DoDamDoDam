@@ -32,7 +32,7 @@ const UserHeader = () => {
             minHeight: "450px",
             backgroundImage:
               "url(" +
-              require("../../assets/img/theme/profile-cover2.png") +
+              require("../../assets/img/theme/coverImg.jpg") +
               ")",
             backgroundSize: "contain",
             backgroundPosition: "center top",

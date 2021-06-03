@@ -15,9 +15,7 @@ import service from "../../service";
 import styled from "styled-components";
 import { Button, Input } from "reactstrap";
 import { fontSize, height } from "@material-ui/system";
-// function set() {
-//   return "wow";
-// }
+
 const Calendar = ({ studentID }) => {
   const [value, onChange] = useState(new Date());
   const [open, setOpen] = useState(false);
@@ -40,7 +38,7 @@ const Calendar = ({ studentID }) => {
   const element = useRef();
   const showJournal = async (day) => {
     const { data } = await service.getJournal(studentID, day);
-    setOpen(!open);
+    if(day!==undefined) setOpen(!open);
     console.log(data);
     if (data !== null) {
       setDiary(data.content);
@@ -101,7 +99,7 @@ const Calendar = ({ studentID }) => {
                   }}
                 />
               );
-            case "angry":
+            case "anger":
               return (
                 <FaAngry
                   style={{
@@ -141,11 +139,11 @@ const Calendar = ({ studentID }) => {
           }
         }
       }
-      return (
-        <FaExclamationCircle
-          style={{ color: "gray", fontSize: "20px", marginTop: "10px" }}
-        />
-      );
+      // return (
+      //   <FaExclamationCircle
+      //     style={{ color: "gray", fontSize: "20px", marginTop: "10px" }}
+      //   />
+      // );
     },
     [mainEmotions]
   );
@@ -172,7 +170,7 @@ const Calendar = ({ studentID }) => {
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJHyJ84wfFIeNfHDc6sEGvfs-1LixqbKDy5g&usqp=CAU"
         );
         break;
-      case "angry":
+      case "anger":
         setEmotionImg(
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEEDdnDqRiKeY_BcFvX_F0WHIO88mBg1HEby7KKSnIpFdeiXZ50qU3-0VRWP-bwyzDcxQ&usqp=CAU"
         );
@@ -337,4 +335,4 @@ const DetailEmo = styled.div`
   background-color: rgba(255, 255, 255, 1);
   text-align: center;
 `;
-export default Calendar;
+export default React.memo(Calendar);

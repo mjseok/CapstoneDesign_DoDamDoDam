@@ -18,6 +18,7 @@ import {
   Input,
 } from "reactstrap";
 import "../../../assets/scss/react/stuPage/stuPageStyle.scss";
+import { useHistory } from "react-router";
 
 export const useStyles = makeStyles((theme) => ({
   Modal: {
@@ -76,6 +77,7 @@ const SimpleModal = (props) => {
   const [corrections, setCorrections] = useState([]);
   const [isChecked, setIsChecked] = useState(false);
   const filteredCorrections = corrections.filter((x) => !x.isCorrected);
+  const history = useHistory();
 
   const handleOpen = () => {
     setOpen(true);
@@ -173,11 +175,15 @@ const SimpleModal = (props) => {
       if (corrections && corrections.filter((x) => !x.isCorrected).length > 0)
         return alert("맞춤법을 전부 수정하셔야 제출할 수 있습니다.");
       const text = removeAllError(value);
-      console.log(value, text);
-      onSubmit && onSubmit(value);
+      onSubmitDiary(value);
+
     },
     [onSubmit, corrections]
   );
+  const onSubmitDiary = async(value) => {
+    window.localStorage.setItem("btn2",true);
+    history.go(0)    
+  };
 
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null;
@@ -186,8 +192,8 @@ const SimpleModal = (props) => {
   return (
     <>
       <div className={classes.modalOpenButtonArea}>
-        <Button color="danger" onClick={toggle}>
-          오늘 일기 쓰기
+        <Button color="danger" onClick={toggle} disabled={window.localStorage.btn2}>
+          감사일기 쓰기
         </Button>
       </div>
 
@@ -311,9 +317,7 @@ const SimpleModal = (props) => {
   );
 };
 
-SimpleModal.defaultProps = {
-  onSubmit: console.log,
-};
+
 const CorrectionArea = styled.div`
   display: flex;
   flex-direction: column;

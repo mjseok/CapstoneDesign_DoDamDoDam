@@ -20,6 +20,7 @@ import {
 import "../../../assets/scss/react/stuPage/stuPageStyle.scss";
 import service from "../../../service";
 import { useHistory } from "react-router";
+import ThanksModal from './Modal'
 
 export const useStyles = makeStyles((theme) => ({
   Modal: {
@@ -81,7 +82,7 @@ const SimpleModal = (props) => {
   const filteredCorrections = corrections.filter((x) => !x.isCorrected);
   const [btnDisabled, setBtnDisabled] = useState(false);
   const history = useHistory();
-
+  const http_req = new XMLHttpRequest();
   const handleOpen = () => {
     setOpen(true);
   };
@@ -184,15 +185,28 @@ const SimpleModal = (props) => {
     },
     [corrections]
   );
-  const onSubmitDiary = (value) => {
-    service.addDiary({
+  const onSubmitDiary = async(value) => {
+
+    await service.addDiary({
       student_id: window.localStorage.id,
       teacher_id: window.localStorage.teacher_id,
       content: value,
-    });
-    console.log("일기 제출 완료!");
-    setBtnDisabled(true);
-    history.go(0);
+    }).then((res)=>{
+      http_req.open("GET", `http://115.85.181.160:5000/analysis/?idx=${res.data}`)
+      http_req.send();
+      http_req.onload = () => {
+      if(http_req.responseText!=='happy'){
+        window.localStorage.setItem("thanks",true)
+        history.go(0);
+
+      }else{
+        window.localStorage.setItem("btn",true)
+        history.go(0);
+        
+      }
+      }
+      });
+    
   };
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return null;
@@ -200,12 +214,15 @@ const SimpleModal = (props) => {
 
   return (
     <>
-      <div className={classes.modalOpenButtonArea}>
-        <Button color="danger" onClick={toggle} disabled={btnDisabled}>
+
+      
+      {!window.localStorage.thanks?(
+        <>
+        <div className={classes.modalOpenButtonArea}>
+        <Button color="danger" onClick={toggle} disabled={window.localStorage.btn}>
           오늘 일기 쓰기
         </Button>
       </div>
-
       <Modal
         style={{ maxWidth: "800px", width: "90%" }}
         isOpen={modal}
@@ -271,14 +288,13 @@ const SimpleModal = (props) => {
             취소
           </Button>
         </ModalFooter>
-      </Modal>
+      </Modal></>):<ThanksModal />}
     </>
   );
+ 
 };
 
-// SimpleModal.defaultProps = {
-//   onSubmit: onSubmitDiary,
-// };
+
 const CorrectionArea = styled.div`
   display: flex;
   flex-direction: column;
@@ -306,11 +322,4 @@ const Correction = styled.p`
 
 export default SimpleModal;
 
-// function mikeOn(){
-//   SpeechRecognition.startListening({ continuous: true })
-//   const btnElement
-//   = document.getElementById('mikeplz');
 
-//   btnElement.value = "🎤❌";
-
-// }

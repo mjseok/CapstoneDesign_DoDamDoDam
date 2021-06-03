@@ -50,15 +50,18 @@ exports.addJournal = router.post(
   wrapper(async (req, res) => {
     const { student_id, teacher_id, content } = req.body;
     try {
-      await db.Journal.create({
+      const journal=await db.Journal.create({
         student_id,
         teacher_id,
         content,
         date: new Date(),
       });
+    res.json(journal.idx);
+
     } catch (e) {
       throw e;
     }
+
   })
 );
 

@@ -55,7 +55,7 @@ const StudentPage = ({ title }) => {
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
     const { data: AllWords } = await service.getWords(
-      window.localStorage.getItem("id")
+      window.localStorage.getItem("teacher_id")
     );
     AllWords.map((word) => {
       wordList.push({
