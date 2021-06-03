@@ -2,19 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { Badge } from "reactstrap";
 
-const Studnet = ({ number, name, birthday, photo }) => {
+const Studnet = ({ id, number, name, birthday }) => {
   //number,name을 studetList폴더에서 받아서 어떻게 배치할지 결정
-  let blob = new Blob([new ArrayBuffer(photo)], { type: "image/png" });
-  const url = window.URL.createObjectURL(blob);
-  console.log(url);
+
   return (
     <Wrapper>
       <StudentInfo>
         <img
           alt="..."
           className="shadow shadow-lg--hover"
-          src={require("assets/img/theme/team-1-800x800.jpg")}
-          style={{ width: "150px" }}
+          src={`https://storage.googleapis.com/dodamimage/${id}.png`}
+          style={{ width: "150px", height: "170px" }}
         />
         <div
           style={{
@@ -23,7 +21,7 @@ const Studnet = ({ number, name, birthday, photo }) => {
             color: "white",
             textAlign: "center",
           }}
-        >{`${number}. ${name}`}</div>
+        >{`${name}`}</div>
       </StudentInfo>
     </Wrapper>
   );

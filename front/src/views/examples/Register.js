@@ -1,215 +1,66 @@
-/*!
-
-=========================================================
-* Argon Design System React - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-design-system-react
-* Copyright 2020 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-design-system-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import service from "../../service";
 // reactstrap components
-/*
-import {
-  Button,
-  Card,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Container,
-  Row,
-  Col,
-  Label,
-} from "reactstrap";
+import StudentList from "components/Student/StudentList";
 
 // core components
-import SimpleNavbar from "components/Navbars/SimpleNavbar.js";
+import MainNavbar from "components/Navbars/MainNavbar.js";
 import UserFooter from "components/Footers/UserFooter.js";
+// index page sections
+import MainHero from "../IndexSections/MainHero";
+import SampleHero from "../IndexSections/SampleHero";
 
-class Register extends React.Component {
-  constructor() {
-    this.value = {
-      ID: "",
-      Name: "",
-      School: "",
-      password: "",
-      Grade: 1,
-      Class: 1,
-    };
-  }
-  // const [values, setValues] = useState({
-  //   ID: "",
-  //   Name: "",
-  //   School: "",
-  //   password: "",
-  //   Grade: 1,
-  //   Class: 1,
-  // });
-  componentDidMount() {
-    document.documentElement.scrollTop = 0;
-    document.scrollingElement.scrollTop = 0;
-    this.refs.main.scrollTop = 0;
-  }
-  handleSubmit(value) {
-    console.log(value);
-  }
-  handleChange = (name) => (e) => {
-    setValues({ ...values, [name]: e.target.value });
-  };
-  render() {
-    return (
-      <>
-        <SimpleNavbar />
-        <main ref="main">
-          <section className="section section-shaped section-lg">
-            <div className="shape shape-style-1 bg-gradient-default">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <Container className="pt-lg-7">
-              <Row className="justify-content-center">
-                <Col lg="5">
-                  <Card className="bg-secondary shadow border-0">
-                    <CardBody className="px-lg-5 py-lg-5">
-                      <div className="text-center text-muted mb-4">
-                        <small>sign up with credentials</small>
-                      </div>
-                      <Form role="form">
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative mb-3">
-                            <InputGroupAddon addonType="prepend">
-                              <InputGroupText>
-                                <i className="fa fa-user" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                            <Input placeholder="ID" type="text" />
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative mb-3">
-                            <InputGroupAddon addonType="prepend">
-                              <InputGroupText>
-                                <i className="ni ni-hat-3" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                            <Input
-                              placeholder="Name"
-                              type="text"
-                              value={values.Name}
-                              onChange={handleChange("Name")}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative mb-3">
-                            <InputGroupAddon addonType="prepend">
-                              <InputGroupText>
-                                <i className="ni ni-building" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                            <Input
-                              placeholder="School"
-                              type="text"
-                              value={values.School}
-                              onChange={handleChange("School")}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative">
-                            <InputGroupAddon addonType="prepend">
-                              <InputGroupText>
-                                <i className="ni ni-lock-circle-open" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                            <Input
-                              placeholder="Password"
-                              type="password"
-                              autoComplete="off"
-                              value={values.Password}
-                              onChange={handleChange("Password")}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative mb-3">
-                            <InputGroupAddon addonType="prepend"></InputGroupAddon>
-                            <InputGroupText>
-                              <Label for="grade">Grade</Label>
-                            </InputGroupText>
-                            <Input
-                              name="Grade"
-                              id="Grade"
-                              type="select"
-                              value={values.Grade}
-                              onChange={handleChange("Grade")}
-                            >
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                              <option>4</option>
-                              <option>5</option>
-                              <option>6</option>
-                            </Input>
-                          </InputGroup>
-                        </FormGroup>
-                        <FormGroup>
-                          <InputGroup className="input-group-alternative mb-3">
-                            <InputGroupAddon addonType="prepend">
-                              <InputGroupText>
-                                <i className="ni ni-hat-3" />
-                              </InputGroupText>
-                            </InputGroupAddon>
-                            <Input
-                              placeholder="Class"
-                              type="text"
-                              value={values.Class}
-                              onChange={handleChange("Class")}
-                            />
-                          </InputGroup>
-                        </FormGroup>
-                        <div className="text-center">
-                          <Button
-                            className="mt-4"
-                            color="primary"
-                            type="button"
-                            onClick={this.handleSubmit}
-                          >
-                            Create Account
-                          </Button>
-                        </div>
-                      </Form>
-                    </CardBody>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
-          </section>
-        </main>
-        <UserFooter />
-      </>
+import Pagination from "../IndexSections/Pagination.js";
+import { Row, Col, Container } from "reactstrap";
+import styled from "styled-components";
+
+const StudentInfo = () => {
+  // document.documentElement.scrollTop = 0;
+  // document.scrollingElement.scrollTop = 0;
+  // this.refs.main.scrollTop = 0;
+
+  const [students, setStudents] = useState([{}]);
+  const [clicked, setClicked] = useState({ id: "", name: "학생의" });
+
+  // 서버에서 studentlist를 가져오는 방식
+  const getAllStudent = async () => {
+    const { data: AllStudent } = await service.getStudents(
+      window.localStorage.getItem("id")
     );
-  }
-}
+    setStudents(AllStudent); //가져온 studentList를 students에 저장
+  };
 
-export default Register;
-*/
+  useEffect(() => {
+    getAllStudent(); //page가 넘어갈때마다 getAllStudent()함수 실행(useEffect안에 함수쓰면 page바뀔때마다 함수 실행됨)
+  }, []);
+
+  return (
+    <>
+      <MainNavbar />
+      <main>
+        <SampleHero headerStyle={3} />
+        <Container
+          style={{
+            "background-color": "#ffd569",
+            "border-radius": "30px",
+          }}
+        >
+          <Grid>
+            <StudentList students={students} setClicked={setClicked} />
+          </Grid>
+        </Container>
+        <div className="w-100" style={{ height: "50px" }} /> <Pagination />
+      </main>
+      <UserFooter />
+    </>
+  );
+};
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: 230px 230px 230px 230px;
+  grid-template-columns: 25% 25% 25% 25%;
+  justify-items: center;
+  margin-left: 0px;
+  margin-top: 15px;
+`;
+export default StudentInfo;

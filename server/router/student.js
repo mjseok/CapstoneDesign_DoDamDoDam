@@ -92,16 +92,13 @@ exports.deleteStudent = router.delete(
 exports.addStudent = router.post(
   "/addStudent",
   wrapper(async (req, res) => {
-    const { id, password, teacher_id, name, number, birthday, photo } =
-      req.body;
+    const { id, password, teacher_id, name, number } = req.body;
     await db.Student.create({
       id,
       password,
       teacher_id,
       name,
       number,
-      birthday,
-      photo,
     });
   })
 );

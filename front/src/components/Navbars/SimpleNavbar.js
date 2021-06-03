@@ -15,58 +15,83 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useCallback } from "react";
+import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { AuthContext } from "../../context/auth";
+import Axios from "../../api/axios";
 // JavaScript plugin that hides or shows a component based on your scroll
 import Headroom from "headroom.js";
 // reactstrap components
-import { NavbarBrand, Navbar, Container } from "reactstrap";
+import { NavbarBrand, Navbar, Container, Nav, NavItem } from "reactstrap";
 
-class MainNavbar extends React.Component {
-  componentDidMount() {
-    let headroom = new Headroom(document.getElementById("navbar-main"));
-    // initialise
-    headroom.init();
-  }
-  state = {
-    collapseClasses: "",
-    collapseOpen: false,
-  };
+const MainNavbar = () => {
+  const history = useHistory();
+  const auth = useContext(AuthContext);
+  const handleLogout = useCallback(() => {
+    Axios.delete("/logout");
+    history.push("/login");
+    auth.setUserMe(null);
+    auth.setIsTeacher(false);
+    auth.setIsStudent(false);
+  }, []);
+  // componentDidMount() {
+  //   let headroom = new Headroom(document.getElementById("navbar-main"));
+  //   // initialise
+  //   headroom.init();
+  // }
+  // state = {
+  //   collapseClasses: "",
+  //   collapseOpen: false,
+  // };
 
-  onExiting = () => {
-    this.setState({
-      collapseClasses: "collapsing-out",
-    });
-  };
+  // onExiting = () => {
+  //   this.setState({
+  //     collapseClasses: "collapsing-out",
+  //   });
+  // };
 
-  onExited = () => {
-    this.setState({
-      collapseClasses: "",
-    });
-  };
+  // onExited = () => {
+  //   this.setState({
+  //     collapseClasses: "",
+  //   });
+  // };
 
-  render() {
-    return (
-      <>
-        <header className="header-global">
-          <Navbar
-            className="navbar-main navbar-transparent navbar-light headroom"
-            expand="lg"
-            id="navbar-main"
-          >
-            <Container>
-              <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
-                <img
-                  alt="..."
-                  src={require("assets/img/brand/logo-name.png")}
-                />
-              </NavbarBrand>
-            </Container>
-          </Navbar>
-        </header>
-      </>
-    );
-  }
-}
-
+  // render() {
+  return (
+    <>
+      <header className="header-global">
+        <Navbar
+          className="navbar-main navbar-transparent navbar-light headroom"
+          expand="lg"
+          id="navbar-main"
+        >
+          <Container>
+            <NavbarBrand className="mr-lg-5" to="/student/main" tag={Link}>
+              <img alt="..." src={require("assets/img/brand/logo-name.png")} />
+            </NavbarBrand>
+            <Nav className="align-items-lg-center ml-lg-auto" navbar>
+              <NavItem>
+                {auth.userMe && (
+                  <ClassButton type="button" onClick={handleLogout}>
+                    로그아웃
+                  </ClassButton>
+                )}
+              </NavItem>
+            </Nav>
+          </Container>
+        </Navbar>
+      </header>
+    </>
+  );
+};
+const ClassButton = styled.button`
+  color: black;
+  border: transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  text-decoration: none;
+  margin-left: 30px;
+  cursor: pointer;
+`;
 export default MainNavbar;

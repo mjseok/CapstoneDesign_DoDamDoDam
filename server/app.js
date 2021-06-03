@@ -23,6 +23,7 @@ const {
   studentSpellCheck,
 } = require("./router/student");
 const { showWords } = require("./router/wordcloud");
+const { UploadImg } = require("./router/image");
 //const { showStudents } = require("./router/student");
 
 const createError = require("http-errors");
@@ -68,6 +69,7 @@ app.use(updateStudent);
 app.use(deleteStudent);
 app.use(showWords);
 app.use(studentSpellCheck);
+app.use(UploadImg);
 
 app.set("port", process.env.PORT || 3001);
 app.listen(port, () => {

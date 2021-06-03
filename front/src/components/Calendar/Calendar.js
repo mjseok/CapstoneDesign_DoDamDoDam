@@ -1,4 +1,10 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  useContext,
+} from "react";
 import CalendarStyled from "./Calendar.style.js";
 import ReactCalendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -15,6 +21,7 @@ import service from "../../service";
 import styled from "styled-components";
 import { Button, Input } from "reactstrap";
 import { fontSize, height } from "@material-ui/system";
+import { AuthContext } from "../../context/auth";
 
 const Calendar = ({ studentID }) => {
   const [value, onChange] = useState(new Date());
@@ -34,11 +41,12 @@ const Calendar = ({ studentID }) => {
     comment: "",
   });
   const [emotionImg, setEmotionImg] = useState("");
+  const auth = useContext(AuthContext);
 
   const element = useRef();
   const showJournal = async (day) => {
     const { data } = await service.getJournal(studentID, day);
-    if(day!==undefined) setOpen(!open);
+    if (day !== undefined) setOpen(!open);
     console.log(data);
     if (data !== null) {
       setDiary(data.content);
@@ -181,9 +189,7 @@ const Calendar = ({ studentID }) => {
         );
         break;
       default:
-        setEmotionImg(
-          "https://e7.pngegg.com/pngimages/629/162/png-clipart-computer-icons-x-mark-symbol-miscellaneous-angle-thumbnail.png"
-        );
+        setEmotionImg("https://i.ibb.co/prqZdjD/Clipart-Key-118032.png");
         break;
     }
   };
@@ -220,47 +226,49 @@ const Calendar = ({ studentID }) => {
                     style={{ height: "180px", width: "230px" }}
                   />
                 </MainEmo>
-
-                <DetailEmo>
-                  {`행복 - ${happy}%`}
-                  <br />
-                  {`중립 - ${neutral}%`}
-                  <br />
-                  {`분노 - ${anger}%`}
-                  <br />
-                  {`슬픔 - ${sadness}%`}
-                  <br />
-                  {`두려움 - ${fear}%`}
-                  <br />
-                </DetailEmo>
+                {auth.isTeacher && (
+                  <DetailEmo>
+                    {`행복 - ${happy}%`}
+                    <br />
+                    {`중립 - ${neutral}%`}
+                    <br />
+                    {`분노 - ${anger}%`}
+                    <br />
+                    {`슬픔 - ${sadness}%`}
+                    <br />
+                    {`두려움 - ${fear}%`}
+                    <br />
+                  </DetailEmo>
+                )}
               </Content2>
             </Wrapper>
             <Comment>
               {comment && `${comment}`}
-              {!comment && diary && (
-                <>
-                  <Input
-                    placeholder="comment를 입력해주세요"
-                    type="textarea"
-                    value={values.comment}
-                    onChange={handleChange("comment")}
-                    style={{ height: "100%", width: "90%" }}
-                  />
-                  <Button
-                    color="primary"
-                    type="button"
-                    style={{ float: "right", width: "10%" }}
-                    onClick={submitComment}
-                  >
-                    제출
-                  </Button>
-                </>
-              )}
+              {!comment &&
+                diary &&
+                auth.isTeacher(
+                  <>
+                    <Input
+                      placeholder="comment를 입력해주세요"
+                      type="textarea"
+                      value={values.comment}
+                      onChange={handleChange("comment")}
+                      style={{ height: "100%", width: "90%" }}
+                    />
+                    <Button
+                      color="primary"
+                      type="button"
+                      style={{ float: "right", width: "10%" }}
+                      onClick={submitComment}
+                    >
+                      제출
+                    </Button>
+                  </>
+                )}
             </Comment>
           </Diary>{" "}
         </DiaryBack>
       )}
-
     </CalendarStyled>
   );
 };

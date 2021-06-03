@@ -63,7 +63,7 @@ ReactDOM.render(
           render={(props) => <Signup {...props} />}
         />
         <Route
-          path="/student/management"
+          path="/student/diary"
           exact
           render={(props) => <StudentManagement {...props} />}
         />
@@ -77,11 +77,7 @@ ReactDOM.render(
           exact
           render={(props) => <ClassManagement {...props} />}
         />
-        <Route
-          path="/student/diary"
-          exact
-          render={(props) => <ClassManagement {...props} />}
-        />
+
         <Route
           path="/student/main"
           exact

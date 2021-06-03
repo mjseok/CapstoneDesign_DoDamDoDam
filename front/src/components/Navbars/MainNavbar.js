@@ -15,10 +15,11 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React from "react";
-import { Link } from "react-router-dom";
-// JavaScript plugin that hides or shows a component based on your scroll
-import Headroom from "headroom.js";
+import React, { useContext, useCallback } from "react";
+import { Link, useHistory } from "react-router-dom";
+import styled from "styled-components";
+import { AuthContext } from "../../context/auth";
+import Axios from "../../api/axios";
 // reactstrap components
 import {
   Button,
@@ -39,153 +40,111 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-class DemoNavbar extends React.Component {
-  componentDidMount() {
-    let headroom = new Headroom(document.getElementById("navbar-main"));
-    // initialise
-    headroom.init();
-  }
-  state = {
-    collapseClasses: "",
-    collapseOpen: false,
-  };
+const DemoNavbar = () => {
+  const history = useHistory();
+  const auth = useContext(AuthContext);
+  const handleLogout = useCallback(() => {
+    Axios.delete("/logout");
+    history.push("/login");
+    auth.setUserMe(null);
+    auth.setIsTeacher(false);
+    auth.setIsStudent(false);
+  }, []);
 
-  onExiting = () => {
-    this.setState({
-      collapseClasses: "collapsing-out",
-    });
-  };
+  return (
+    <>
+      <header className="header-global">
+        <Navbar
+          className="navbar-main navbar-transparent navbar-light headroom"
+          expand="lg"
+          id="navbar-main"
+        >
+          <Container>
+            <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
+              <img alt="..." src={require("assets/img/brand/logo-name.png")} />
+            </NavbarBrand>
+            <button className="navbar-toggler" id="navbar_global">
+              <span className="navbar-toggler-icon" />
+            </button>
 
-  onExited = () => {
-    this.setState({
-      collapseClasses: "",
-    });
-  };
-
-  render() {
-    return (
-      <>
-        <header className="header-global">
-          <Navbar
-            className="navbar-main navbar-transparent navbar-light headroom"
-            expand="lg"
-            id="navbar-main"
-          >
-            <Container>
-              <NavbarBrand className="mr-lg-5" to="/" tag={Link}>
-                <img
-                  alt="..."
-                  src={require("assets/img/brand/logo-name.png")}
-                />
-              </NavbarBrand>
-              <button className="navbar-toggler" id="navbar_global">
-                <span className="navbar-toggler-icon" />
-              </button>
-              <UncontrolledCollapse
-                toggler="#navbar_global"
-                navbar
-                className={this.state.collapseClasses}
-                onExiting={this.onExiting}
-                onExited={this.onExited}
-              >
-                <div className="navbar-collapse-header">
-                  <Row>
-                    <Col className="collapse-brand" xs="6">
-                      <Link to="/">
-                        <img
-                          alt="..."
-                          src={require("assets/img/brand/argon-react.png")}
-                        />
-                      </Link>
-                    </Col>
-                    <Col className="collapse-close" xs="6">
-                      <button className="navbar-toggler" id="navbar_global">
-                        <span />
-                        <span />
-                      </button>
-                    </Col>
-                  </Row>
-                </div>
-                <Nav className="navbar-nav-hover align-items-lg-center" navbar>
-                  <UncontrolledDropdown nav>
-                    <DropdownToggle nav>
-                      <i className="ni ni-ui-04 d-lg-none mr-1" />
-                      <span className="nav-link-inner--text">Menu</span>
-                    </DropdownToggle>
-                    <DropdownMenu className="dropdown-menu-xl">
-                      <div className="dropdown-menu-inner">
-                        <Media
-                          className="d-flex align-items-center"
-                          href="/class/management"
-                        >
-                          <div className="icon icon-shape bg-gradient-primary rounded-circle text-white">
-                            <i className="fa fa-users" />
-                          </div>
-                          <Media body className="ml-3">
-                            <h6 className="heading text-primary mb-md-1">
-                              학급관리
-                            </h6>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              반의 관심사와 학생들의 상태를 한 눈에 볼 수 있다.
-                            </p>
-                          </Media>
-                        </Media>
-                        <Media
-                          className="d-flex align-items-center"
-                          href="/student/management"
-                        >
-                          <div className="icon icon-shape bg-gradient-success rounded-circle text-white">
-                            <i className="fa fa-book" />
-                          </div>
-                          <Media body className="ml-3">
-                            <h6 className="heading text-primary mb-md-1">
-                              학생일기
-                            </h6>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              학생들의 일기와 감정분석 결과를 한 눈에 볼 수
-                              있다.
-                            </p>
-                          </Media>
-                        </Media>
-                        <Media
-                          className="d-flex align-items-center"
-                          href="/student/info"
-                        >
-                          <div className="icon icon-shape bg-gradient-warning rounded-circle text-white">
-                            <i className="ni ni-badge" />
-                          </div>
-                          <Media body className="ml-3">
-                            <h5 className="heading text-warning mb-md-1">
-                              학생정보
-                            </h5>
-                            <p className="description d-none d-md-inline-block mb-0">
-                              학생을 추가하거나 학생들의 정보를 수정 및 삭제할
-                              수 있다.
-                            </p>
-                          </Media>
-                        </Media>
-                      </div>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </Nav>
-                <Nav className="align-items-lg-center ml-lg-auto" navbar>
-                  <NavItem>Hello!</NavItem>
-                  <NavItem>
+            <div className="navbar-collapse-header">
+              <Row>
+                <Col className="collapse-brand" xs="6">
+                  <Link to="/class/management">
                     <img
                       alt="..."
-                      className="rounded-circle img-center img-fluid shadow shadow-lg--hover"
-                      src={require("assets/img/theme/team-1-800x800.jpg")}
-                      style={{ width: "50px" }}
+                      src={require("assets/img/brand/argon-react.png")}
                     />
-                  </NavItem>
-                </Nav>
-              </UncontrolledCollapse>
-            </Container>
-          </Navbar>
-        </header>
-      </>
-    );
-  }
-}
+                  </Link>
+                </Col>
+                <Col className="collapse-close" xs="6">
+                  <button className="navbar-toggler" id="navbar_global">
+                    <span />
+                    <span />
+                  </button>
+                </Col>
+              </Row>
+            </div>
+            <Nav className="navbar-nav-hover align-items-lg-center" navbar>
+              <Link to="/class/management">
+                <text
+                  style={{
+                    color: "black",
+                    fontWeight: "bolder",
+                    marginRight: "35px",
+                  }}
+                >
+                  학급 관리
+                </text>
+              </Link>
+              <Link to="/student/diary">
+                {" "}
+                <text
+                  style={{
+                    color: "black",
+                    fontWeight: "bolder",
+                    marginRight: "35px",
+                  }}
+                >
+                  학생 일기
+                </text>
+              </Link>
+              <Link to="/student/info">
+                {" "}
+                <text
+                  style={{
+                    color: "black",
+                    fontWeight: "bolder",
+                    marginRight: "35px",
+                  }}
+                >
+                  학생 정보
+                </text>
+              </Link>
+            </Nav>
+            <Nav className="align-items-lg-center ml-lg-auto" navbar>
+              <NavItem>
+                {auth.userMe && (
+                  <ClassButton type="button" onClick={handleLogout}>
+                    로그아웃
+                  </ClassButton>
+                )}
+              </NavItem>
+            </Nav>
+          </Container>
+        </Navbar>
+      </header>
+    </>
+  );
+};
+const ClassButton = styled.button`
+  color: black;
+  border: transparent;
+  border-radius: 4px;
+  background-color: transparent;
+  text-decoration: none;
+  margin-left: 30px;
+  cursor: pointer;
+`;
 
 export default DemoNavbar;

@@ -154,6 +154,39 @@ const SampleHero = ({ headerStyle }) => {
           </Container>
         </>
       )}
+      {headerStyle == 4 && (
+        <>
+          <UserHeader />
+          <Container className="mt--9" fluid>
+            <Row>
+              <Col className="order-1 mb-5 mb-xl-0" xl="4">
+                <Card className="card-plain">
+                  <Row className="order-2 pl-5">
+                    <Col>
+                      <div className="card-profile-image">
+                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                          <img
+                            alt="..."
+                            className="rounded-circle"
+                            src={`https://storage.googleapis.com/dodamimage/${window.localStorage.id}.png`}
+                            style={{ height: "260px", width: "260px" }}
+                          />
+                        </a>
+                      </div>
+                    </Col>
+                    <Col className="order-lg-2" lg="6">
+                      <div className="card-blockquote">
+                        <h1 className="display-2 text-white">세종 초등학교</h1>
+                        <p className="text-white mt-0 mb-5">3-2 반</p>
+                      </div>
+                    </Col>
+                  </Row>
+                </Card>
+              </Col>
+            </Row>
+          </Container>
+        </>
+      )}
     </>
   );
 };

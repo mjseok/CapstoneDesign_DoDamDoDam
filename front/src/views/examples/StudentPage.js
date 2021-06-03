@@ -21,7 +21,7 @@ import { Doughnut } from "react-chartjs-2";
 // reactstrap components
 
 // core components
-import MainNavbar from "components/Navbars/MainNavbar.js";
+import MainNavbar from "components/Navbars/SimpleNavbar";
 import UserFooter from "components/Footers/UserFooter.js";
 
 // index page sections
@@ -42,7 +42,11 @@ const StudentPage = ({ title }) => {
       {
         label: "My First Dataset",
         data: [300, 50, 100],
-        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
         hoverOffset: 30,
       },
     ],
@@ -56,7 +60,14 @@ const StudentPage = ({ title }) => {
     AllWords.map((word) => {
       wordList.push({
         text: word.word,
-        value: word.mon + word.tue + word.wed + word.thu + word.fri + word.sat + word.sun,
+        value:
+          word.mon +
+          word.tue +
+          word.wed +
+          word.thu +
+          word.fri +
+          word.sat +
+          word.sun,
       });
     });
     setWords(words.concat(wordList));

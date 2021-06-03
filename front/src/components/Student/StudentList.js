@@ -16,11 +16,7 @@ const StudentList = ({ students, setClicked }) => {
         onClick={() => handleClick({ id: student.id, name: student.name })}
       >
         {" "}
-        <Student
-          name={student.name}
-          number={student.number}
-          photo={student.photo}
-        />
+        <Student id={student.id} name={student.name} />
       </ImgContainer>
 
       //   </Button>

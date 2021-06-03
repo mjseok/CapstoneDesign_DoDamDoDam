@@ -26,13 +26,14 @@ import AuthContext from "../../context/auth";
 import ReactWordcloud from "react-wordcloud";
 import service from "../../service";
 // reactstrap components
-
 // core components
 import MainNavbar from "components/Navbars/MainNavbar.js";
 import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
 import SampleHero from "../IndexSections/SampleHero";
 import { Row } from "reactstrap";
+import { setSourceMapRange, setTokenSourceMapRange } from "typescript";
+import { Modal, Button } from "reactstrap";
 
 const data3 = {
   labels: ["March", "April", "May", "June", "July", "August"],
@@ -143,14 +144,26 @@ const ClassManagement = (props) => {
   let wordList = [{ text: "", value: "" }];
 
   //console.log(auth?.userMe);
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [bad, setBad] = useState("");
 
   const [words, setWords] = useState([]);
   const getAllWords = async () => {
-    const { data: AllWords } = await service.getWords(window.localStorage.getItem("id"));
+    const { data: AllWords } = await service.getWords(
+      window.localStorage.getItem("id")
+    );
     AllWords.map((word) => {
       wordList.push({
         text: word.word,
-        value: word.mon + word.tue + word.wed + word.thu + word.fri + word.sat + word.sun,
+        value:
+          word.mon +
+          word.tue +
+          word.wed +
+          word.thu +
+          word.fri +
+          word.sat +
+          word.sun,
       });
     });
     setWords(words.concat(wordList));
@@ -166,7 +179,11 @@ const ClassManagement = (props) => {
       {
         label: "My First Dataset",
         data: [300, 50, 100],
-        backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)"],
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
         hoverOffset: 30,
       },
     ],
@@ -190,7 +207,14 @@ const ClassManagement = (props) => {
                   <span className="row-thumbnail-text">긍정</span>
                   {positiveItems &&
                     positiveItems.map((item, index) => {
-                      return <img key={index} className="thumbnail" src={item} alt="썸네일" />;
+                      return (
+                        <img
+                          key={index}
+                          className="thumbnail"
+                          src={item}
+                          alt="썸네일"
+                        />
+                      );
                     })}
                 </div>
                 <div className="dash-line"></div>
@@ -198,7 +222,14 @@ const ClassManagement = (props) => {
                   <span className="row-thumbnail-text">부정</span>
                   {negativeItems &&
                     negativeItems.map((item, index) => {
-                      return <img key={index} className="thumbnail" src={item} alt="썸네일" />;
+                      return (
+                        <img
+                          key={index}
+                          className="thumbnail"
+                          src={item}
+                          alt="썸네일"
+                        />
+                      );
                     })}
                 </div>
               </div>
@@ -210,7 +241,16 @@ const ClassManagement = (props) => {
                   checkItems.map((item, index) => {
                     return (
                       <div key={index} className="double-check">
-                        <img className="thumbnail-large" src={item.thumbnail} alt="썸네일"></img>
+                        <img
+                          className="thumbnail-large"
+                          src={item.thumbnail}
+                          alt="썸네일"
+                          onClick={() => {
+                            setOpen(true);
+                            setName(item.name);
+                            setBad(item.desc);
+                          }}
+                        ></img>
                         <div className="child-info">
                           <h3 className="name">{item.name}</h3>
                           <span className="desc">{item.desc}</span>
@@ -218,6 +258,32 @@ const ClassManagement = (props) => {
                       </div>
                     );
                   })}
+                {open && (
+                  <Modal className="modal-dialog-centered" isOpen={true}>
+                    <div className="modal-header">
+                      <h6 className="modal-title" id="modal-title-default">
+                        {name} 상담하기
+                      </h6>
+                      <button
+                        aria-label="Close"
+                        className="close"
+                        data-dismiss="modal"
+                        type="button"
+                        onClick={() => setOpen(false)}
+                      >
+                        <span aria-hidden={true}>×</span>
+                      </button>
+                    </div>
+                    <div className="modal-body">
+                      <p>
+                        최근에 {name}학생의 {bad}
+                        <br />
+                        선생님께서는 확인부탁드립니다.
+                      </p>
+                      <p>학생 전화번호: 010-1234-5678</p>
+                    </div>
+                  </Modal>
+                )}
               </div>
               {/* <Line data={data2} options={options2} /> */}
             </div>
@@ -236,7 +302,10 @@ const ClassManagement = (props) => {
         <ClassManagementStyled>
           <div className="doughnut-graph">
             <div className="title2">어제의 우리반 감정</div>
-            <div className="doughnut-content">어제의 일기를 바탕으로 나타낸 학생들의 감정 분포 그래프입니다. 그래프에 커서를 갖다 대면 해당 감정의 학생 수를 알 수 있습니다.</div>
+            <div className="doughnut-content">
+              어제의 일기를 바탕으로 나타낸 학생들의 감정 분포 그래프입니다.
+              그래프에 커서를 갖다 대면 해당 감정의 학생 수를 알 수 있습니다.
+            </div>
             <div classname="real-doughnut-graph">
               <Doughnut
                 data={state}
@@ -302,7 +371,8 @@ ClassManagement.defaultProps = {
     {
       name: "4번 이백기",
       desc: "부정적 감정이 61% 증가했어요!",
-      thumbnail: "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
+      thumbnail:
+        "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
     },
     {
       name: "9번 한원지",
