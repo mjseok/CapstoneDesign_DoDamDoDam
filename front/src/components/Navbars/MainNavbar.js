@@ -44,6 +44,8 @@ const DemoNavbar = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
   const handleLogout = useCallback(() => {
+    window.localStorage.clear();
+
     Axios.delete("/logout");
     history.push("/login");
     auth.setUserMe(null);
