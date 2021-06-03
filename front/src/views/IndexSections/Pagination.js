@@ -124,12 +124,12 @@ class Paginations extends React.Component {
                 <span className="sr-only">Previous</span>
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem>
+            <PaginationItem className="active">
               <PaginationLink href="#pablo" onClick={(e) => e.preventDefault()}>
                 1
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem className="active">
+            <PaginationItem>
               <PaginationLink href="#pablo" onClick={(e) => e.preventDefault()}>
                 2
               </PaginationLink>

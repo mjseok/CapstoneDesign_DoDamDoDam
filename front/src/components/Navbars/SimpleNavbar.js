@@ -28,26 +28,14 @@ import { NavbarBrand, Navbar, Container, Nav, NavItem } from "reactstrap";
 const MainNavbar = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
-<<<<<<< HEAD
   const handleLogout = useCallback(() => {
     window.localStorage.clear();
-=======
-
-  const handleLogout = () => {
-    window.localStorage.clear();
-
->>>>>>> 051e9c2ba5a4ff1abdd25c7872cfa561bcba7456
     Axios.delete("/logout");
     history.push("/login");
     auth.setUserMe(null);
     auth.setIsTeacher(false);
     auth.setIsStudent(false);
-<<<<<<< HEAD
-    window.localStorage.clear();
-  }, []);
-=======
   };
->>>>>>> 051e9c2ba5a4ff1abdd25c7872cfa561bcba7456
   // componentDidMount() {
   //   let headroom = new Headroom(document.getElementById("navbar-main"));
   //   // initialise
