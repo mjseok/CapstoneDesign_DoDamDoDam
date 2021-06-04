@@ -92,7 +92,7 @@ const StudentPage = ({ title }) => {
         <div className="word-cloud">
           <h2 className="title display-4" style={{ textAlign: "center" }}>{title}</h2>
           <div>
-            <ReactWordcloud words={words} options={options} style={{height:"55"}}/>
+            <ReactWordcloud words={words} options={options} style={{height:"450px"}}/>
           </div>
         </div>
         <div className="inChart">
