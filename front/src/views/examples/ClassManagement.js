@@ -362,7 +362,6 @@ ClassManagement.defaultProps = {
   ],
   negativeItems: [
     "https://storage.googleapis.com/dodamimage/c.jpg",
-
     "https://i.ibb.co/VmDcBbK/422377-534498-2153.jpg",
     "https://i.ibb.co/rsXZ8Yf/42e3ffd6546e6b51156bf48ba50e886f.jpg",
     "https://storage.googleapis.com/dodamimage/l.jpg",

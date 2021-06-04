@@ -36,29 +36,6 @@ const MainNavbar = () => {
     auth.setIsTeacher(false);
     auth.setIsStudent(false);
   });
-  // componentDidMount() {
-  //   let headroom = new Headroom(document.getElementById("navbar-main"));
-  //   // initialise
-  //   headroom.init();
-  // }
-  // state = {
-  //   collapseClasses: "",
-  //   collapseOpen: false,
-  // };
-
-  // onExiting = () => {
-  //   this.setState({
-  //     collapseClasses: "collapsing-out",
-  //   });
-  // };
-
-  // onExited = () => {
-  //   this.setState({
-  //     collapseClasses: "",
-  //   });
-  // };
-
-  // render() {
   return (
     <>
       <header className="header-global">

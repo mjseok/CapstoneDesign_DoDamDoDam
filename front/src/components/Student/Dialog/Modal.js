@@ -359,11 +359,3 @@ const Correction = styled.p`
 
 export default SimpleModal;
 
-// function mikeOn(){
-//   SpeechRecognition.startListening({ continuous: true })
-//   const btnElement
-//   = document.getElementById('mikeplz');
-
-//   btnElement.value = "🎤❌";
-
-// }
