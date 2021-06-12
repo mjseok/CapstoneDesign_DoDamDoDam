@@ -14,16 +14,14 @@
 
 | **AI 감정분석**  | **핫토픽**  | 
 |:---:|:---:|
-| ![image](https://user-images.githubusercontent.com/57527380/121774666-6b56af80-cbbe-11eb-89d8-d00d65b0c420.png) | ![핫토픽](https://user-images.githubusercontent.com/57527380/121774278-b40d6900-cbbc-11eb-8fcb-4f96ddb67cbf.png)
-  | 
+| ![image](https://user-images.githubusercontent.com/57527380/121774666-6b56af80-cbbe-11eb-89d8-d00d65b0c420.png) | ![핫토픽](https://user-images.githubusercontent.com/57527380/121774278-b40d6900-cbbc-11eb-8fcb-4f96ddb67cbf.png) | 
 | 학생이 작성한 일기를 기반으로 분석된 감정을 확인할 수 있습니다. | 학생들의 관심을 파악 후, 관심사를 워드클라우드로 보여줍니다.  | 
   
 ### ◼ 선생님 기능  
 
-| **일기 및 감정 확인** | **코멘트 작성**   |
+| **일기 및 감정 확인** | **코멘트 작성**  |
 |:---:|:---:|
-| ![image](https://user-images.githubusercontent.com/57527380/121774731-ba9ce000-cbbe-11eb-8c6b-969b3b12a55f.png)|![image](https://user-images.githubusercontent.com/57527380/121774792-ea4be800-cbbe-11eb-97cf-1ea26996f260.png)
-  | 
+| ![image](https://user-images.githubusercontent.com/57527380/121774731-ba9ce000-cbbe-11eb-8c6b-969b3b12a55f.png)|![image](https://user-images.githubusercontent.com/57527380/121774792-ea4be800-cbbe-11eb-97cf-1ea26996f260.png) | 
 |  학생들의 일기,감정을 달력,그래프로 볼 수 있습니다. |  학생들의 일기에 코멘트를 작성할 수 있습니다.  |
 | **각종 그래프 확인**  | **학급 관리**  |
 | ![image](https://user-images.githubusercontent.com/57527380/121774599-131fad80-cbbe-11eb-98a2-8cae5fdaab86.png) | ![image](https://user-images.githubusercontent.com/57527380/121774622-2c285e80-cbbe-11eb-805f-d2c99225a4f4.png) |
@@ -36,8 +34,7 @@
 |![일기작성](https://user-images.githubusercontent.com/57527380/121774388-3e55cd00-cbbd-11eb-8207-5cf2e4c356f9.png)  |![맞춤법](https://user-images.githubusercontent.com/57527380/121774311-f040c980-cbbc-11eb-9a46-8e255244ce70.png) |
 | 키보드와 마이크 중 원하는 것을 택하여 일기를 작성할 수 있습니다.  | 일기를 작성한 후, 맞춤법을 클릭 한 번으로 수정가능합니다. |
 | **감사일기 작성**  | 
-| ![감사](https://user-images.githubusercontent.com/57527380/121774428-62191300-cbbd-11eb-858d-1b7912ac8790.png)
- |
+| ![감사](https://user-images.githubusercontent.com/57527380/121774428-62191300-cbbd-11eb-858d-1b7912ac8790.png)|
 | 부정적 감정을 해소하기 위한 감사일기를 작성할 수 있습니다.  | 
 
 
