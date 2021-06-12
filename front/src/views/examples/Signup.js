@@ -61,10 +61,6 @@ const Signup = () => {
         if (res.status === 201) {
           alert("가입을 환영합니다!");
           history.push("/class/management");
-          console.log(auth);
-          // auth.setUserMe(res.data);
-          // auth.setIsTeacher(true);
-          // auth.setIsTeacher(false);
         }
       })
       .catch((e) => {

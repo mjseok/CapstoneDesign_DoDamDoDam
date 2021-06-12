@@ -24,10 +24,7 @@ import "assets/vendor/font-awesome/css/font-awesome.min.css";
 import "assets/scss/argon-design-system-react.scss?v1.1.0";
 
 //import Index from "views/Index.js";
-import Landing from "views/examples/Landing.js";
 import Login from "views/examples/Login.js";
-import Profile from "views/examples/Profile.js";
-import Register from "views/examples/Register.js";
 import Signup from "views/examples/Signup.js";
 import AuthProvider from "./context/auth";
 
@@ -42,7 +39,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Switch>
         <Route path="/" exact render={(props) => <Main {...props} />} />
-        
+
         <Route
           path="/login-page"
           exact

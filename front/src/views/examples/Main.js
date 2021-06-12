@@ -22,7 +22,6 @@ import React from "react";
 // core components
 import SimpleNavbar from "components/Navbars/SimpleNavbar.js";
 import MainFooter from "components/Footers/MainFooter.js";
-import styled from "styled-components";
 // index page sections
 import VideoHero from "../IndexSections/VideoHero";
 

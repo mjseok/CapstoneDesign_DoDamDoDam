@@ -18,26 +18,14 @@
 import React, { useState, useEffect } from "react";
 
 // reactstrap components
-import classnames from "classnames";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
 // react plugin used to create charts
-import { Line } from "react-chartjs-2";
 // reactstrap components
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  NavItem,
-  NavLink,
-  Nav,
-  Container,
-  Row,
-  Col,
-} from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 // core components
-import { chartOptions, parseOptions, chartExample1 } from "variables/charts.js";
+import { chartOptions, parseOptions } from "variables/charts.js";
 import StudentList from "components/Student/StudentList";
 import service from "service";
 import styled from "styled-components";
@@ -49,11 +37,10 @@ import Calendar from "components/Calendar/Calendar.js";
 import SampleHero from "../IndexSections/SampleHero";
 
 const StudentManagement = (props) => {
-  const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
+  const [setActiveNav] = useState(1);
+  const [setChartExample1Data] = useState("data1");
   const [students, setStudents] = useState([{}]);
   const [clicked, setClicked] = useState({ id: "", name: "학생의" });
-  
 
   const getAllStudent = async () => {
     const { data: AllStudent } = await service.getStudents(
@@ -96,13 +83,12 @@ const StudentManagement = (props) => {
             <div class="col-lg-12">
               {" "}
               <Title2>{`${clicked.name} 일기목록`}</Title2>
-              <Calendar studentID={clicked.id} studentName={clicked.name}/>
+              <Calendar studentID={clicked.id} studentName={clicked.name} />
             </div>
             <div class="col-lg-12">
               {" "}
               <Row className="justify-content-center">
-                <Col className="col-md-12 " xr="8" >
-                 </Col> 
+                <Col className="col-md-12 " xr="8"></Col>
               </Row>
             </div>
           </Row>
@@ -114,7 +100,7 @@ const StudentManagement = (props) => {
 };
 
 const Students = styled.div`
-  background-color: rgba(175,208,224,0.5);
+  background-color: rgba(175, 208, 224, 0.5);
   min-height: 1250px;
   margin-bottom: 50px;
   border-radius: 15px;
@@ -139,4 +125,3 @@ const Title2 = styled.div`
 `;
 
 export default StudentManagement;
-

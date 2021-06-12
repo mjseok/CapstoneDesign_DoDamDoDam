@@ -7,7 +7,6 @@ import Axios from "../../api/axios";
 import {
   Button,
   Card,
-  CardHeader,
   CardBody,
   FormGroup,
   Form,
@@ -44,7 +43,6 @@ const Login = () => {
           if (res.data.userType === "student") {
             window.localStorage.setItem("teacher_id", res.data.teacher_id);
             window.localStorage.setItem("name", res.data.name);
-
           }
           auth.setUserMe(res.data);
           const isTeacher = res.data.userType === "teacher";
@@ -54,7 +52,6 @@ const Login = () => {
           isTeacher && history.push("/class/management");
 
           isStudent && history.push("/student/main");
-
         }
       })
       .catch((e) => {

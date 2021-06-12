@@ -16,24 +16,19 @@
 
 */
 // import React from "react";
-import React, { useContext, useState, useEffect,useMemo } from "react";
-import { Pie, Doughnut, Bar, Line, Mixed } from "react-chartjs-2";
+import React, { useState, useEffect, useMemo } from "react";
+import { Doughnut, Bar } from "react-chartjs-2";
 //import Layout from '../../components/Layout';
 import ClassManagementStyled from "./ClassManagement.style";
 //import PageLayout from '../../layouts/PageLayout';
 import styled from "styled-components";
-import AuthContext from "../../context/auth";
 import ReactWordcloud from "react-wordcloud";
 import service from "../../service";
-// reactstrap components
-// core components
 import MainNavbar from "components/Navbars/MainNavbar.js";
 import UserFooter from "components/Footers/UserFooter.js";
 // index page sections
 import SampleHero from "../IndexSections/SampleHero";
-import { Row } from "reactstrap";
-import { setSourceMapRange, setTokenSourceMapRange } from "typescript";
-import { Modal, Button } from "reactstrap";
+import { Modal } from "reactstrap";
 
 const data3 = {
   labels: ["March", "April", "May", "June", "July", "August"],
@@ -59,61 +54,8 @@ const data3 = {
   options: options,
 };
 
-const data2 = {
-  labels: ["일", "월", "화", "수", "목", "금", "토"],
-  datasets: [
-    {
-      data: [1, 2, 3, 1, 3, 2, 4],
-      fill: false,
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgba(255, 99, 132, 0.2)",
-    },
-  ],
-};
-
-const options2 = {
-  scales: {
-    yAxes: [
-      {
-        ticks: {
-          beginAtZero: true,
-        },
-      },
-    ],
-  },
-};
-const data = {
-  // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  labels: ["행복", "중립", "슬픔", "분노", "두려움"],
-  datasets: [
-    {
-      //label: '# of Votes',
-      data: [12, 19, 3, 5, 6],
-      backgroundColor: [
-        "rgba(255, 99, 132, 0.2)",
-        "rgba(54, 162, 235, 0.2)",
-        "rgba(255, 206, 86, 0.2)",
-        "rgba(75, 192, 192, 0.2)",
-        "rgba(153, 102, 255, 0.2)",
-        // 'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        "rgba(255, 99, 132, 1)",
-        "rgba(54, 162, 235, 1)",
-        "rgba(255, 206, 86, 1)",
-        "rgba(75, 192, 192, 1)",
-        "rgba(153, 102, 255, 1)",
-        // 'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-};
-
 const options = {
   indexAxis: "y",
-  // Elements options apply to all of the options unless overridden in a dataset
-  // In this case, we are setting the border of each horizontal bar to be 2px wide
   elements: {
     bar: {
       borderWidth: 2,
@@ -133,17 +75,9 @@ const options = {
 };
 
 const ClassManagement = (props) => {
-  // componentDidMount() {
-  //   document.documentElement.scrollTop = 0;
-  //   document.scrollingElement.scrollTop = 0;
-  //   this.refs.main.scrollTop = 0;
-  // }
-
   const { positiveItems, negativeItems, checkItems } = props;
-  const auth = useContext(AuthContext);
   let wordList = [{ text: "", value: "" }];
 
-  //console.log(auth?.userMe);
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [bad, setBad] = useState("");
@@ -152,7 +86,7 @@ const ClassManagement = (props) => {
   const options = useMemo(() => {
     return {
       fontSizes: [20, 100],
-    }
+    };
   }, []);
   const getAllWords = async () => {
     const { data: AllWords } = await service.getWords(
@@ -357,8 +291,6 @@ ClassManagement.defaultProps = {
     "https://storage.googleapis.com/dodamimage/a.jpg",
     "https://storage.googleapis.com/dodamimage/b.jpg",
     "https://storage.googleapis.com/dodamimage/h.jpg",
-
-
   ],
   negativeItems: [
     "https://storage.googleapis.com/dodamimage/c.jpg",
@@ -368,7 +300,6 @@ ClassManagement.defaultProps = {
     "https://storage.googleapis.com/dodamimage/m.jpg",
     "https://storage.googleapis.com/dodamimage/n.jpg",
     "https://storage.googleapis.com/dodamimage/o.jpg",
-
   ],
   checkItems: [
     {
@@ -399,25 +330,4 @@ const Total12 = styled.div`
   border-radius: 15px;
 `;
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Wrapper2 = styled.div`
-  // display: inline-block;
-  // vertical-align: middle;
-  // height: 100%;
-  display: table-cell;
-  vertical-align: middle;
-  margin-right: 500px;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-rows: 200px 200px 200px;
-  grid-template-columns: 33.3% 33.3% 33.3%;
-  justify-items: center;
-  left: 500px;
-`;
 export default ClassManagement;

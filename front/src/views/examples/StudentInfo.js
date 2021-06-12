@@ -28,16 +28,12 @@ import UserFooter from "components/Footers/UserFooter.js";
 import SampleHero from "../IndexSections/SampleHero";
 import Pagination from "../IndexSections/Pagination.js";
 import {
-  Row,
-  Col,
-  Container,
   Form,
   Input,
   InputGroupAddon,
   InputGroupText,
   InputGroup,
   FormGroup,
-  Label,
   Button,
 } from "reactstrap";
 import styled from "styled-components";
@@ -105,15 +101,25 @@ const StudentInfo = () => {
       <MainNavbar />
       <main>
         <SampleHero headerStyle={3} />
-        <div 
-          style={{ "background-color": "rgba(175,208,224,0.5)", "border-radius": "30px", width:"80%",marginLeft:"10%"}}
+        <div
+          style={{
+            "background-color": "rgba(175,208,224,0.5)",
+            "border-radius": "30px",
+            width: "80%",
+            marginLeft: "10%",
+          }}
         >
           <Grid>
             <img
               alt="..."
               className="rounded-circle img-center shadow shadow-lg--hover"
               src="https://www.freeiconspng.com/uploads/plus-icon-black-2.png"
-              style={{ width: "100px", height: "100px", marginTop: "25%", backgroundColor:"white"}}
+              style={{
+                width: "100px",
+                height: "100px",
+                marginTop: "25%",
+                backgroundColor: "white",
+              }}
               onClick={() => {
                 setOpen(!open);
               }}
@@ -262,6 +268,5 @@ const Grid = styled.div`
   justify-items: center;
   margin-left: 0px;
   margin-top: 15px;
-  padding-top:25px;
+  padding-top: 25px;
 `;
-
