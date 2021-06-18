@@ -42,6 +42,32 @@
 ## 📌기술스택
 <img src="https://i.ibb.co/KrRYpZV/aaa.png" alt="aaa" border="0">
 
+### 활용된 오픈소스 목록
+**AI**  
+    형태소 분리 및 감정분석을 구현하기 위해 사용
+1. Tensorflow https://github.com/tensorflow
+2. KoNLPy https://github.com/nazgul33/konlpy
+3. Apache https://github.com/apache
+
+
+**DB**
+1. MySQL
+    데이터를 효과적으로 관리하기 위해 사용
+
+**Web**
+1. react-calendar https://github.com/wojtekmaj/react-calendar
+    달력 구현을 위해 사용
+2. hanspell https://github.com/9beach/hanspell
+    맞춤법 검사기능을 위해 사용
+3. react-speech https://github.com/JamesBrill/react-speech-recognition
+    음성인식을 위해 사용
+4. react-wordcloud https://github.com/chrisrzhou/react-wordcloud
+    워드클라우드를 구현하기 위해 사용
+5. react-chartjs https://github.com/reactchartjs/react-chartjs-2
+    그래프를 구현하기 위해 사용
+6. Bootstrap- Aron Design https://github.com/creativetimofficial/argon-react-native
+    UI Design을 위해 사용
+
 ## 📌 팀4885
 - [김기백](https://github.com/rlqoznmm)
 - [최사원](https://github.com/sawon85)
