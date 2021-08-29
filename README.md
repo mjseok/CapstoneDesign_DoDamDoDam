@@ -6,7 +6,7 @@
 ### 도담도담 설명 및 데모 영상
 > 도담도담 서비스의 기획배경, 시연, 개발과정 등을 Youtube로 확인하세요!   
 
-[![DoDamDoDam](http://img.youtube.com/vi/lo48jMfVC1A/0.jpg)](https://www.youtube.com/watch?v=KATOvlfRBr4)
+[![DoDamDoDam](http://img.youtube.com/vi/KATOvlfRBr4/0.jpg)](https://youtu.be/KATOvlfRBr4)
 
 ## 📌 주요 기능
 
